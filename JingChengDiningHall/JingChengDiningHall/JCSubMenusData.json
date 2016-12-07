@@ -1,0 +1,41 @@
+[
+     {
+         "title": "添加分类",
+         "imageName": "middle_add",
+         "height": 48.0,
+         "width": 48.0,
+         "unit": "px"
+     },
+ 
+     {
+         "title": "肉类",
+         "imageName": "middle_meat",
+         "height": 64.0,
+         "width": 84.0,
+         "unit": "px"
+     },
+ 
+     {
+         "title": "海鲜",
+         "imageName": "middle_seafood",
+         "height": 42.0,
+         "width": 84.0,
+         "unit": "px"
+     },
+ 
+     {
+         "title": "蔬菜类",
+         "imageName": "middle_vegetables",
+         "height": 84.0,
+         "width": 64.0,
+         "unit": "px"
+     },
+ 
+     {
+         "title": "主食",
+         "imageName": "middle_ staplefood",
+         "height": 68.0,
+         "width": 84.0,
+         "unit": "px"
+     }
+ ]

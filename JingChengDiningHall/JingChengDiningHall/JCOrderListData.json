@@ -1,0 +1,33 @@
+ [
+      {
+          "title": "全部",
+          "imageName": "middle_submenu_total",
+          "height": 60.0,
+          "width": 60.0,
+          "unit": "px"
+      },
+      
+      {
+          "title": "就餐中",
+          "imageName": "middle_submenu_dinner",
+          "height": 60.0,
+          "width": 76.0,
+          "unit": "px"
+      },
+      
+      {
+          "title": "空闲",
+          "imageName": "middle_submenu_free",
+          "height": 76.0,
+          "width": 54.0,
+          "unit": "px"
+      },
+      
+      {
+          "title": "记录",
+          "imageName": "middle_submenu_record",
+          "height": 76.0,
+          "width": 58.0,
+          "unit": "px"
+      }
+  ]
