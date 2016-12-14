@@ -40,6 +40,7 @@ class JCOrderRecordView: UIView, UICollectionViewDataSource, UICollectionViewDel
     // 数组
     private lazy var orderRecordModelArray: [JCOrderRecordModel] = [JCOrderRecordModel]();
     
+ 
     
     // MARK: - 初始化方法
     override init(frame: CGRect) {
@@ -99,6 +100,7 @@ class JCOrderRecordView: UIView, UICollectionViewDataSource, UICollectionViewDel
         
         // 刷新表格
         collectionView.reloadData();
+        
     }
     
     

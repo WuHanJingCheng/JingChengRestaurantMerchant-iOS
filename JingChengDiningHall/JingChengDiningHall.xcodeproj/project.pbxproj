@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		72F917175199AF0EF5A1409F /* Pods_JingChengDiningHall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A682753B706019570E1539 /* Pods_JingChengDiningHall.framework */; };
+		8B0D3FDA1DF800BE00E39FB6 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0D3FD91DF800BE00E39FB6 /* HttpManager.swift */; };
 		8B286FAE1DB0C3DE00F800B9 /* JCMiddleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B286FAD1DB0C3DE00F800B9 /* JCMiddleCell.swift */; };
 		8B286FB21DB0CB0E00F800B9 /* JCSubMenusData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B286FB11DB0CB0E00F800B9 /* JCSubMenusData.json */; };
 		8B286FB41DB0D29F00F800B9 /* JCMiddleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B286FB31DB0D29F00F800B9 /* JCMiddleModel.swift */; };
@@ -28,9 +29,10 @@
 		8B5620A61DF4F5EC0022EFD6 /* JCLeftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5620A51DF4F5EC0022EFD6 /* JCLeftController.swift */; };
 		8B5620A81DF4F7510022EFD6 /* JCMiddleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5620A71DF4F7510022EFD6 /* JCMiddleController.swift */; };
 		8B5620AA1DF4F8AD0022EFD6 /* JCRightController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5620A91DF4F8AD0022EFD6 /* JCRightController.swift */; };
-		8B5620AC1DF5138F0022EFD6 /* JCMiddleAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5620AB1DF5138F0022EFD6 /* JCMiddleAddCell.swift */; };
 		8B5758481DB7BC04000BE44C /* JCOrderRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5758471DB7BC04000BE44C /* JCOrderRecordModel.swift */; };
 		8B591A641DF6AEE400C0DF6C /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B591A631DF6AEE400C0DF6C /* PhotoCell.swift */; };
+		8B59D33D1DFBFD2500E47C05 /* PhotoDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B59D33C1DFBFD2500E47C05 /* PhotoDetailController.swift */; };
+		8B59D33F1DFC09CD00E47C05 /* PhotoDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B59D33E1DFC09CD00E47C05 /* PhotoDetailCell.swift */; };
 		8B6C50151DB6129100DFAF9B /* JCOrderRecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6C50141DB6129100DFAF9B /* JCOrderRecordCell.swift */; };
 		8B89DDE91DF698010099A996 /* JCDishDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B89DDE81DF698010099A996 /* JCDishDetailController.swift */; };
 		8B89DDF21DF69BD30099A996 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B89DDEF1DF69BD30099A996 /* AlbumCell.swift */; };
@@ -41,10 +43,10 @@
 		8B93AD141DB755200062812C /* JCMineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B93AD131DB755200062812C /* JCMineDetailView.swift */; };
 		8B93AD161DB75FB70062812C /* JCDIYLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B93AD151DB75FB70062812C /* JCDIYLabel.swift */; };
 		8B93AD181DB76E100062812C /* JCCompanyNameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B93AD171DB76E100062812C /* JCCompanyNameButton.swift */; };
+		8B9EDB4E1DF7E84000EFAE8E /* JCAddSubMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9EDB4D1DF7E84000EFAE8E /* JCAddSubMenuController.swift */; };
 		8BB8D9A81DDC5AF1008364BA /* JCMenuAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB8D9A71DDC5AF1008364BA /* JCMenuAddCell.swift */; };
 		8BC89E021DB4B49500A348D2 /* JCOrderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC89E011DB4B49500A348D2 /* JCOrderDetailView.swift */; };
 		8BC89E041DB4BB5A00A348D2 /* JCOrderLeftCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC89E031DB4BB5A00A348D2 /* JCOrderLeftCell.swift */; };
-		8BC89E061DB4C0D400A348D2 /* JCOrderNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC89E051DB4C0D400A348D2 /* JCOrderNumberView.swift */; };
 		8BC89E081DB4CD4300A348D2 /* JCOrderDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC89E071DB4CD4300A348D2 /* JCOrderDetailHeader.swift */; };
 		8BC89E0A1DB4CD6200A348D2 /* JCOrderDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC89E091DB4CD6200A348D2 /* JCOrderDetailCell.swift */; };
 		8BC89E0C1DB4D15300A348D2 /* JCOrderDetailBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC89E0B1DB4D15300A348D2 /* JCOrderDetailBottom.swift */; };
@@ -52,7 +54,6 @@
 		8BD14EA81DB472C000DD2797 /* JCOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD14EA71DB472C000DD2797 /* JCOrderView.swift */; };
 		8BD14EAA1DB474BF00DD2797 /* JCOrderListData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BD14EA91DB474BF00DD2797 /* JCOrderListData.json */; };
 		8BD14EB01DB488C700DD2797 /* JCStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD14EAF1DB488C700DD2797 /* JCStatusView.swift */; };
-		8BEBF6B41DB86BC90085216F /* JCAddSubMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBF6B31DB86BC90085216F /* JCAddSubMenuView.swift */; };
 		8BEBF6B61DB86D170085216F /* JCAddSubMenuDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBF6B51DB86D170085216F /* JCAddSubMenuDetailView.swift */; };
 		8BF97CBD1DB09D0E005D328D /* JCSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF97CB81DB09D0E005D328D /* JCSearchBar.swift */; };
 		8BF97CBE1DB09D0E005D328D /* JCTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF97CB91DB09D0E005D328D /* JCTopView.swift */; };
@@ -82,6 +83,7 @@
 
 /* Begin PBXFileReference section */
 		17B0BD7902B126FE7FDB45C0 /* Pods-JingChengDiningHall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JingChengDiningHall.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JingChengDiningHall/Pods-JingChengDiningHall.debug.xcconfig"; sourceTree = "<group>"; };
+		8B0D3FD91DF800BE00E39FB6 /* HttpManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
 		8B286FAD1DB0C3DE00F800B9 /* JCMiddleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMiddleCell.swift; sourceTree = "<group>"; };
 		8B286FB11DB0CB0E00F800B9 /* JCSubMenusData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = JCSubMenusData.json; sourceTree = "<group>"; };
 		8B286FB31DB0D29F00F800B9 /* JCMiddleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMiddleModel.swift; sourceTree = "<group>"; };
@@ -108,9 +110,10 @@
 		8B5620A51DF4F5EC0022EFD6 /* JCLeftController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCLeftController.swift; sourceTree = "<group>"; };
 		8B5620A71DF4F7510022EFD6 /* JCMiddleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMiddleController.swift; sourceTree = "<group>"; };
 		8B5620A91DF4F8AD0022EFD6 /* JCRightController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCRightController.swift; sourceTree = "<group>"; };
-		8B5620AB1DF5138F0022EFD6 /* JCMiddleAddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMiddleAddCell.swift; sourceTree = "<group>"; };
 		8B5758471DB7BC04000BE44C /* JCOrderRecordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCOrderRecordModel.swift; sourceTree = "<group>"; };
 		8B591A631DF6AEE400C0DF6C /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		8B59D33C1DFBFD2500E47C05 /* PhotoDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailController.swift; sourceTree = "<group>"; };
+		8B59D33E1DFC09CD00E47C05 /* PhotoDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailCell.swift; sourceTree = "<group>"; };
 		8B6C50141DB6129100DFAF9B /* JCOrderRecordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCOrderRecordCell.swift; sourceTree = "<group>"; };
 		8B89DDE81DF698010099A996 /* JCDishDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCDishDetailController.swift; sourceTree = "<group>"; };
 		8B89DDEF1DF69BD30099A996 /* AlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
@@ -121,10 +124,10 @@
 		8B93AD131DB755200062812C /* JCMineDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMineDetailView.swift; sourceTree = "<group>"; };
 		8B93AD151DB75FB70062812C /* JCDIYLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCDIYLabel.swift; sourceTree = "<group>"; };
 		8B93AD171DB76E100062812C /* JCCompanyNameButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCCompanyNameButton.swift; sourceTree = "<group>"; };
+		8B9EDB4D1DF7E84000EFAE8E /* JCAddSubMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCAddSubMenuController.swift; sourceTree = "<group>"; };
 		8BB8D9A71DDC5AF1008364BA /* JCMenuAddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMenuAddCell.swift; sourceTree = "<group>"; };
 		8BC89E011DB4B49500A348D2 /* JCOrderDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCOrderDetailView.swift; sourceTree = "<group>"; };
 		8BC89E031DB4BB5A00A348D2 /* JCOrderLeftCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCOrderLeftCell.swift; sourceTree = "<group>"; };
-		8BC89E051DB4C0D400A348D2 /* JCOrderNumberView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCOrderNumberView.swift; sourceTree = "<group>"; };
 		8BC89E071DB4CD4300A348D2 /* JCOrderDetailHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCOrderDetailHeader.swift; sourceTree = "<group>"; };
 		8BC89E091DB4CD6200A348D2 /* JCOrderDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCOrderDetailCell.swift; sourceTree = "<group>"; };
 		8BC89E0B1DB4D15300A348D2 /* JCOrderDetailBottom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCOrderDetailBottom.swift; sourceTree = "<group>"; };
@@ -132,7 +135,6 @@
 		8BD14EA71DB472C000DD2797 /* JCOrderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCOrderView.swift; sourceTree = "<group>"; };
 		8BD14EA91DB474BF00DD2797 /* JCOrderListData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = JCOrderListData.json; sourceTree = "<group>"; };
 		8BD14EAF1DB488C700DD2797 /* JCStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCStatusView.swift; sourceTree = "<group>"; };
-		8BEBF6B31DB86BC90085216F /* JCAddSubMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCAddSubMenuView.swift; sourceTree = "<group>"; };
 		8BEBF6B51DB86D170085216F /* JCAddSubMenuDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCAddSubMenuDetailView.swift; sourceTree = "<group>"; };
 		8BF97CB81DB09D0E005D328D /* JCSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCSearchBar.swift; sourceTree = "<group>"; };
 		8BF97CB91DB09D0E005D328D /* JCTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCTopView.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 		8B30A62A1DAF40EF00124925 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				8B0D3FD91DF800BE00E39FB6 /* HttpManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -326,6 +329,8 @@
 				8B89DDF01DF69BD30099A996 /* AlbumListController.swift */,
 				8B89DDF71DF6A8100099A996 /* PhotoListController.swift */,
 				8B591A631DF6AEE400C0DF6C /* PhotoCell.swift */,
+				8B59D33C1DFBFD2500E47C05 /* PhotoDetailController.swift */,
+				8B59D33E1DFC09CD00E47C05 /* PhotoDetailCell.swift */,
 			);
 			path = PhotoAlbum;
 			sourceTree = "<group>";
@@ -351,7 +356,6 @@
 				8BFD132E1DB60D1300D75BE4 /* JCOrderRecordView.swift */,
 				8B6C50141DB6129100DFAF9B /* JCOrderRecordCell.swift */,
 				8BC89E031DB4BB5A00A348D2 /* JCOrderLeftCell.swift */,
-				8BC89E051DB4C0D400A348D2 /* JCOrderNumberView.swift */,
 				8BC89E011DB4B49500A348D2 /* JCOrderDetailView.swift */,
 				8BC89E0B1DB4D15300A348D2 /* JCOrderDetailBottom.swift */,
 				8BC89E071DB4CD4300A348D2 /* JCOrderDetailHeader.swift */,
@@ -408,8 +412,7 @@
 			children = (
 				8B5620A71DF4F7510022EFD6 /* JCMiddleController.swift */,
 				8B286FAD1DB0C3DE00F800B9 /* JCMiddleCell.swift */,
-				8B5620AB1DF5138F0022EFD6 /* JCMiddleAddCell.swift */,
-				8BEBF6B31DB86BC90085216F /* JCAddSubMenuView.swift */,
+				8B9EDB4D1DF7E84000EFAE8E /* JCAddSubMenuController.swift */,
 				8BEBF6B51DB86D170085216F /* JCAddSubMenuDetailView.swift */,
 			);
 			name = Middle;
@@ -506,7 +509,7 @@
 				TargetAttributes = {
 					8B30A5E51DAF3F6100124925 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = A6RKWJ9J6G;
+						DevelopmentTeam = 3GP38WPBTX;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
@@ -627,7 +630,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B5620AC1DF5138F0022EFD6 /* JCMiddleAddCell.swift in Sources */,
 				8B93AD161DB75FB70062812C /* JCDIYLabel.swift in Sources */,
 				8B30A5EA1DAF3F6100124925 /* AppDelegate.swift in Sources */,
 				8B286FAE1DB0C3DE00F800B9 /* JCMiddleCell.swift in Sources */,
@@ -650,6 +652,7 @@
 				8B89DDF81DF6A8100099A996 /* PhotoListController.swift in Sources */,
 				8BF97CBD1DB09D0E005D328D /* JCSearchBar.swift in Sources */,
 				8BF97CBE1DB09D0E005D328D /* JCTopView.swift in Sources */,
+				8B59D33D1DFBFD2500E47C05 /* PhotoDetailController.swift in Sources */,
 				8B93AD121DB753E00062812C /* JCMineView.swift in Sources */,
 				8BD14EB01DB488C700DD2797 /* JCStatusView.swift in Sources */,
 				8B89DDE91DF698010099A996 /* JCDishDetailController.swift in Sources */,
@@ -659,19 +662,20 @@
 				8BFD132D1DB606E500D75BE4 /* JCOrderLeftView.swift in Sources */,
 				8BC89E0A1DB4CD6200A348D2 /* JCOrderDetailCell.swift in Sources */,
 				8B5620A61DF4F5EC0022EFD6 /* JCLeftController.swift in Sources */,
+				8B9EDB4E1DF7E84000EFAE8E /* JCAddSubMenuController.swift in Sources */,
 				8B30A6361DAF445800124925 /* JCPasswordView.swift in Sources */,
 				8B286FB41DB0D29F00F800B9 /* JCMiddleModel.swift in Sources */,
 				8B89DDF21DF69BD30099A996 /* AlbumCell.swift in Sources */,
 				8BD14EA81DB472C000DD2797 /* JCOrderView.swift in Sources */,
-				8BC89E061DB4C0D400A348D2 /* JCOrderNumberView.swift in Sources */,
 				8B4398621DB1294900A3925B /* JCMenuCell.swift in Sources */,
+				8B0D3FDA1DF800BE00E39FB6 /* HttpManager.swift in Sources */,
 				8B5620A81DF4F7510022EFD6 /* JCMiddleController.swift in Sources */,
 				8B5758481DB7BC04000BE44C /* JCOrderRecordModel.swift in Sources */,
 				8BD14EA61DB472B200DD2797 /* JCMenuView.swift in Sources */,
 				8BEBF6B61DB86D170085216F /* JCAddSubMenuDetailView.swift in Sources */,
 				8BF97CC21DB0B084005D328D /* JCLeftModel.swift in Sources */,
 				8B93AD181DB76E100062812C /* JCCompanyNameButton.swift in Sources */,
-				8BEBF6B41DB86BC90085216F /* JCAddSubMenuView.swift in Sources */,
+				8B59D33F1DFC09CD00E47C05 /* PhotoDetailCell.swift in Sources */,
 				8BC89E021DB4B49500A348D2 /* JCOrderDetailView.swift in Sources */,
 				8B30A6341DAF43B400124925 /* JCAccountView.swift in Sources */,
 			);
@@ -819,7 +823,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = A6RKWJ9J6G;
+				DEVELOPMENT_TEAM = 3GP38WPBTX;
 				INFOPLIST_FILE = JingChengDiningHall/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -835,7 +839,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = A6RKWJ9J6G;
+				DEVELOPMENT_TEAM = 3GP38WPBTX;
 				INFOPLIST_FILE = JingChengDiningHall/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

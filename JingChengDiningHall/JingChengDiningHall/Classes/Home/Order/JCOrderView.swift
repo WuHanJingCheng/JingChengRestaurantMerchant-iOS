@@ -11,7 +11,7 @@ import UIKit
 class JCOrderView: UIView {
     
     // 订单详情
-    private lazy var orderDetailView: JCOrderDetailView = JCOrderDetailView();
+    lazy var orderDetailView: JCOrderDetailView = JCOrderDetailView();
     
     // 桌号列表页面
     lazy var orderLeftView: JCOrderLeftView = JCOrderLeftView();
@@ -32,6 +32,7 @@ class JCOrderView: UIView {
         // 添加订单记录
         recordView.isHidden = true;
         addSubview(recordView);
+        
  
     }
     

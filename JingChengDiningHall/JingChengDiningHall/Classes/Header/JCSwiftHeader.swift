@@ -8,9 +8,33 @@
 
 import Foundation
 import UIKit
+import SDWebImage
 
 let kScreenWidth = UIScreen.main.bounds.size.width;
 let kScreenHeight = UIScreen.main.bounds.size.height;
+
+// 加载网络图片
+extension UIImageView {
+    
+    // MARK: - 加载网络图片，有占位图
+    func zx_setImageWithURL(_ urlString: String?, placeholderImage: UIImage?) -> Void {
+        
+        guard let urlString = urlString , let placeholderImage = placeholderImage else {
+            return;
+        }
+        let url = URL(string: urlString)!;
+        sd_setImage(with: url, placeholderImage: placeholderImage);
+    }
+    
+    // MARK: - 加载网络图片，没有占位图
+    func zx_setImageWithURL(_ urlString: String?) -> Void {
+        guard let urlString = urlString else {
+            return;
+        }
+        let url = URL(string: urlString);
+        sd_setImage(with: url);
+    }
+}
 
 extension UIImage {
     
@@ -19,6 +43,17 @@ extension UIImage {
         let imageName = isiPadPro_12_9_Inch() ? name + "_2048x1536@2x.png" : name + "_2048x1536@2x.png";
         let image = UIImage(named: imageName);
         return image;
+    }
+    
+    // 压缩图片
+    class func compressionLargeImage(largeImage: UIImage, toSize: CGSize) -> UIImage {
+        
+        UIGraphicsBeginImageContext(toSize);
+        largeImage.draw(in: CGRect(x: 0, y: 0, width: toSize.width, height: toSize.height));
+        let newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return newImage!;
+        
     }
 }
 
@@ -39,6 +74,7 @@ extension UIButton {
 // 通知名称
 let SendSubMenusNotification = Notification.Name("SendSubMenusNotification");
 let SendSubMenuContentNotification = Notification.Name("SendSubMenuContentNotification");
+let ChangePaidBtnStatusNotification = Notification.Name("ChangePaidBtnStatusNotification");
 
 // 是否是12.9 inch
 func isiPadPro_12_9_Inch() -> Bool {

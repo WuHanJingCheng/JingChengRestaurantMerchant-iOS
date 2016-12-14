@@ -40,7 +40,7 @@ class JCOrderDetailHeader: UIView {
     // 顾客人数
     private lazy var cusomersLabel: UILabel = {
         let label = UILabel();
-        label.text = "顾客人数： 4人";
+        label.text = "口味： 不辣";
         label.font = Font(size: 32/2);
         label.textColor = RGBWithHexColor(hexColor: 0x1a1a1a);
         label.textAlignment = .left;
@@ -178,22 +178,22 @@ class JCOrderDetailHeader: UIView {
         tableIdLabel.frame = CGRect(x: tableIdLabelX, y: tableIdLabelY, width: tableIdLabelW, height: tableIdLabelH);
         
         // 设置cusomersLabel 的frame
-        let cusomersLabelX = tableIdLabelX;
-        let cusomersLabelY = tableIdLabel.frame.maxY + realValue(value: 28/2);
-        let cusomersLabelW = tableIdLabelW;
-        let cusomersLabelH = realValue(value: 32/2);
-        cusomersLabel.frame = CGRect(x: cusomersLabelX, y: cusomersLabelY, width: cusomersLabelW, height: cusomersLabelH);
-        
-        // 设置orderIdLabel 的frame
         let orderIdLabelX = tableIdLabelX;
-        let orderIdLabelY = cusomersLabel.frame.maxY + realValue(value: 28/2);
+        let orderIdLabelY = tableIdLabel.frame.maxY + realValue(value: 28/2);
         let orderIdLabelW = tableIdLabelW;
         let orderIdLabelH = realValue(value: 32/2);
         orderIdLabel.frame = CGRect(x: orderIdLabelX, y: orderIdLabelY, width: orderIdLabelW, height: orderIdLabelH);
         
+        // 设置orderIdLabel 的frame
+        let cusomersLabelX = tableIdLabelX;
+        let cusomersLabelY = orderIdLabel.frame.maxY + realValue(value: 28/2);
+        let cusomersLabelW = tableIdLabelW;
+        let cusomersLabelH = realValue(value: 32/2);
+        cusomersLabel.frame = CGRect(x: cusomersLabelX, y: cusomersLabelY, width: cusomersLabelW, height: cusomersLabelH);
+        
         // 设置middleLine 的frame
         let middleLineCenterX = width/2;
-        let middleLineCenterY = orderIdLabel.frame.maxY + realValue(value: 28/2 + 0.5);
+        let middleLineCenterY = cusomersLabel.frame.maxY + realValue(value: 28/2 + 0.5);
         let middleLineW = topLineW;
         let middleLineH = topLineH;
         middleLine.center = CGPoint(x: middleLineCenterX, y: middleLineCenterY);

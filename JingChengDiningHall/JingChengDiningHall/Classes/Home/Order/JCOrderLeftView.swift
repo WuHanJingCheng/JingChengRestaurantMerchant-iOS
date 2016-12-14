@@ -8,7 +8,7 @@
 
 import UIKit
 
-let orderLeftInsetMargin = realValue(value: 30/2);
+let orderLeftInsetMargin = realValue(value: 20/2);
 
 class JCOrderLeftView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
@@ -25,23 +25,6 @@ class JCOrderLeftView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
         return background;
     }();
     
-    // 2人桌
-    private lazy var twoTableBtn: UIButton = {
-        let button = UIButton.buttonWithTitle(title: "2人桌");
-        return button;
-    }();
-    
-    // 4人桌
-    private lazy var fourTableBtn: UIButton = {
-        let button = UIButton.buttonWithTitle(title: "4人桌");
-        return button;
-    }();
-    
-    //  6人桌
-    private lazy var sixTableBtn: UIButton = {
-        let button = UIButton.buttonWithTitle(title: "其他");
-        return button;
-    }();
     
     // 添加桌子
     private lazy var addTableBtn: JCStatusView = {
@@ -80,9 +63,9 @@ class JCOrderLeftView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     // 桌号列表
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout();
-        layout.itemSize = CGSize(width: realValue(value: 177/2), height: realValue(value: 207/2));
-        layout.minimumLineSpacing = realValue(value: 100/2);
-        layout.minimumInteritemSpacing = realValue(value: 100/2);
+        layout.itemSize = CGSize(width: realValue(value: 188/2), height: realValue(value: 232/2));
+        layout.minimumLineSpacing = realValue(value: 85/2);
+        layout.minimumInteritemSpacing = realValue(value: 92/2);
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout);
         collectionView.dataSource = self;
         collectionView.delegate = self;
@@ -97,15 +80,6 @@ class JCOrderLeftView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
         
         // 添加背景
         addSubview(background);
-        
-        // 添加2人桌按钮
-        background.addSubview(twoTableBtn);
-        
-        // 添加4人桌
-        background.addSubview(fourTableBtn);
-        
-        // 添加6人桌
-        background.addSubview(sixTableBtn);
         
         // 添加添加按钮
         background.addSubview(addTableBtn);
@@ -128,9 +102,21 @@ class JCOrderLeftView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     func setData() -> Void {
         
         for i in 0..<20 {
-            let model = JCOrderModel();
-            model.isSelected = (i==0) ? true : false;
-            orderModelArray.append(model);
+            if i < 10 {
+                let model = JCOrderModel();
+                model.isSelected = (i==0) ? true : false;
+                model.tag = 0;
+                orderModelArray.append(model);
+            } else if i < 15 {
+                let model = JCOrderModel();
+                model.tag = 1;
+                orderModelArray.append(model);
+            } else {
+                let model = JCOrderModel();
+                model.tag = 2;
+                orderModelArray.append(model);
+            }
+            
         }
         
         // 刷新数据
@@ -177,30 +163,9 @@ class JCOrderLeftView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
         // 设置背景的frame
         background.frame = bounds;
         
-        // 设置twoTableBtn 的frame
-        let twoTableBtnX = realValue(value: 30/2);
-        let twoTableBtnY = realValue(value: 10/2);
-        let twoTableBtnW = realValue(value: 125/2);
-        let twoTableBtnH = realValue(value: 48/2);
-        twoTableBtn.frame = CGRect(x: twoTableBtnX, y: twoTableBtnY, width: twoTableBtnW, height: twoTableBtnH);
-        
-        // 设置fourTableBtn 的frame
-        let fourTableBtnX = twoTableBtn.frame.maxX + realValue(value: 30/2);
-        let fourTableBtnY = twoTableBtnY;
-        let fourTableBtnW = twoTableBtnW;
-        let fourTableBtnH = twoTableBtnH;
-        fourTableBtn.frame = CGRect(x: fourTableBtnX, y: fourTableBtnY, width: fourTableBtnW, height: fourTableBtnH);
-        
-        // 设置sixTableBtn 的frame
-        let sixTableBtnX = fourTableBtn.frame.maxX + realValue(value: 30/2);
-        let sixTableBtnY = twoTableBtnY;
-        let sixTableBtnW = twoTableBtnW;
-        let sixTableBtnH = twoTableBtnH;
-        sixTableBtn.frame = CGRect(x: sixTableBtnX, y: sixTableBtnY, width: sixTableBtnW, height: sixTableBtnH);
-        
         // 设置addTableBtn 的frame
-        let addTableBtnX = sixTableBtn.frame.maxX + realValue(value: 60/2);
-        let addTableBtnY = twoTableBtnY;
+        let addTableBtnX = realValue(value: 30/2);
+        let addTableBtnY = realValue(value: 10/2);
         let addTableBtnW = addTableBtn.calculateStatusWidth(text: addTableBtn.title.text!);
         let addTableBtnH = realValue(value: 48/2);
         addTableBtn.frame = CGRect(x: addTableBtnX, y: addTableBtnY, width: addTableBtnW, height: addTableBtnH);
@@ -221,7 +186,7 @@ class JCOrderLeftView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
         
         // 设置collectionView 的frame
         let collectionViewX = realValue(value: 0);
-        let collectionViewY = twoTableBtn.frame.maxY + realValue(value: 30/2);
+        let collectionViewY = addTableBtn.frame.maxY + realValue(value: 30/2);
         let collectionViewW = width - collectionViewX * CGFloat(2);
         let collectionViewH = height - collectionViewY;
         collectionView.frame = CGRect(x: collectionViewX, y: collectionViewY, width: collectionViewW, height: collectionViewH);

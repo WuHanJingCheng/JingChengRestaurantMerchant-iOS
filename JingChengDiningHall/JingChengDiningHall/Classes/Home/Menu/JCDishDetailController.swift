@@ -84,6 +84,26 @@ class JCDishDetailController: UIViewController {
         return textField;
     }();
     
+    // 标签
+    private lazy var markLabel: UILabel = {
+        let label = UILabel();
+        label.text = "标签";
+        label.textColor = RGBWithHexColor(hexColor: 0x1a1a1a);
+        label.textAlignment = .left;
+        label.font = Font(size: 32/2);
+        return label;
+    }();
+    
+    // 标签输入框
+    private lazy var markTextField: UITextField = {
+        let textField = UITextField();
+        textField.borderStyle = .none;
+        textField.clearButtonMode = .whileEditing;
+        textField.font = Font(size: 32/2);
+        textField.textAlignment = .center;
+        return textField;
+    }();
+    
     // 菜品介绍
     private lazy var dishDesLabel: UILabel = {
         let label = UILabel();
@@ -94,13 +114,21 @@ class JCDishDetailController: UIViewController {
         return label;
     }();
     
+    // 输入框背景
+    private lazy var textViewBackground: UIImageView = {
+        let background = UIImageView();
+        background.isUserInteractionEnabled = true;
+        background.image = UIImage.imageWithName(name: "homeEdit_desTextView_border");
+        return background;
+    }();
+    
     // 菜品介绍输入框
-    private lazy var dishDesTextField: UITextField = {
-        let textField = UITextField();
-        textField.borderStyle = .roundedRect;
-        textField.clearButtonMode = .whileEditing;
-        textField.font = Font(size: 28/2);
-        return textField;
+    private lazy var dishDesTextView: UITextView = {
+        let textView = UITextView();
+        textView.font = Font(size: 28/2);
+        textView.textAlignment = .left;
+        textView.textColor = RGBWithHexColor(hexColor: 0x1a1a1a);
+        return textView;
     }();
     
     // 取消按钮
@@ -132,6 +160,13 @@ class JCDishDetailController: UIViewController {
     
     // 价格分割线
     private lazy var dishPriceTextFieldBottomLine: UIImageView = {
+        let line = UIImageView();
+        line.image = UIImage.imageWithName(name: "homeEdit_cut_line");
+        return line;
+    }();
+    
+    // 标签分割线
+    private lazy var dishMarkTextFieldBtoomLine: UIImageView = {
         let line = UIImageView();
         line.image = UIImage.imageWithName(name: "homeEdit_cut_line");
         return line;
@@ -177,11 +212,21 @@ class JCDishDetailController: UIViewController {
         // 添加价格分割线
         whitebackground.addSubview(dishPriceTextFieldBottomLine);
         
+        // 添加标签label
+        whitebackground.addSubview(markLabel);
+        
+        // 添加标签输入框
+        whitebackground.addSubview(markTextField);
+        
+        // 添加标签分割线
+        whitebackground.addSubview(dishMarkTextFieldBtoomLine);
+        
         // 添加dishDesLabel
         whitebackground.addSubview(dishDesLabel);
         
-        // 添加dishDesTextField
-        whitebackground.addSubview(dishDesTextField);
+        // 添加dishDesTextView
+        whitebackground.addSubview(textViewBackground);
+        textViewBackground.addSubview(dishDesTextView);
         
         // 添加cancellBtn
         whitebackground.addSubview(cancellBtn);
@@ -239,7 +284,7 @@ class JCDishDetailController: UIViewController {
         let whitebackgroundCenterX = width/2;
         let whitebackgroundCenterY = height/2;
         let whitebackgroundW = realValue(value: 890/2);
-        let whitebackgroundH = realValue(value: 934/2);
+        let whitebackgroundH = realValue(value: 1022/2);
         whitebackground.center = CGPoint(x: whitebackgroundCenterX, y: whitebackgroundCenterY);
         whitebackground.bounds = CGRect(x: 0, y: 0, width: whitebackgroundW, height: whitebackgroundH);
         
@@ -267,7 +312,7 @@ class JCDishDetailController: UIViewController {
         // 设置菜品名称的输入框的frame
         let dishNameTextFieldX = dishNameLabel.frame.maxX + realValue(value: 20/2);
         let dishNameTextFieldY = dishNameLabel.frame.minY - realValue(value: 10/2);
-        let dishNameTextFieldW = whitebackgroundW - dishNameTextFieldX * CGFloat(2);
+        let dishNameTextFieldW = realValue(value: 500/2);
         let dishNameTextFieldH = dishNameLabelH + realValue(value: 10/2);
         dishNameTextField.frame = CGRect(x: dishNameTextFieldX, y: dishNameTextFieldY, width: dishNameTextFieldW, height: dishNameTextFieldH);
         
@@ -299,23 +344,50 @@ class JCDishDetailController: UIViewController {
         let dishPriceTextFieldBottomLineH = realValue(value: 1/2);
         dishPriceTextFieldBottomLine.frame = CGRect(x: dishPriceTextFieldBottomLineX, y: dishPriceTextFieldBottomLineY, width: dishPriceTextFieldBottomLineW, height: dishPriceTextFieldBottomLineH);
         
+        // 设置markLabel 的frame
+        let markLabelX = dishNameLabelX;
+        let markLabelY = dishPriceLabel.frame.maxY + realValue(value: 60/2);
+        let markLabelW = dishNameLabelW;
+        let markLabelH = dishNameLabelH;
+        markLabel.frame = CGRect(x: markLabelX, y: markLabelY, width: markLabelW, height: markLabelH);
+        
+        // 设置markTextField 的输入框
+        let markTextFieldX = dishNameTextFieldX;
+        let markTextFieldY = markLabelY;
+        let markTextFieldW = dishNameTextFieldW;
+        let markTextFieldH = dishNameTextFieldH;
+        markTextField.frame = CGRect(x: markTextFieldX, y: markTextFieldY, width: markTextFieldW, height: markTextFieldH);
+        
+        // 设置dishMarkTextFieldBtoomLine 的frame
+        let dishMarkTextFieldBtoomLineX = dishPriceTextFieldBottomLineX;
+        let dishMarkTextFieldBtoomLineY = markTextField.frame.maxY + realValue(value: 1/2);
+        let dishMarkTextFieldBtoomLineW = dishPriceTextFieldBottomLineW;
+        let dishMarkTextFieldBtoomLineH = dishPriceTextFieldBottomLineH;
+        dishMarkTextFieldBtoomLine.frame = CGRect(x: dishMarkTextFieldBtoomLineX, y: dishMarkTextFieldBtoomLineY, width: dishMarkTextFieldBtoomLineW, height: dishMarkTextFieldBtoomLineH);
+        
         // 设置dishDesLabel 的frame
         let dishDesLabelX = dishNameLabelX;
-        let dishDesLabelY = dishPriceLabel.frame.maxY + realValue(value: 60/2);
+        let dishDesLabelY = markLabel.frame.maxY + realValue(value: 60/2);
         let dishDesLabelW = dishNameLabelW;
         let dishDesLabelH = dishNameLabelH;
         dishDesLabel.frame = CGRect(x: dishDesLabelX, y: dishDesLabelY, width: dishDesLabelW, height: dishDesLabelH);
         
         // 设置dishDesTextField 的frame
-        let dishDesTextFieldX = dishNameTextFieldX;
-        let dishDesTextFieldY = dishDesLabel.frame.minY - realValue(value: 10/2);
-        let dishDesTextFieldW = dishNameTextFieldW;
-        let dishDesTextFieldH = realValue(value: 100/2);
-        dishDesTextField.frame = CGRect(x: dishDesTextFieldX, y: dishDesTextFieldY, width: dishDesTextFieldW, height: dishDesTextFieldH);
+        let textViewBackgroundX = dishNameTextFieldX;
+        let textViewBackgroundY = dishDesLabel.frame.minY - realValue(value: 10/2);
+        let textViewBackgroundW = dishNameTextFieldW;
+        let textViewBackgroundH = realValue(value: 100/2);
+        textViewBackground.frame = CGRect(x: textViewBackgroundX, y: textViewBackgroundY, width: textViewBackgroundW, height: textViewBackgroundH);
+        let dishDesTextViewX = realValue(value: 2);
+        let dishDesTextViewY = realValue(value: 2);
+        let dishDesTextViewW = textViewBackgroundW - realValue(value: 4);
+        let dishDesTextViewH = textViewBackgroundH - realValue(value: 4);
+        dishDesTextView.frame = CGRect(x: dishDesTextViewX, y: dishDesTextViewY, width: dishDesTextViewW, height: dishDesTextViewH);
+        
         
         // 设置cancellBtn 的frame
         let cancellBtnX = realValue(value: 288/2);
-        let cancellBtnY = dishDesTextField.frame.maxY + realValue(value: 60/2);
+        let cancellBtnY = textViewBackground.frame.maxY + realValue(value: 60/2);
         let cancellBtnW = calculateWidth(title: "取消", fontSize: 36/2);
         let cancellBtnH = realValue(value: 36/2);
         cancellBtn.frame = CGRect(x: cancellBtnX, y: cancellBtnY, width: cancellBtnW, height: cancellBtnH);

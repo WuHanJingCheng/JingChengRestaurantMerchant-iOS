@@ -35,7 +35,7 @@ class JCRightController: UIViewController {
                 menuView.isHidden = true;
                 orderView.isHidden = false;
                 
-                if middleModel.title == "记录" {
+                if middleModel.name == "记录" {
                     orderView.orderLeftView.isHidden = true;
                     orderView.recordView.isHidden = false;
                 } else {
@@ -46,6 +46,10 @@ class JCRightController: UIViewController {
         }
     }
 
+    // 添加菜的回调
+    var addDishCallBack: (() -> ())?;
+    // 编辑回调
+    var editBtnCallBack: (() -> ())?;
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +61,7 @@ class JCRightController: UIViewController {
         orderView.isHidden = true;
         view.addSubview(orderView);
         
+     
         // Do any additional setup after loading the view.
     }
     
@@ -70,6 +75,23 @@ class JCRightController: UIViewController {
         
         // 设置订单的frame
         orderView.frame = view.bounds;
+        
+        // 添加菜的回调
+        menuView.addDishCallBack = { [weak self]
+            _ in
+            
+            if let addDishCallBack = self?.addDishCallBack {
+                addDishCallBack();
+            }
+        }
+        
+        // 编辑回调
+        menuView.editBtnCallBack = { [weak self]
+            _ in
+            if let editBtnCallBack = self?.editBtnCallBack {
+                editBtnCallBack();
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

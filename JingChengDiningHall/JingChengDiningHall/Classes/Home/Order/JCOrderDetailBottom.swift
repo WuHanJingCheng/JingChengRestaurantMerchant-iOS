@@ -64,6 +64,11 @@ class JCOrderDetailBottom: UIView {
         return button;
     }();
     
+    // 移除通知
+    deinit {
+        NotificationCenter.default.removeObserver(self);
+    }
+    
     // MARK: - 初始化
     override init(frame: CGRect) {
         super.init(frame: frame);
@@ -85,6 +90,31 @@ class JCOrderDetailBottom: UIView {
         
         // 添加paidBtn
         addSubview(paidBtn);
+        
+        // 添加通知
+        NotificationCenter.default.addObserver(self, selector: #selector(changePaidBtnNotification(notification:)), name: ChangePaidBtnStatusNotification, object: nil);
+    }
+    
+    // 监听通知方法
+    func changePaidBtnNotification(notification: Notification) -> Void {
+        
+        guard let info = notification.userInfo else {
+            return;
+        }
+        
+        let status = info["ChangePaidBtnStatusNotification"] as? String ?? "";
+        if status == "已结账" {
+            paidBtn.setBackgroundImage(UIImage.imageWithName(name: "orderDetail_paidBtn_gray"), for: .normal);
+            paidBtn.setTitle(status, for: .normal);
+            paidBtn.setTitleColor(RGBWithHexColor(hexColor: 0xffffff), for: .normal);
+            paidBtn.isUserInteractionEnabled = false;
+        } else {
+            paidBtn.setBackgroundImage(UIImage.imageWithName(name: "orderDetail_paidBtn"), for: .normal);
+            paidBtn.setTitle(status, for: .normal);
+            paidBtn.setTitleColor(RGBWithHexColor(hexColor: 0x1a1a1a), for: .normal);
+            paidBtn.isUserInteractionEnabled = true;
+        }
+        
     }
     
     // MARK: - 设置子控件的frame

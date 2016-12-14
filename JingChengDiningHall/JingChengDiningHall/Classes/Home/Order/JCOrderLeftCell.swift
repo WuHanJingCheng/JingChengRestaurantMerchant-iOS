@@ -18,11 +18,6 @@ class JCOrderLeftCell: UICollectionViewCell {
         return background;
     }();
     
-    // 就餐图标
-    private lazy var dinnerIcon: UIImageView = UIImageView();
-    
-    // 几人桌标识
-    private lazy var numberLabel: JCOrderNumberView = JCOrderNumberView();
     
     // 桌号
     private lazy var tableIdLabel: UILabel = {
@@ -41,14 +36,40 @@ class JCOrderLeftCell: UICollectionViewCell {
                 return;
             }
             
-            if orderModel.isSelected == false {
-                background.image = UIImage.imageWithName(name: "order_tableId_normal");
-                dinnerIcon.image = UIImage.imageWithName(name: "order_tableId_dinner_normal");
-                numberLabel.background.image = UIImage.imageWithName(name: "order_LeftCell_number_border_normal");
-            } else {
-                background.image = UIImage.imageWithName(name: "order_tableId_selected");
-                dinnerIcon.image = UIImage.imageWithName(name: "order_tableId_dinner_selected");
-                numberLabel.background.image = UIImage.imageWithName(name: "order_LeftCell_number_border_selected");
+            switch orderModel.tag {
+                // 就餐状态
+            case 0:
+                
+                // 选中状态
+                if orderModel.isSelected == true {
+                    background.image = UIImage.imageWithName(name: "orderLeftCell_dinner_selected");
+                }
+                // 未选中状态
+                else {
+                    background.image = UIImage.imageWithName(name: "orderLeftCell_dinner_normal");
+                }
+                
+                // 空闲状态
+            case 1:
+                
+                // 选中状态
+                if orderModel.isSelected == true {
+                    background.image = UIImage.imageWithName(name: "orderLeftCell_free_selected");
+                }
+                // 未选中状态
+                else {
+                    background.image = UIImage.imageWithName(name: "orderLeftCell_free_normal");
+                }
+                // 停用状态
+            default:
+                // 停用选中状态
+                if orderModel.isSelected == true {
+                    background.image = UIImage.imageWithName(name: "orderLeftCell_forbid_selected");
+                }
+                // 停用未选中状态
+                else {
+                    background.image = UIImage.imageWithName(name: "orderLeftCell_forbid_normal");
+                }
             }
         }
     }
@@ -59,12 +80,6 @@ class JCOrderLeftCell: UICollectionViewCell {
         
         // 添加圆形背景
         contentView.addSubview(background);
-        
-        // 添加就餐图标
-        background.addSubview(dinnerIcon);
-        
-        // 添加几人桌
-        background.addSubview(numberLabel);
         
         // 添加桌号
         contentView.addSubview(tableIdLabel);
@@ -84,25 +99,10 @@ class JCOrderLeftCell: UICollectionViewCell {
         let backgroundH = backgroundW;
         background.frame = CGRect(x: backgroundX, y: backgroundY, width: backgroundW, height: backgroundH);
         
-        // 设置dinnerIcon 的frame
-        let dinnerIconCenterX = backgroundW/2;
-        let dinnerIconCenterY = realValue(value: 50/2) + realValue(value: 59/2/2);
-        let dinnerIconW = realValue(value: 76/2);
-        let dinnerIconH = realValue(value: 59/2);
-        dinnerIcon.center = CGPoint(x: dinnerIconCenterX, y: dinnerIconCenterY);
-        dinnerIcon.bounds = CGRect(x: 0, y: 0, width: dinnerIconW, height: dinnerIconH);
-        
-        // 设置几人桌的frame
-        let numberLabelCenterX = backgroundW/2;
-        let numberLabelCenterY = dinnerIcon.frame.maxY + realValue(value: 15/2 + 30/2/2);
-        let numberLabelW = realValue(value: 80/2);
-        let numberLabelH = realValue(value: 30/2);
-        numberLabel.center = CGPoint(x: numberLabelCenterX, y: numberLabelCenterY);
-        numberLabel.bounds = CGRect(x: 0, y: 0, width: numberLabelW, height: numberLabelH);
         
         // 设置桌号的frame
         let tableIdLabelCenterX = backgroundW/2;
-        let tableIdLabelCenterY = background.frame.maxY + realValue(value: 10/2 + 20/2/2);
+        let tableIdLabelCenterY = background.frame.maxY + realValue(value: 20/2 + 20/2/2);
         let tableIdLabelW = backgroundW;
         let tableIdLabelH = realValue(value: 20/2);
         tableIdLabel.center = CGPoint(x: tableIdLabelCenterX, y: tableIdLabelCenterY);

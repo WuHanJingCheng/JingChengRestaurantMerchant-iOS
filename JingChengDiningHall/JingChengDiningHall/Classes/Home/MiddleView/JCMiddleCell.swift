@@ -11,10 +11,10 @@ import UIKit
 class JCMiddleCell: UITableViewCell {
     
     // 子菜单图标
-    private lazy var icon: UIImageView = UIImageView();
+    lazy var icon: UIImageView = UIImageView();
     
     // 子菜单标题
-    private lazy var titleLabel: UILabel = {
+    lazy var titleLabel: UILabel = {
         let titleLabel = UILabel();
         titleLabel.textColor = RGBWithHexColor(hexColor: 0x1a1a1a);
         titleLabel.font = Font(size: 24/2);
@@ -22,45 +22,46 @@ class JCMiddleCell: UITableViewCell {
         return titleLabel;
     }();
     
-    private var imageH: CGFloat? = 0;
-    private var imageW: CGFloat? = 0;
-    
     var middleModel: JCMiddleModel? {
         didSet {
             guard let middleModel = middleModel else {
                 return;
             }
             
-            if let imageName = middleModel.imageName {
-                if middleModel.isSelected == false {
-                    let normalImageName = imageName + "_normal";
-                    icon.image = UIImage.imageWithName(name: normalImageName);
-                } else {
-                    let seletedImageName = imageName + "_selected";
-                    icon.image = UIImage.imageWithName(name: seletedImageName);
+            if middleModel.isSelected == false {
+                if let img_url_normal = middleModel.img_url_normal {
+                    if img_url_normal.hasPrefix("http") {
+                        icon.zx_setImageWithURL(img_url_normal);
+                    } else {
+                        icon.image = UIImage.imageWithName(name: img_url_normal);
+                    }
+                    
                 }
                 
+            } else {
+                
+                if let img_url_selected = middleModel.img_url_selected {
+                    if img_url_selected.hasPrefix("http") {
+                        icon.zx_setImageWithURL(img_url_selected);
+                    } else {
+                        icon.image = UIImage.imageWithName(name: img_url_selected);
+                    }
+                }
             }
         
-            if let title = middleModel.title {
+        
+            if let name = middleModel.name {
                 if middleModel.isSelected == false {
                     titleLabel.textColor = RGBWithHexColor(hexColor: 0x1a1a1a);
                 } else {
-                    titleLabel.textColor = RGBWithHexColor(hexColor: 0xdc9b3e);
+                    if name == "添加分类" {
+                        titleLabel.textColor = RGBWithHexColor(hexColor: 0x1a1a1a);
+                    } else {
+                        titleLabel.textColor = RGBWithHexColor(hexColor: 0xdc9b3e);
+                    }
                 }
-                titleLabel.text = title;
+                titleLabel.text = name;
             }
-            
-            if let imageWidth = middleModel.width {
-                imageW = realValue(value: CGFloat(imageWidth));
-            }
-            
-            if let imageHeight = middleModel.height {
-                imageH = realValue(value: CGFloat(imageHeight));
-            }
-
-            setNeedsLayout();
-            layoutIfNeeded();
         }
     }
     
@@ -74,33 +75,28 @@ class JCMiddleCell: UITableViewCell {
         
         // 添加子菜单图标
         contentView.addSubview(icon);
+        icon.clipsToBounds = true;
         
         // 添加子菜单标题
         contentView.addSubview(titleLabel);
         
     }
     
-    // MARK: - 返回cell高度
-    class func heightForCell(model: JCMiddleModel) -> CGFloat {
-        
-        var cellHeight = realValue(value: 99/2);
-        let imageHeight = CGFloat(model.height!)/2;
-        cellHeight = cellHeight + realValue(value: imageHeight);
-        return cellHeight;
-        
-    }
-    
+      
     // MARK: - 设置子控件的frame
     override func layoutSubviews() {
         super.layoutSubviews();
         
         let width = bounds.size.width;
         
+        let imageH = realValue(value: 64/2);
+        let imageW = realValue(value: 84/2);
+        
         // 设置icon 的frame
         let iconCenterX = width/2;
-        let iconCenterY = realValue(value: 30/2 + imageH!/2/2);
-        let iconW = imageW!/2;
-        let iconH = imageH!/2;
+        let iconCenterY = realValue(value: 30/2 + imageH/2);
+        let iconW = imageW;
+        let iconH = imageH;
         icon.center = CGPoint(x: iconCenterX, y: iconCenterY);
         icon.bounds = CGRect(x: 0, y: 0, width: iconW, height: iconH);
         
@@ -117,17 +113,6 @@ class JCMiddleCell: UITableViewCell {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 
+
 //相簿列表项
 class AlbumItem {
     //相簿名称
@@ -22,7 +23,7 @@ class AlbumItem {
     }
 }
 
-class AlbumListController: UIViewController, UITableViewDataSource, UITableViewDelegate, DissmissAlbumListDelegate {
+class AlbumListController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     //相簿列表项集合
     var items:[AlbumItem] = []
@@ -56,6 +57,27 @@ class AlbumListController: UIViewController, UITableViewDataSource, UITableViewD
         // 添加tableView
         view.addSubview(tableView);
         
+        // 设置相册访问权限
+        // 判断用户状态，未给予授权
+        if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized {
+            
+            // 授权请求访问相册
+            PHPhotoLibrary.requestAuthorization({ (status) in
+                
+                // 获取授权状态
+                switch status {
+                case .denied:
+                    print("拒绝访问");
+                    return;
+                default:
+                    break;
+                }
+                
+                print("status\(status)");
+                
+            })
+        }
+        
         // 列出所有系统的智能相册
         let smartOptions = PHFetchOptions()
         let smartAlbums = PHAssetCollection.fetchAssetCollections(with: .smartAlbum,
@@ -71,6 +93,31 @@ class AlbumListController: UIViewController, UITableViewDataSource, UITableViewD
         self.items.sort { (item1, item2) -> Bool in
             return item1.fetchResult.count > item2.fetchResult.count
         }
+        
+        // 将相册名改为中文
+        let _ = items.map({
+            (item) in
+            if item.title == "Slo-mo" {
+                item.title = "慢动作";
+            } else if item.title == "Recently Added" {
+                item.title = "最近添加";
+            } else if item.title == "Favorites" {
+                item.title = "个人收藏";
+            } else if item.title == "Recently Deleted" {
+                item.title = "最近删除";
+            } else if item.title == "Videos" {
+                item.title = "视频";
+            } else if item.title == "All Photos" {
+                item.title = "所有照片";
+            } else if item.title == "Selfies" {
+                item.title = "自拍";
+            } else if item.title == "Screenshots" {
+                item.title = "屏幕快照";
+            } else if item.title == "Camera Roll" {
+                item.title = "相机胶卷";
+            }
+        });
+      
         
         // 注册cell
         tableView.register(AlbumCell.self, forCellReuseIdentifier: "AlbumCell");
@@ -140,7 +187,17 @@ class AlbumListController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let photoListVc = PhotoListController();
-        photoListVc.delegate = self;
+    
+        // 选中图片的回调
+        photoListVc.selectedImageCallBack = { [weak self]
+            (image) in
+            
+            if let selectedImageCallBack = self?.selectedImageCallBack {
+                selectedImageCallBack(image);
+                // 消失
+                self?.dismiss(animated: true, completion: nil);
+            }
+        }
         //获取选中的相簿信息
         let item = self.items[indexPath.row]
         //设置标题
@@ -151,44 +208,6 @@ class AlbumListController: UIViewController, UITableViewDataSource, UITableViewD
         self.navigationController?.pushViewController(photoListVc, animated: true);
         
     }
-    
-    // 实现委托
-    func dismissAlubmList(_ image: UIImage) {
-        
-        if let selectedImageCallBack = selectedImageCallBack {
-            selectedImageCallBack(image);
-        }
-        
-        dismiss(animated: true, completion: nil);
-    }
-    
-    
-//    //页面跳转
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        
-//        //如果是跳转到展示相簿缩略图页面
-//        if segue.identifier == "showPhotos"{
-//            
-//            guard let collectionViewController = segue.destinationViewController
-//                as? CollectionViewController,
-//                cell = sender as? UITableViewCell else{
-//                    return
-//            }
-//            
-//            guard let indexPath = self.tableView.indexPathForCell(cell) else { return }
-//            
-//            //获取选中的相簿信息
-//            let item = self.items[indexPath.row]
-//            //设置标题
-//            collectionViewController.title = item.title
-//            //传递相簿内的图片资源
-//            if let x = item.fetchResult.firstObject where x is PHAsset{
-//                collectionViewController.assetsFetchResults = item.fetchResult
-//            }else{
-//                return
-//            }
-//        }
-//    }
     
     
     // 设置tableView 的frame

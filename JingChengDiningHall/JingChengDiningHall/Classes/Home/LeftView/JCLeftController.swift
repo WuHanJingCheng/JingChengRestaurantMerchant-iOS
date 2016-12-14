@@ -96,29 +96,29 @@ class JCLeftController: UIViewController, UITableViewDataSource, UITableViewDele
         
         let cell = tableView.cellForRow(at: indexPath) as?JCLeftCell;
         
-        var jsonFileName: String?;
+        var menuName: String?;
         
         switch indexPath.row {
         case 0:
             cell?.deltaImage.isHidden = true;
-            jsonFileName = "我的";
+            menuName = "我的";
         case 1:
             for tempCell in tableView.visibleCells {
                 let tempCell = tempCell as?JCLeftCell;
                 tempCell?.deltaImage.isHidden = true;
             }
             cell?.deltaImage.isHidden = false;
-            jsonFileName = "JCSubMenusData.json";
+            menuName = "菜单";
         default:
             for tempCell in tableView.visibleCells {
                 let tempCell = tempCell as?JCLeftCell;
                 tempCell?.deltaImage.isHidden = true;
             }
             cell?.deltaImage.isHidden = false;
-            jsonFileName = "JCOrderListData.json";
+            menuName = "订单";
         }
         
-        if let sendLeftModelCallBack = sendLeftModelCallBack, let jsonFileName = jsonFileName {
+        if let sendLeftModelCallBack = sendLeftModelCallBack, let jsonFileName = menuName {
             sendLeftModelCallBack(jsonFileName);
         }
     }

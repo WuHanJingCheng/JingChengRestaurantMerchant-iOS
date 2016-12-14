@@ -30,13 +30,6 @@ class JCHomeController: UIViewController {
         return mineView;
     }();
     
-    // 添加分类
-    private lazy var addSubMenuView: JCAddSubMenuView = {
-        let addSubMenuView = JCAddSubMenuView();
-        addSubMenuView.isHidden = true;
-        return addSubMenuView;
-    }();
-    
     // 移除通知
     deinit {
         NotificationCenter.default.removeObserver(self);
@@ -64,110 +57,131 @@ class JCHomeController: UIViewController {
         // 我的
         view.addSubview(mineView);
         
-        // 添加分类
-        view.addSubview(addSubMenuView);
-        
         // 将左边的值，传给子菜单
         leftVc.sendLeftModelCallBack = { [weak self]
-            (jsonFileName) in
+            (menuName) in
             guard let weakSelf = self else {
                 return;
             }
             
-            if jsonFileName == "JCSubMenusData.json" {
-                weakSelf.rightVc.menuView.isHidden = false;
-                weakSelf.rightVc.orderView.isHidden = true;
-                weakSelf.middleVc.jsonFileName = jsonFileName;
-            } else if jsonFileName == "JCOrderListData.json" {
-                weakSelf.rightVc.menuView.isHidden = true;
-                weakSelf.rightVc.orderView.isHidden = false;
-                weakSelf.middleVc.jsonFileName = jsonFileName;
-            } else if jsonFileName == "我的" {
+            switch menuName {
+            case "我的":
+                // 我的
                 weakSelf.mineView.isHidden = false;
                 weakSelf.mineView.mineDetailView.deleteBtn.addTarget(self, action: #selector(weakSelf.deleteBtnClick(button:)), for: .touchUpInside);
                 weakSelf.mineView.mineDetailView.quiteBtn.addTarget(self, action: #selector(weakSelf.quiteBtnClick(button:)), for: .touchUpInside);
+                
+            case "菜单":
+                // 菜单
+                weakSelf.rightVc.menuView.isHidden = false;
+                weakSelf.rightVc.orderView.isHidden = true;
+                weakSelf.middleVc.menuName = menuName;
+                
+            default:
+                // 订单
+                weakSelf.rightVc.menuView.isHidden = true;
+                weakSelf.rightVc.orderView.isHidden = false;
+                weakSelf.middleVc.menuName = menuName;
             }
         }
         
         middleVc.sendMiddleCallBack = {
             [weak self] (middleModel) in
             
-            guard let weakSelf = self else {
-                return;
-            }
+            if middleModel.name == "添加分类" {
+                // 添加弹框
+                let addSubMenuVc = JCAddSubMenuController();
+                addSubMenuVc.view.frame = (self?.view.bounds)!;
+                self?.view.addSubview(addSubMenuVc.view);
+                self?.addChildViewController(addSubMenuVc);
+                
+                // 点击取消按钮隐藏
+                addSubMenuVc.cancelBtnCallBack = { [weak addSubMenuVc]
+                    _ in
+                    // 移除弹窗
+                    addSubMenuVc?.view.removeFromSuperview();
+                }
+                // 点击确定按钮，保存修改信息
+                addSubMenuVc.submitBtnCallBack = {
+                    _ in
+                    // 保存修改信息
+                }
+            } else if middleModel.name == "记录" {
+                
+                // 隐藏订单卓号界面
+                self?.rightVc.orderView.orderLeftView.isHidden = true;
+                // 显示订单记录页面
+                self?.rightVc.orderView.recordView.isHidden = false;
+                // 发送通知
+                NotificationCenter.default.post(name: ChangePaidBtnStatusNotification, object: nil, userInfo: ["ChangePaidBtnStatusNotification": "已结账"]);
             
-            if middleModel.title == "添加分类" {
-                weakSelf.addSubMenuView.isHidden = false;
-                weakSelf.addSubMenuView.addSubMenuDetailView.cancelBtn.addTarget(self, action: #selector(weakSelf.cancelBtnClick(button:)), for: .touchUpInside);
             } else {
-                weakSelf.rightVc.middleModel = middleModel;
+                self?.rightVc.middleModel = middleModel;
+                // 显示订单卓号界面
+                self?.rightVc.orderView.orderLeftView.isHidden = false;
+                // 隐藏订单记录页面
+                self?.rightVc.orderView.recordView.isHidden = true;
+                // 发送通知
+                NotificationCenter.default.post(name: ChangePaidBtnStatusNotification, object: nil, userInfo: ["ChangePaidBtnStatusNotification": "结账"]);
+
             }
         }
-
-        // 添加通知，监听键盘的弹出
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: Notification.Name.UIKeyboardWillShow, object: nil);
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil);
         
-
+        
+        // 添加菜的回调
+        rightVc.addDishCallBack = { [weak self]
+            _ in
+            let dishDetail = JCDishDetailController();
+            dishDetail.view.frame = (self?.view.bounds)!;
+            self?.view.addSubview(dishDetail.view);
+            self?.addChildViewController(dishDetail);
+            
+            // 取消按钮的回调
+            dishDetail.cancelCallBack = { [weak dishDetail]
+                _ in
+                dishDetail?.view.removeFromSuperview();
+            }
+            
+            // 确定按钮的回调
+            dishDetail.submitCallBack = {
+                _ in
+                print("保存成功");
+            }
+        }
+        
+        // 编辑回调
+        rightVc.editBtnCallBack = { [weak self]
+            _ in
+            
+            let dishDetail = JCDishDetailController();
+            dishDetail.view.frame = (self?.view.bounds)!;
+            self?.view.addSubview(dishDetail.view);
+            self?.addChildViewController(dishDetail);
+            
+            // 取消按钮的回调
+            dishDetail.cancelCallBack = { [weak dishDetail]
+                _ in
+                dishDetail?.view.removeFromSuperview();
+            }
+            
+            // 确认按钮的回调
+            dishDetail.submitCallBack = {
+                _ in
+                print("保存成功");
+            }
+        }
+ 
         // Do any additional setup after loading the view.
     }
     
-    // MARK: - 取消
-    func cancelBtnClick(button: UIButton) -> Void {
-        
-        addSubMenuView.isHidden = true;
-    }
-    
-    // MARK: - 点击屏幕其他地方，回收键盘
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true);
-    }
-    
-    // MARK: - 键盘弹出
-    func keyboardWillShow(notification: Notification) -> Void {
-        
-        guard let userInfo = notification.userInfo else {
-            return;
-        }
-        
-        // 键盘弹出需要的时间
-        let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue;
-        
-        // 动画
-        UIView.animate(withDuration: duration) {
-            
-            // 取出键盘高度
-            let keyboardF = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue;
-            let keyboardH = keyboardF.size.height;
-            self.addSubMenuView.addSubMenuDetailView.transform = CGAffineTransform(translationX: 0, y: -keyboardH/2);
-            
-        }
-    }
-    
-    // MARK: - 键盘影藏
-    func keyboardWillHide(notification: Notification) -> Void {
-        
-        guard let userInfo = notification.userInfo else {
-            return;
-        }
-        
-        // 键盘弹出需要的时间
-        let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue;
-        // 动画
-        UIView.animate(withDuration: duration) {
-            
-            self.addSubMenuView.addSubMenuDetailView.transform = CGAffineTransform.identity;
-        }
-    }
-    
     // MARK: - 点击删除，弹框消失
-    func deleteBtnClick(button: UIButton) -> Void {
+    @objc private func deleteBtnClick(button: UIButton) -> Void {
         
         mineView.isHidden = true;
     }
     
     // MARK: - 退出登录
-    func quiteBtnClick(button: UIButton) -> Void {
+    @objc private func quiteBtnClick(button: UIButton) -> Void {
         
         dismiss(animated: true, completion: nil);
     }
@@ -209,9 +223,6 @@ class JCHomeController: UIViewController {
         
         // 我的
         mineView.frame = view.bounds;
-        
-        // 设置添加分类的frame
-        addSubMenuView.frame = view.bounds;
     }
 
     override func didReceiveMemoryWarning() {

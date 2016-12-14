@@ -35,8 +35,6 @@ class JCOrderRecordCell: UICollectionViewCell {
         return tableBackground;
     }();
     
-    // 桌子几人桌
-    private lazy var customersLabel: JCOrderNumberView = JCOrderNumberView();
     
     // 桌号
     private lazy var tableIdLabel: UILabel = {
@@ -106,10 +104,6 @@ class JCOrderRecordCell: UICollectionViewCell {
         // 添加tableBackground 
         background.addSubview(tableBackground);
         
-        // 添加customersLabel 
-        customersLabel.background.image = UIImage.imageWithName(name: "record_table_customers");
-        tableBackground.addSubview(customersLabel);
-        
         // 添加价格
         background.addSubview(priceLabel);
         
@@ -146,13 +140,6 @@ class JCOrderRecordCell: UICollectionViewCell {
         let tableBackgroundH = tableBackgroundW;
         tableBackground.frame = CGRect(x: tableBackgroundX, y: tableBackgroundY, width: tableBackgroundW, height: tableBackgroundH);
         
-        // 设置customersLabel 的frame
-        let customersLabelCenterX = tableBackgroundW/2;
-        let customersLabelCenterY = realValue(value: 85/2 + 30/2/2);
-        let customersLabelW = realValue(value: 60/2);
-        let customersLabelH = realValue(value: 26/2);
-        customersLabel.center = CGPoint(x: customersLabelCenterX, y: customersLabelCenterY);
-        customersLabel.bounds = CGRect(x: 0, y: 0, width: customersLabelW, height: customersLabelH);
         
         // 设置价格的frame
         let priceLabelX = tableBackground.frame.maxX;

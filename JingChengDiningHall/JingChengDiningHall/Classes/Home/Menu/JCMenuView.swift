@@ -34,9 +34,14 @@ class JCMenuView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, 
         collectionView.contentInset = UIEdgeInsets(top: menuInsetMargin, left: menuInsetMargin, bottom: menuInsetMargin, right: menuInsetMargin);
         return collectionView;
     }();
+    
     // 数组
     lazy var menuModelArray: [JCMenuModel] = [JCMenuModel]();
     
+    // 添加按钮的回调
+    var addDishCallBack: (() -> ())?;
+    // 编辑的回调
+    var editBtnCallBack: (() -> ())?;
     
     // MARK: - 初始化
     override init(frame: CGRect) {
@@ -85,47 +90,30 @@ class JCMenuView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, 
         
         if indexPath.row == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: rightAddCellIdentifier, for: indexPath) as? JCMenuAddCell;
-            cell?.backgroundBtnCallBack = {
+            // 添加按钮的回调
+            cell?.backgroundBtnCallBack = { [weak self]
                 _ in
-                
-                let window = UIApplication.shared.keyWindow;
-                let dishDetail = JCDishDetailController();
-                dishDetail.view.frame = (window?.bounds)!;
-                window?.addSubview(dishDetail.view);
-                dishDetail.cancelCallBack = {
-                    _ in
-                    dishDetail.view.removeFromSuperview();
-                }
-                dishDetail.submitCallBack = {
-                    _ in
-                    print("保存成功");
+                if let addDishCallBack = self?.addDishCallBack {
+                    addDishCallBack();
                 }
             }
             return cell!;
         } else {
+            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: rightCellIdentifier, for: indexPath) as?JCMenuCell;
             let menuModel = menuModelArray[indexPath.row - 1];
             cell?.menuModel = menuModel;
+            
             // 点击编辑，弹窗
-            cell?.editBtnCallBack = {
+            cell?.editBtnCallBack = { [weak self]
                 (model) in
                 
-                let window = UIApplication.shared.keyWindow;
-                let dishDetail = JCDishDetailController();
-                dishDetail.view.frame = (window?.bounds)!;
-                window?.addSubview(dishDetail.view);
-                dishDetail.cancelCallBack = {
-                    _ in
-                    dishDetail.view.removeFromSuperview();
+                if let editBtnCallBack = self?.editBtnCallBack {
+                    editBtnCallBack();
                 }
-                dishDetail.submitCallBack = {
-                    _ in
-                    print("保存成功");
-                }
-                
             }
             // 点击删除弹窗
-            cell?.deleteBtnCallBack = {
+            cell?.deleteBtnCallBack = { [weak self]
                 (model) in
                 
                 let window = UIApplication.shared.keyWindow;
@@ -133,10 +121,10 @@ class JCMenuView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, 
                 deleteDishView.frame = (window?.bounds)!;
                 window?.addSubview(deleteDishView);
                 // 监听取消回调
-                deleteDishView.cancelCallBack = {
+                deleteDishView.cancelCallBack = { [weak deleteDishView]
                     _ in
                     // 移除弹窗
-                    deleteDishView.removeFromSuperview();
+                    deleteDishView?.removeFromSuperview();
                 }
                 
                 // 监听确定回调

@@ -10,11 +10,20 @@ import UIKit
 
 class JCMiddleModel: NSObject {
     
-    var title: String?;
-    var imageName: String?;
-    var height: Float?;
-    var width: Float?;
+    var name: String?;
+    var img_url_normal: String?;
+    var img_url_selected: String?;
     var jsonFileName: String?;
     var isSelected: Bool = false;
+    
+    // 字段转模型
+    class func modelWidthDict(dict: [String: Any]) -> JCMiddleModel {
+        
+        let model = JCMiddleModel();
+        model.name = dict["name"] as? String ?? "";
+        model.img_url_normal = dict["img_url_normal"] as? String ?? "";
+        model.img_url_selected = dict["img_url_selected"] as? String ?? "";
+        return model;
+    }
 
 }

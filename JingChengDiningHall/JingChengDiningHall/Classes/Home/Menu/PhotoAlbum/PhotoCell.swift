@@ -18,6 +18,10 @@ class PhotoCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame);
         
+//        layer.drawsAsynchronously = true;
+//        layer.shouldRasterize = true;
+//        layer.rasterizationScale = UIScreen.main.scale;
+        
         // 添加icon
         contentView.addSubview(icon);
     }

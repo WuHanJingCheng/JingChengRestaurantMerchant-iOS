@@ -9,13 +9,9 @@
 import UIKit
 import Photos
 
-protocol DissmissAlbumListDelegate: NSObjectProtocol {
-    func dismissAlubmList(_ image: UIImage) -> Void
-}
 
 class PhotoListController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
-    weak var delegate: DissmissAlbumListDelegate?;
+  
     
     private let photoCellIdentifier = "photoCellIdentifier";
     
@@ -34,21 +30,16 @@ class PhotoListController: UIViewController, UICollectionViewDataSource, UIColle
     
     ///取得的资源结果，用了存放的PHAsset
     var assetsFetchResults:PHFetchResult<PHAsset>!
-    
     ///缩略图大小
     var assetGridThumbnailSize:CGSize!
-    
     /// 带缓存的图片管理对象
-    var imageManager:PHCachingImageManager!
+    var imageManager:PHCachingImageManager!;
+    private lazy var assets: [PHAsset] = [PHAsset]();
+    // 存储相片
+    private lazy var imageArray: [UIImage] = [UIImage]();
+    // 选中图片的回调
+    var selectedImageCallBack: ((_ image: UIImage) -> ())?;
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        //根据单元格的尺寸计算我们需要的缩略图大小
-        let scale = UIScreen.main.scale
-        let cellSize = CGSize(width: realValue(value: 396/2), height: realValue(value: 396/2));
-        assetGridThumbnailSize = CGSize(width: cellSize.width*scale, height: cellSize.height*scale)
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +51,9 @@ class PhotoListController: UIViewController, UICollectionViewDataSource, UIColle
         
         // 添加collectionView
         view.addSubview(collectionView);
+        
+        // 注册cell
+        collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: photoCellIdentifier);
         
         // 如果没有传入值 则获取所有资源
         if assetsFetchResults == nil {
@@ -73,23 +67,45 @@ class PhotoListController: UIViewController, UICollectionViewDataSource, UIColle
                                                      PHAssetMediaType.image.rawValue)
             assetsFetchResults = PHAsset.fetchAssets(with: PHAssetMediaType.image,
                                                                   options: allPhotosOptions)
+            
         }
         
-        // 初始化和重置缓存
-        self.imageManager = PHCachingImageManager()
-        self.resetCachedAssets()
-    
         
-        // 注册cell
-        collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: photoCellIdentifier);
+        //根据单元格的尺寸计算我们需要的缩略图大小
+        let scale = UIScreen.main.scale
+        let cellSize = CGSize(width: realValue(value: 396/2), height: realValue(value: 396/2));
+        assetGridThumbnailSize = CGSize(width: cellSize.width * scale, height: cellSize.height * scale)
+        
+        // 采取同步获取图片（只获得一次图片）
+        let options = PHImageRequestOptions();
+        options.isSynchronous = true;
+        options.resizeMode = .exact;
+        options.isNetworkAccessAllowed = true;
+        
+        
+        for i in 0..<assetsFetchResults.count {
+            let asset = assetsFetchResults[i];
+            assets.append(asset);
+            if asset.mediaType != .image {
+                continue;
+            }
+            
+            // 请求图片
+            PHCachingImageManager.default().requestImage(for: asset, targetSize: assetGridThumbnailSize, contentMode: .default, options: options, resultHandler: { [weak self]
+                (image, info) in
+                
+                self?.imageArray.append(image!);
+            })
+        }
 
         // Do any additional setup after loading the view.
     }
-    
+ 
     // 点击左边按钮返回
     func back() -> Void {
         
-        dismiss(animated: true, completion: nil);
+        let _ = self.navigationController?.popViewController(animated: true);
+        
     }
     
     //重置缓存
@@ -110,30 +126,28 @@ class PhotoListController: UIViewController, UICollectionViewDataSource, UIColle
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photoCellIdentifier, for: indexPath) as? PhotoCell else {
             return PhotoCell();
         };
-        
-        let asset = self.assetsFetchResults[indexPath.row];
-        //获取缩略图
-        self.imageManager.requestImage(for: asset, targetSize: assetGridThumbnailSize, contentMode: .aspectFill, options: nil, resultHandler: {
-            (image, _) in
-            
-            cell.icon.image = image;
-        })
+    
+        cell.icon.image = imageArray[indexPath.row];
         
         return cell
     }
     
     // 选中cell 进入详情页面
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        let photoDetail = PhotoDetailController();
+        photoDetail.assets = assets;
+        photoDetail.indexPath = indexPath;
         
-        let asset = self.assetsFetchResults[indexPath.row];
-        //获取缩略图
-        self.imageManager.requestImage(for: asset, targetSize: assetGridThumbnailSize, contentMode: .aspectFill, options: nil, resultHandler: { [weak self]
-            (image, _) in
-            
-            if let delegate = self?.delegate, let image = image {
-                delegate.dismissAlubmList(image);
+        // 回调
+        photoDetail.selectedImageCallBack = { [weak self]
+            (image) in
+            if let selectedImageCallBack = self?.selectedImageCallBack {
+                selectedImageCallBack(image);
             }
-        })
+        }
+        
+        self.navigationController?.pushViewController(photoDetail, animated: true);
     }
     
     // 设置子控件的frame
@@ -142,11 +156,12 @@ class PhotoListController: UIViewController, UICollectionViewDataSource, UIColle
         
         collectionView.frame = view.bounds;
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
+        print("内存警告⚠️⚠️⚠️⚠️");
         // Dispose of any resources that can be recreated.
     }
-    
-
 }

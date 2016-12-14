@@ -29,9 +29,10 @@ class JCAddSubMenuDetailView: UIView {
     }();
     
     // 图片
-    private lazy var icon: UIImageView = {
+    lazy var icon: UIImageView = {
         let icon = UIImageView();
         icon.image = UIImage.imageWithName(name: "home_addSubMenuDetail_icon");
+        icon.isUserInteractionEnabled = true;
         return icon;
     }();
     
@@ -63,6 +64,7 @@ class JCAddSubMenuDetailView: UIView {
         button.setTitle("取消", for: .normal);
         button.titleLabel?.font = Font(size: 36/2);
         button.setTitleColor(RGBWithHexColor(hexColor: 0x1a1a1a), for: .normal);
+        button.addTarget(self, action: #selector(cancleBtnClick), for: .touchUpInside);
         return button;
     }();
     
@@ -72,8 +74,16 @@ class JCAddSubMenuDetailView: UIView {
         button.setTitle("确定", for: .normal);
         button.titleLabel?.font = Font(size: 36/2);
         button.setTitleColor(RGBWithHexColor(hexColor: 0x1a1a1a), for: .normal);
+        button.addTarget(self, action: #selector(submitBtnClick), for: .touchUpInside);
         return button;
     }();
+    
+    // 打开相册的回调
+    var openAlbumCallBack: (() -> ())?;
+    // 取消按钮回调
+    var cancelBtnCallBack: (() -> ())?;
+    // 确定按钮的回调
+    var submitBtnCallBack: (() -> ())?;
     
     // MARK: - 初始化
     override init(frame: CGRect) {
@@ -100,6 +110,34 @@ class JCAddSubMenuDetailView: UIView {
         // 添加确定按钮
         background.addSubview(submitBtn);
         
+        // 添加轻拍手势
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(tapAction));
+        icon.addGestureRecognizer(tap);
+        
+    }
+    
+    // 点击取消按钮，隐藏弹框
+    @objc private func cancleBtnClick() {
+        
+        if let cancelBtnCallBack = cancelBtnCallBack {
+            cancelBtnCallBack();
+        }
+    }
+    
+    // 监听确定按钮的点击
+    @objc private func submitBtnClick() {
+        
+        if let submitBtnCallBack = submitBtnCallBack {
+            submitBtnCallBack();
+        }
+    }
+    
+    // 点击图片，打开相册
+    @objc private func tapAction() -> Void {
+        
+        if let openAlbumCallBack = openAlbumCallBack {
+            openAlbumCallBack();
+        }
     }
     
     // MARK: - 设置子控件的frame
