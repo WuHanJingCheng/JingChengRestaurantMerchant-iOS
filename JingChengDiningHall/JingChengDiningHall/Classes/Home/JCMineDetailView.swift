@@ -54,9 +54,10 @@ class JCMineDetailView: UIView {
     }();
     
     // 删除按钮
-    lazy var deleteBtn: UIButton = {
+    private lazy var deleteBtn: UIButton = {
         let deleteBtn = UIButton(type: .custom);
         deleteBtn.setImage(UIImage.imageWithName(name: "mineDetail_deleteBtn"), for: .normal);
+        deleteBtn.addTarget(self, action: #selector(deleteBtnClick), for: .touchUpInside);
         return deleteBtn;
     }();
     
@@ -88,14 +89,21 @@ class JCMineDetailView: UIView {
     }();
     
     // 退出
-    lazy var quiteBtn: UIButton = {
+    private lazy var quiteBtn: UIButton = {
         let button = UIButton(type: .custom);
         button.setBackgroundImage(UIImage.imageWithName(name: "mineDetail_quiteBtn"), for: .normal);
         button.titleLabel?.font = Font(size: 48/2);
         button.setTitle("退出登录", for: .normal);
         button.setTitleColor(RGBWithHexColor(hexColor: 0x1a1a1a), for: .normal);
+        button.addTarget(self, action: #selector(quiteBtnClick), for: .touchUpInside);
         return button;
     }();
+    
+    
+    // 删除的回调
+    var deleteBtnCallBack: (() -> ())?;
+    // 退出回调
+    var quiteBtnCallBack: (() -> ())?;
     
     
     // MARK: - 初始化
@@ -135,6 +143,22 @@ class JCMineDetailView: UIView {
         // 添加quiteBtn
         addSubview(quiteBtn);
 
+    }
+    
+    // 监听退出的点击
+    @objc private func quiteBtnClick() -> Void {
+        
+        if let quiteBtnCallBack = quiteBtnCallBack {
+            quiteBtnCallBack();
+        }
+    }
+    
+    // 监听删除的点击
+    @objc private func deleteBtnClick() -> Void {
+        
+        if let deleteBtnCallBack = deleteBtnCallBack {
+            deleteBtnCallBack();
+        }
     }
     
 

@@ -29,6 +29,7 @@ class JCLeftController: UIViewController, UITableViewDataSource, UITableViewDele
         tableView.rowHeight = realValue(value: 268/2);
         tableView.backgroundColor = UIColor.clear;
         tableView.separatorStyle = .none;
+        tableView.bounces = false;
         return tableView;
     }();
     
@@ -143,7 +144,7 @@ class JCLeftController: UIViewController, UITableViewDataSource, UITableViewDele
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+       
     }
     
 

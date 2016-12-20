@@ -95,6 +95,8 @@ class JCLoginController: UIViewController {
         
         // 添加商户ID
         whiteBackground.addSubview(merchantIdView);
+        merchantIdView.accountLabel.text = "商户ID";
+        merchantIdView.accountTextField.placeholder = "商户ID";
         
         // 添加账户
         whiteBackground.addSubview(accountView);
@@ -170,6 +172,7 @@ class JCLoginController: UIViewController {
     
         
         let homeVc = JCHomeController();
+        homeVc.modalTransitionStyle = .crossDissolve;
         present(homeVc, animated: true, completion: nil);
   
     }

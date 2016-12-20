@@ -23,4 +23,8 @@ class JCOrderModel: NSObject {
     // 是否为选中状态
     var isSelected: Bool = false;
     
+    // 桌号
+    var tableNumber: Int?;
+    
+    
 }

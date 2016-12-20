@@ -69,10 +69,11 @@ class JCMiddleController: UIViewController, UITableViewDataSource, UITableViewDe
     // 闭包回调
     var sendMiddleCallBack: ((_ middleModel: JCMiddleModel) -> ())?;
     
-    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         // 添加右边线条
         view.addSubview(background);

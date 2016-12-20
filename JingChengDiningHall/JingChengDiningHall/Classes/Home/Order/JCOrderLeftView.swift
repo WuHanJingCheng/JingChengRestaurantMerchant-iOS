@@ -74,6 +74,9 @@ class JCOrderLeftView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
         return collectionView;
     }();
     
+    
+    // 切换订单详情和停用空闲状态
+    var changeStatusCallBack: ((_ model: JCOrderModel) -> ())?;
   
     override init(frame: CGRect) {
         super.init(frame: frame);
@@ -106,14 +109,17 @@ class JCOrderLeftView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
                 let model = JCOrderModel();
                 model.isSelected = (i==0) ? true : false;
                 model.tag = 0;
+                model.tableNumber = i + 100;
                 orderModelArray.append(model);
             } else if i < 15 {
                 let model = JCOrderModel();
                 model.tag = 1;
+                model.tableNumber = i + 100;
                 orderModelArray.append(model);
             } else {
                 let model = JCOrderModel();
                 model.tag = 2;
+                model.tableNumber = i + 100;
                 orderModelArray.append(model);
             }
             
@@ -151,6 +157,12 @@ class JCOrderLeftView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
         
         // 刷新表格
         collectionView.reloadData();
+        
+        // 切换状态
+        if let changeStatusCallBack = changeStatusCallBack {
+            changeStatusCallBack(orderModel);
+        }
+        
     }
     
     // MARK: - 设置子控件的frame

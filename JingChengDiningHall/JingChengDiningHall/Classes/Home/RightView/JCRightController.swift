@@ -50,6 +50,8 @@ class JCRightController: UIViewController {
     var addDishCallBack: (() -> ())?;
     // 编辑回调
     var editBtnCallBack: (() -> ())?;
+    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +62,8 @@ class JCRightController: UIViewController {
         // 添加订单
         orderView.isHidden = true;
         view.addSubview(orderView);
+        
+        
         
      
         // Do any additional setup after loading the view.

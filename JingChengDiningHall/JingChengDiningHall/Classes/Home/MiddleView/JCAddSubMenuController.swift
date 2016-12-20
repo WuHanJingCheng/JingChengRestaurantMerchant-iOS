@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JCAddSubMenuController: UIViewController {
+class JCAddSubMenuController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // 背景
     private lazy var background: UIImageView = {
@@ -38,15 +38,19 @@ class JCAddSubMenuController: UIViewController {
         // 打开相册的回调
         addSubMenuDetailView.openAlbumCallBack = { [weak self]
             _ in
-            let albumListVc = AlbumListController();
-            albumListVc.selectedImageCallBack = { [weak self]
-                (image) in
-                
-                self?.addSubMenuDetailView.icon.image = image;
+            
+            // 设置方向
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return;
             }
-            let nav = UINavigationController(rootViewController: albumListVc);
-            nav.navigationBar.setBackgroundImage(UIImage.imageWithName(name: "album_nav_background"), for: .default);
-            self?.present(nav, animated: true, completion: nil);
+            // 设置为横屏
+            appDelegate.oriation = .all;
+            // 创建照片选择器
+            let imagePicker = UIImagePickerController();
+            imagePicker.delegate = self;
+            imagePicker.sourceType = .photoLibrary;
+            imagePicker.allowsEditing = true;
+            self?.present(imagePicker, animated: true, completion: nil);
         }
         
         // 取消按钮回调
@@ -73,6 +77,34 @@ class JCAddSubMenuController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil);
 
         // Do any additional setup after loading the view.
+    }
+    
+    // 取消
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return;
+        }
+        appDelegate.oriation = .landscape;
+        picker.dismiss(animated: false, completion: nil);
+    }
+    
+    // 选中照片
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        // 获取代理对象
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return;
+        }
+        // 设置横屏
+        appDelegate.oriation = .landscape;
+        // 获取image中的数据
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            return;
+        };
+        // 保存图片
+        addSubMenuDetailView.icon.image = image;
+        // 让控制器消失
+        dismiss(animated: true, completion: nil);
     }
     
     // MARK: - 点击屏幕其他地方，回收键盘

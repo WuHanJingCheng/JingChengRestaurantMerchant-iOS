@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JCDishDetailController: UIViewController {
+class JCDishDetailController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // 背景
     private lazy var background: UIImageView = {
@@ -177,10 +177,11 @@ class JCDishDetailController: UIViewController {
     
     // 确定回调
     var submitCallBack: (() -> ())?;
-    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
         // 添加背景
         view.addSubview(background);
@@ -242,15 +243,47 @@ class JCDishDetailController: UIViewController {
     // 点击图片打开相册
     func tapAction() -> Void {
         
-        let albumListVc = AlbumListController();
-        albumListVc.selectedImageCallBack = { [weak self]
-            (image) in
-            
-            self?.dishImage.image = image;
+        
+        // 设置方向
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return;
         }
-        let nav = UINavigationController(rootViewController: albumListVc);
-        nav.navigationBar.setBackgroundImage(UIImage.imageWithName(name: "album_nav_background"), for: .default);
-        present(nav, animated: true, completion: nil);
+        // 设置为横屏
+        appDelegate.oriation = .all;
+        // 创建照片选择器
+        let imagePicker = UIImagePickerController();
+        imagePicker.delegate = self;
+        imagePicker.sourceType = .photoLibrary;
+        imagePicker.allowsEditing = true;
+        present(imagePicker, animated: true, completion: nil);
+        
+    }
+    
+    // 取消
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return;
+        }
+        appDelegate.oriation = .landscape;
+        picker.dismiss(animated: false, completion: nil);
+    }
+    
+    // 选中照片
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return;
+        }
+        appDelegate.oriation = .landscape;
+        
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            return;
+        }
+        
+        dishImage.image = image;
+        
+        dismiss(animated: true, completion: nil);
     }
     
     
@@ -269,6 +302,7 @@ class JCDishDetailController: UIViewController {
             submitCallBack();
         }
     }
+ 
     
     // 设置子控件的frame
     override func viewDidLayoutSubviews() {
@@ -405,4 +439,16 @@ class JCDishDetailController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+}
+
+
+extension UIImagePickerController {
+    
+    open override var shouldAutorotate: Bool {
+        return true;
+    }
+    
+    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .all;
+    }
 }

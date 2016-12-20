@@ -26,24 +26,20 @@
 		8B4F4F761DB5A7C000A3B989 /* JCOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4F4F751DB5A7C000A3B989 /* JCOrderModel.swift */; };
 		8B4F4F781DB5A7C900A3B989 /* JCMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4F4F771DB5A7C900A3B989 /* JCMenuModel.swift */; };
 		8B5376641DAFCA9100016A96 /* JCDIYButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5376631DAFCA9100016A96 /* JCDIYButton.swift */; };
+		8B5614161E08205B000146CC /* ZXAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5614151E08205B000146CC /* ZXAnimation.swift */; };
 		8B5620A61DF4F5EC0022EFD6 /* JCLeftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5620A51DF4F5EC0022EFD6 /* JCLeftController.swift */; };
 		8B5620A81DF4F7510022EFD6 /* JCMiddleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5620A71DF4F7510022EFD6 /* JCMiddleController.swift */; };
 		8B5620AA1DF4F8AD0022EFD6 /* JCRightController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5620A91DF4F8AD0022EFD6 /* JCRightController.swift */; };
 		8B5758481DB7BC04000BE44C /* JCOrderRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5758471DB7BC04000BE44C /* JCOrderRecordModel.swift */; };
-		8B591A641DF6AEE400C0DF6C /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B591A631DF6AEE400C0DF6C /* PhotoCell.swift */; };
-		8B59D33D1DFBFD2500E47C05 /* PhotoDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B59D33C1DFBFD2500E47C05 /* PhotoDetailController.swift */; };
-		8B59D33F1DFC09CD00E47C05 /* PhotoDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B59D33E1DFC09CD00E47C05 /* PhotoDetailCell.swift */; };
 		8B6C50151DB6129100DFAF9B /* JCOrderRecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6C50141DB6129100DFAF9B /* JCOrderRecordCell.swift */; };
 		8B89DDE91DF698010099A996 /* JCDishDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B89DDE81DF698010099A996 /* JCDishDetailController.swift */; };
-		8B89DDF21DF69BD30099A996 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B89DDEF1DF69BD30099A996 /* AlbumCell.swift */; };
-		8B89DDF31DF69BD30099A996 /* AlbumListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B89DDF01DF69BD30099A996 /* AlbumListController.swift */; };
-		8B89DDF81DF6A8100099A996 /* PhotoListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B89DDF71DF6A8100099A996 /* PhotoListController.swift */; };
 		8B8CF27F1DDD30B500A72E24 /* JCDeleteDishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8CF27E1DDD30B500A72E24 /* JCDeleteDishView.swift */; };
 		8B93AD121DB753E00062812C /* JCMineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B93AD111DB753E00062812C /* JCMineView.swift */; };
 		8B93AD141DB755200062812C /* JCMineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B93AD131DB755200062812C /* JCMineDetailView.swift */; };
 		8B93AD161DB75FB70062812C /* JCDIYLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B93AD151DB75FB70062812C /* JCDIYLabel.swift */; };
 		8B93AD181DB76E100062812C /* JCCompanyNameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B93AD171DB76E100062812C /* JCCompanyNameButton.swift */; };
 		8B9EDB4E1DF7E84000EFAE8E /* JCAddSubMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9EDB4D1DF7E84000EFAE8E /* JCAddSubMenuController.swift */; };
+		8BA785031E07D5BF00C60DD4 /* JCForbidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA785021E07D5BF00C60DD4 /* JCForbidView.swift */; };
 		8BB8D9A81DDC5AF1008364BA /* JCMenuAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB8D9A71DDC5AF1008364BA /* JCMenuAddCell.swift */; };
 		8BC89E021DB4B49500A348D2 /* JCOrderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC89E011DB4B49500A348D2 /* JCOrderDetailView.swift */; };
 		8BC89E041DB4BB5A00A348D2 /* JCOrderLeftCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC89E031DB4BB5A00A348D2 /* JCOrderLeftCell.swift */; };
@@ -107,24 +103,20 @@
 		8B4F4F751DB5A7C000A3B989 /* JCOrderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCOrderModel.swift; sourceTree = "<group>"; };
 		8B4F4F771DB5A7C900A3B989 /* JCMenuModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMenuModel.swift; sourceTree = "<group>"; };
 		8B5376631DAFCA9100016A96 /* JCDIYButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JCDIYButton.swift; path = Register/View/JCDIYButton.swift; sourceTree = "<group>"; };
+		8B5614151E08205B000146CC /* ZXAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXAnimation.swift; sourceTree = "<group>"; };
 		8B5620A51DF4F5EC0022EFD6 /* JCLeftController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCLeftController.swift; sourceTree = "<group>"; };
 		8B5620A71DF4F7510022EFD6 /* JCMiddleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMiddleController.swift; sourceTree = "<group>"; };
 		8B5620A91DF4F8AD0022EFD6 /* JCRightController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCRightController.swift; sourceTree = "<group>"; };
 		8B5758471DB7BC04000BE44C /* JCOrderRecordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCOrderRecordModel.swift; sourceTree = "<group>"; };
-		8B591A631DF6AEE400C0DF6C /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
-		8B59D33C1DFBFD2500E47C05 /* PhotoDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailController.swift; sourceTree = "<group>"; };
-		8B59D33E1DFC09CD00E47C05 /* PhotoDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailCell.swift; sourceTree = "<group>"; };
 		8B6C50141DB6129100DFAF9B /* JCOrderRecordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCOrderRecordCell.swift; sourceTree = "<group>"; };
 		8B89DDE81DF698010099A996 /* JCDishDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCDishDetailController.swift; sourceTree = "<group>"; };
-		8B89DDEF1DF69BD30099A996 /* AlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
-		8B89DDF01DF69BD30099A996 /* AlbumListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumListController.swift; sourceTree = "<group>"; };
-		8B89DDF71DF6A8100099A996 /* PhotoListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoListController.swift; sourceTree = "<group>"; };
 		8B8CF27E1DDD30B500A72E24 /* JCDeleteDishView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCDeleteDishView.swift; sourceTree = "<group>"; };
 		8B93AD111DB753E00062812C /* JCMineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMineView.swift; sourceTree = "<group>"; };
 		8B93AD131DB755200062812C /* JCMineDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMineDetailView.swift; sourceTree = "<group>"; };
 		8B93AD151DB75FB70062812C /* JCDIYLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCDIYLabel.swift; sourceTree = "<group>"; };
 		8B93AD171DB76E100062812C /* JCCompanyNameButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCCompanyNameButton.swift; sourceTree = "<group>"; };
 		8B9EDB4D1DF7E84000EFAE8E /* JCAddSubMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCAddSubMenuController.swift; sourceTree = "<group>"; };
+		8BA785021E07D5BF00C60DD4 /* JCForbidView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCForbidView.swift; sourceTree = "<group>"; };
 		8BB8D9A71DDC5AF1008364BA /* JCMenuAddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMenuAddCell.swift; sourceTree = "<group>"; };
 		8BC89E011DB4B49500A348D2 /* JCOrderDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCOrderDetailView.swift; sourceTree = "<group>"; };
 		8BC89E031DB4BB5A00A348D2 /* JCOrderLeftCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCOrderLeftCell.swift; sourceTree = "<group>"; };
@@ -247,6 +239,7 @@
 		8B30A6171DAF40EF00124925 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8B5614151E08205B000146CC /* ZXAnimation.swift */,
 				8B30A6181DAF40EF00124925 /* Header */,
 				8B30A6191DAF40EF00124925 /* Home */,
 				8B30A6261DAF40EF00124925 /* Login */,
@@ -322,19 +315,6 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		8B89DDEE1DF69BB20099A996 /* PhotoAlbum */ = {
-			isa = PBXGroup;
-			children = (
-				8B89DDEF1DF69BD30099A996 /* AlbumCell.swift */,
-				8B89DDF01DF69BD30099A996 /* AlbumListController.swift */,
-				8B89DDF71DF6A8100099A996 /* PhotoListController.swift */,
-				8B591A631DF6AEE400C0DF6C /* PhotoCell.swift */,
-				8B59D33C1DFBFD2500E47C05 /* PhotoDetailController.swift */,
-				8B59D33E1DFC09CD00E47C05 /* PhotoDetailCell.swift */,
-			);
-			path = PhotoAlbum;
-			sourceTree = "<group>";
-		};
 		8BD14EA31DB4728E00DD2797 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,7 +323,6 @@
 				8B89DDE81DF698010099A996 /* JCDishDetailController.swift */,
 				8B8CF27E1DDD30B500A72E24 /* JCDeleteDishView.swift */,
 				8BB8D9A71DDC5AF1008364BA /* JCMenuAddCell.swift */,
-				8B89DDEE1DF69BB20099A996 /* PhotoAlbum */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -352,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				8BD14EA71DB472C000DD2797 /* JCOrderView.swift */,
+				8BA785021E07D5BF00C60DD4 /* JCForbidView.swift */,
 				8BFD132C1DB606E500D75BE4 /* JCOrderLeftView.swift */,
 				8BFD132E1DB60D1300D75BE4 /* JCOrderRecordView.swift */,
 				8B6C50141DB6129100DFAF9B /* JCOrderRecordCell.swift */,
@@ -634,7 +614,6 @@
 				8B30A5EA1DAF3F6100124925 /* AppDelegate.swift in Sources */,
 				8B286FAE1DB0C3DE00F800B9 /* JCMiddleCell.swift in Sources */,
 				8B30A6301DAF41A600124925 /* JCSwiftHeader.swift in Sources */,
-				8B89DDF31DF69BD30099A996 /* AlbumListController.swift in Sources */,
 				8BC89E041DB4BB5A00A348D2 /* JCOrderLeftCell.swift in Sources */,
 				8B5620AA1DF4F8AD0022EFD6 /* JCRightController.swift in Sources */,
 				8BFD132B1DB5E67C00D75BE4 /* JCOrderDetailModel.swift in Sources */,
@@ -649,35 +628,32 @@
 				8B5376641DAFCA9100016A96 /* JCDIYButton.swift in Sources */,
 				8BB8D9A81DDC5AF1008364BA /* JCMenuAddCell.swift in Sources */,
 				8B30A6321DAF41E800124925 /* JCLoginController.swift in Sources */,
-				8B89DDF81DF6A8100099A996 /* PhotoListController.swift in Sources */,
 				8BF97CBD1DB09D0E005D328D /* JCSearchBar.swift in Sources */,
 				8BF97CBE1DB09D0E005D328D /* JCTopView.swift in Sources */,
-				8B59D33D1DFBFD2500E47C05 /* PhotoDetailController.swift in Sources */,
 				8B93AD121DB753E00062812C /* JCMineView.swift in Sources */,
 				8BD14EB01DB488C700DD2797 /* JCStatusView.swift in Sources */,
 				8B89DDE91DF698010099A996 /* JCDishDetailController.swift in Sources */,
 				8B6C50151DB6129100DFAF9B /* JCOrderRecordCell.swift in Sources */,
 				8BF97CC01DB0A9F5005D328D /* JCLeftCell.swift in Sources */,
-				8B591A641DF6AEE400C0DF6C /* PhotoCell.swift in Sources */,
 				8BFD132D1DB606E500D75BE4 /* JCOrderLeftView.swift in Sources */,
 				8BC89E0A1DB4CD6200A348D2 /* JCOrderDetailCell.swift in Sources */,
 				8B5620A61DF4F5EC0022EFD6 /* JCLeftController.swift in Sources */,
 				8B9EDB4E1DF7E84000EFAE8E /* JCAddSubMenuController.swift in Sources */,
 				8B30A6361DAF445800124925 /* JCPasswordView.swift in Sources */,
 				8B286FB41DB0D29F00F800B9 /* JCMiddleModel.swift in Sources */,
-				8B89DDF21DF69BD30099A996 /* AlbumCell.swift in Sources */,
 				8BD14EA81DB472C000DD2797 /* JCOrderView.swift in Sources */,
 				8B4398621DB1294900A3925B /* JCMenuCell.swift in Sources */,
 				8B0D3FDA1DF800BE00E39FB6 /* HttpManager.swift in Sources */,
+				8B5614161E08205B000146CC /* ZXAnimation.swift in Sources */,
 				8B5620A81DF4F7510022EFD6 /* JCMiddleController.swift in Sources */,
 				8B5758481DB7BC04000BE44C /* JCOrderRecordModel.swift in Sources */,
 				8BD14EA61DB472B200DD2797 /* JCMenuView.swift in Sources */,
 				8BEBF6B61DB86D170085216F /* JCAddSubMenuDetailView.swift in Sources */,
 				8BF97CC21DB0B084005D328D /* JCLeftModel.swift in Sources */,
 				8B93AD181DB76E100062812C /* JCCompanyNameButton.swift in Sources */,
-				8B59D33F1DFC09CD00E47C05 /* PhotoDetailCell.swift in Sources */,
 				8BC89E021DB4B49500A348D2 /* JCOrderDetailView.swift in Sources */,
 				8B30A6341DAF43B400124925 /* JCAccountView.swift in Sources */,
+				8BA785031E07D5BF00C60DD4 /* JCForbidView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,6 +22,11 @@ class JCMineView: UIView {
     // 我的详情
     lazy var mineDetailView: JCMineDetailView = JCMineDetailView();
     
+    
+    // 消失的回调
+    var deleteBtnCallBack: (() -> ())?;
+    // 退出的回调
+    var quiteBtnCallBack: (() -> ())?;
 
     // 初始化
     override init(frame: CGRect) {
@@ -33,6 +38,23 @@ class JCMineView: UIView {
         // 添加我的详情
         mineDetailView.backgroundColor = UIColor.clear;
         background.addSubview(mineDetailView);
+        
+        // 消失的回调
+        mineDetailView.deleteBtnCallBack = { [weak self]
+            _ in
+            if let deleteBtnCallBack = self?.deleteBtnCallBack {
+                deleteBtnCallBack();
+            }
+        }
+        
+        // 退出的回调
+        mineDetailView.quiteBtnCallBack = { [weak self]
+            _ in
+            
+            if let quiteBtnCallBack = self?.quiteBtnCallBack {
+                quiteBtnCallBack();
+            }
+        }
 
     }
     

@@ -23,21 +23,20 @@ class JCHomeController: UIViewController {
     // 右边视图
     private lazy var rightVc: JCRightController = JCRightController();
     
-    // 我的
-    private lazy var mineView: JCMineView = {
-        let mineView = JCMineView();
-        mineView.isHidden = true;
-        return mineView;
-    }();
     
     // 移除通知
     deinit {
         NotificationCenter.default.removeObserver(self);
     }
+    
+    // 显示状态栏为lightContent
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent;
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+     
         
         // 添加顶部视图
         view.addSubview(topView);
@@ -53,35 +52,51 @@ class JCHomeController: UIViewController {
         // 添加右边视图
         view.addSubview(rightVc.view);
         addChildViewController(rightVc);
-        
-        // 我的
-        view.addSubview(mineView);
+  
         
         // 将左边的值，传给子菜单
         leftVc.sendLeftModelCallBack = { [weak self]
             (menuName) in
-            guard let weakSelf = self else {
-                return;
-            }
-            
+           
             switch menuName {
             case "我的":
                 // 我的
-                weakSelf.mineView.isHidden = false;
-                weakSelf.mineView.mineDetailView.deleteBtn.addTarget(self, action: #selector(weakSelf.deleteBtnClick(button:)), for: .touchUpInside);
-                weakSelf.mineView.mineDetailView.quiteBtn.addTarget(self, action: #selector(weakSelf.quiteBtnClick(button:)), for: .touchUpInside);
+                let mineView = JCMineView();
+                mineView.frame = (self?.view.bounds)!;
+                self?.view.addSubview(mineView);
+                // 添加动画
+                ZXAnimation.startAnimation(targetView: mineView);
+                
+                
+                // 消失的回调
+                mineView.deleteBtnCallBack = { [unowned mineView]
+                    _ in
+                    // 添加消失动画
+                    ZXAnimation.stopAnimation(targetView: mineView);
+                }
+                
+                // 退出的回调
+                mineView.quiteBtnCallBack = { [weak self]
+                    _ in
+                    // 让控制器消失
+                    self?.dismiss(animated: true, completion: nil);
+                }
                 
             case "菜单":
                 // 菜单
-                weakSelf.rightVc.menuView.isHidden = false;
-                weakSelf.rightVc.orderView.isHidden = true;
-                weakSelf.middleVc.menuName = menuName;
+                self?.rightVc.menuView.isHidden = false;
+                self?.rightVc.orderView.isHidden = true;
+                self?.middleVc.menuName = menuName;
                 
             default:
                 // 订单
-                weakSelf.rightVc.menuView.isHidden = true;
-                weakSelf.rightVc.orderView.isHidden = false;
-                weakSelf.middleVc.menuName = menuName;
+                self?.rightVc.menuView.isHidden = true;
+                self?.rightVc.orderView.isHidden = false;
+                self?.middleVc.menuName = menuName;
+                self?.rightVc.orderView.recordView.isHidden = true;
+                self?.rightVc.orderView.orderLeftView.isHidden = false;
+                // 发送通知
+                NotificationCenter.default.post(name: ChangePaidBtnStatusNotification, object: nil, userInfo: ["ChangePaidBtnStatusNotification": "结账"]);
             }
         }
         
@@ -94,12 +109,14 @@ class JCHomeController: UIViewController {
                 addSubMenuVc.view.frame = (self?.view.bounds)!;
                 self?.view.addSubview(addSubMenuVc.view);
                 self?.addChildViewController(addSubMenuVc);
+                ZXAnimation.startAnimation(targetView: addSubMenuVc.view);
+                
                 
                 // 点击取消按钮隐藏
-                addSubMenuVc.cancelBtnCallBack = { [weak addSubMenuVc]
+                addSubMenuVc.cancelBtnCallBack = { [unowned addSubMenuVc]
                     _ in
                     // 移除弹窗
-                    addSubMenuVc?.view.removeFromSuperview();
+                    ZXAnimation.stopAnimation(targetView: addSubMenuVc.view);
                 }
                 // 点击确定按钮，保存修改信息
                 addSubMenuVc.submitBtnCallBack = {
@@ -112,6 +129,12 @@ class JCHomeController: UIViewController {
                 self?.rightVc.orderView.orderLeftView.isHidden = true;
                 // 显示订单记录页面
                 self?.rightVc.orderView.recordView.isHidden = false;
+                
+                // 隐藏空闲和停用页面
+                self?.rightVc.orderView.forbidView.isHidden = true;
+                // 显示订单详情页面
+                self?.rightVc.orderView.orderDetailView.isHidden = false;
+                
                 // 发送通知
                 NotificationCenter.default.post(name: ChangePaidBtnStatusNotification, object: nil, userInfo: ["ChangePaidBtnStatusNotification": "已结账"]);
             
@@ -121,6 +144,27 @@ class JCHomeController: UIViewController {
                 self?.rightVc.orderView.orderLeftView.isHidden = false;
                 // 隐藏订单记录页面
                 self?.rightVc.orderView.recordView.isHidden = true;
+            
+                
+                let _ = self?.rightVc.orderView.orderLeftView.orderModelArray.enumerated().map({
+                    (element) in
+                    
+                    if element.element.isSelected == true {
+                        if element.element.tag == 0 {
+                            // 隐藏空闲和停用页面
+                            self?.rightVc.orderView.forbidView.isHidden = true;
+                            // 显示订单详情页面
+                            self?.rightVc.orderView.orderDetailView.isHidden = false;
+                        } else {
+                            
+                            // 隐藏空闲和停用页面
+                            self?.rightVc.orderView.forbidView.isHidden = false;
+                            // 显示订单详情页面
+                            self?.rightVc.orderView.orderDetailView.isHidden = true;
+                        }
+                    }
+                });
+                
                 // 发送通知
                 NotificationCenter.default.post(name: ChangePaidBtnStatusNotification, object: nil, userInfo: ["ChangePaidBtnStatusNotification": "结账"]);
 
@@ -135,11 +179,12 @@ class JCHomeController: UIViewController {
             dishDetail.view.frame = (self?.view.bounds)!;
             self?.view.addSubview(dishDetail.view);
             self?.addChildViewController(dishDetail);
+            ZXAnimation.startAnimation(targetView: dishDetail.view);
             
             // 取消按钮的回调
-            dishDetail.cancelCallBack = { [weak dishDetail]
+            dishDetail.cancelCallBack = { [unowned dishDetail]
                 _ in
-                dishDetail?.view.removeFromSuperview();
+                ZXAnimation.stopAnimation(targetView: dishDetail.view);
             }
             
             // 确定按钮的回调
@@ -157,11 +202,12 @@ class JCHomeController: UIViewController {
             dishDetail.view.frame = (self?.view.bounds)!;
             self?.view.addSubview(dishDetail.view);
             self?.addChildViewController(dishDetail);
+            ZXAnimation.startAnimation(targetView: dishDetail.view);
             
             // 取消按钮的回调
-            dishDetail.cancelCallBack = { [weak dishDetail]
+            dishDetail.cancelCallBack = { [unowned dishDetail]
                 _ in
-                dishDetail?.view.removeFromSuperview();
+                ZXAnimation.stopAnimation(targetView: dishDetail.view);
             }
             
             // 确认按钮的回调
@@ -174,17 +220,6 @@ class JCHomeController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    // MARK: - 点击删除，弹框消失
-    @objc private func deleteBtnClick(button: UIButton) -> Void {
-        
-        mineView.isHidden = true;
-    }
-    
-    // MARK: - 退出登录
-    @objc private func quiteBtnClick(button: UIButton) -> Void {
-        
-        dismiss(animated: true, completion: nil);
-    }
     
     // MARK: - 设置子控件的frame
     override func viewDidLayoutSubviews() {
@@ -220,9 +255,7 @@ class JCHomeController: UIViewController {
         let rightVcW = width - middleVcX;
         let rightVcH = leftVcH;
         rightVc.view.frame = CGRect(x: rightVcX, y: rightVcY, width: rightVcW, height: rightVcH);
-        
-        // 我的
-        mineView.frame = view.bounds;
+  
     }
 
     override func didReceiveMemoryWarning() {

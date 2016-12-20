@@ -10,7 +10,7 @@ import UIKit
 
 enum Orientation {
     case landscape
-    case portrait
+    case all
 }
 
 
@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         case .landscape:
             return .landscape
         default:
-            return .portrait
+            return .all
         }
     }
 
