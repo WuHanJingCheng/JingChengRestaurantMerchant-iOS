@@ -15,43 +15,19 @@ class JCRightController: UIViewController {
     
     // 订单
     lazy var orderView: JCOrderView = JCOrderView();
-    
-    // 数据模型
-    var middleModel: JCMiddleModel? {
-        didSet {
-            // 取出可选类型中的数据
-            guard let middleModel = middleModel else {
-                return;
-            }
-            
-            if middleModel.jsonFileName == "JCSubMenusData.json" {
-                
-                // 隐藏订单页面
-                orderView.isHidden = true;
-                menuView.isHidden = false;
-                
-            } else if middleModel.jsonFileName == "JCOrderListData.json" {
-                // 隐藏菜单页面
-                menuView.isHidden = true;
-                orderView.isHidden = false;
-                
-                if middleModel.name == "记录" {
-                    orderView.orderLeftView.isHidden = true;
-                    orderView.recordView.isHidden = false;
-                } else {
-                    orderView.orderLeftView.isHidden = false;
-                    orderView.recordView.isHidden = true;
-                }
-            }
-        }
-    }
+
 
     // 添加菜的回调
-    var addDishCallBack: (() -> ())?;
+    var addDishCallBack: ((_ model: JCMiddleModel) -> ())?;
     // 编辑回调
-    var editBtnCallBack: (() -> ())?;
+    var editBtnCallBack: ((_ model: JCDishModel) -> ())?;
+    // 删除回调
+    var deleteBtnCallBack: ((_ model: JCDishModel) -> ())?;
     
-
+    
+    deinit {
+        print("JCRightController 被释放了");
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,9 +40,52 @@ class JCRightController: UIViewController {
         view.addSubview(orderView);
         
         
+        // 添加菜的回调
+        menuView.addDishCallBack = { [weak self]
+            (model) in
+            
+            if let addDishCallBack = self?.addDishCallBack {
+                addDishCallBack(model);
+            }
+        }
         
-     
+        // 编辑回调
+        menuView.editBtnCallBack = { [weak self]
+            (model) in
+            
+            if let editBtnCallBack = self?.editBtnCallBack {
+                editBtnCallBack(model);
+            }
+        }
+        
+        // 删除
+        menuView.deleteBtnCallBack = { [weak self]
+            (model) in
+            
+            if let deleteBtnCallBack = self?.deleteBtnCallBack {
+                deleteBtnCallBack(model);
+            }
+        }
         // Do any additional setup after loading the view.
+    }
+    
+    // 删除菜品，刷新
+    func deleteDish(model: JCDishModel) -> Void {
+        
+        menuView.deleteDish(model: model);
+    }
+    
+    
+    // 添加菜品
+    func addDish(model: JCDishModel) -> Void {
+        
+        menuView.addDish(model: model);
+    }
+    
+    // 修改菜品
+    func modifityDish(model: JCDishModel) -> Void {
+        
+        menuView.modifityDish(model: model);
     }
     
     
@@ -79,23 +98,6 @@ class JCRightController: UIViewController {
         
         // 设置订单的frame
         orderView.frame = view.bounds;
-        
-        // 添加菜的回调
-        menuView.addDishCallBack = { [weak self]
-            _ in
-            
-            if let addDishCallBack = self?.addDishCallBack {
-                addDishCallBack();
-            }
-        }
-        
-        // 编辑回调
-        menuView.editBtnCallBack = { [weak self]
-            _ in
-            if let editBtnCallBack = self?.editBtnCallBack {
-                editBtnCallBack();
-            }
-        }
     }
 
     override func didReceiveMemoryWarning() {

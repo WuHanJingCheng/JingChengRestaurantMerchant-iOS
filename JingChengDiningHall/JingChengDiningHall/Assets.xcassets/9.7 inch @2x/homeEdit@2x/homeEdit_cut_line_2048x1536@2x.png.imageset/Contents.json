@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "菜名-分割线.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "修改-分割线@2x.png",
       "scale" : "2x"
     },
     {

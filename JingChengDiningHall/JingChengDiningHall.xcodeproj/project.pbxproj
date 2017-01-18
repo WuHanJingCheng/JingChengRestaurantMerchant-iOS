@@ -10,7 +10,6 @@
 		72F917175199AF0EF5A1409F /* Pods_JingChengDiningHall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A682753B706019570E1539 /* Pods_JingChengDiningHall.framework */; };
 		8B0D3FDA1DF800BE00E39FB6 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0D3FD91DF800BE00E39FB6 /* HttpManager.swift */; };
 		8B286FAE1DB0C3DE00F800B9 /* JCMiddleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B286FAD1DB0C3DE00F800B9 /* JCMiddleCell.swift */; };
-		8B286FB21DB0CB0E00F800B9 /* JCSubMenusData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B286FB11DB0CB0E00F800B9 /* JCSubMenusData.json */; };
 		8B286FB41DB0D29F00F800B9 /* JCMiddleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B286FB31DB0D29F00F800B9 /* JCMiddleModel.swift */; };
 		8B30A5EA1DAF3F6100124925 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30A5E91DAF3F6100124925 /* AppDelegate.swift */; };
 		8B30A5F11DAF3F6100124925 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B30A5F01DAF3F6100124925 /* Assets.xcassets */; };
@@ -23,21 +22,32 @@
 		8B30A6361DAF445800124925 /* JCPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30A6351DAF445800124925 /* JCPasswordView.swift */; };
 		8B4398621DB1294900A3925B /* JCMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4398611DB1294900A3925B /* JCMenuCell.swift */; };
 		8B4B8FA31DB07ADE00F0124D /* JCHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B8FA21DB07ADE00F0124D /* JCHomeController.swift */; };
+		8B4C72C01E1B3A6100B4D26D /* JCSubMenuListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C72BF1E1B3A6100B4D26D /* JCSubMenuListController.swift */; };
+		8B4C72C21E1B3AE700B4D26D /* JCSubMenuTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C72C11E1B3AE700B4D26D /* JCSubMenuTopView.swift */; };
+		8B4C72C41E1B405D00B4D26D /* ZXCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C72C31E1B405D00B4D26D /* ZXCollectionViewLayout.swift */; };
+		8B4C72C61E1B4E1000B4D26D /* JCSubMenuListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C72C51E1B4E1000B4D26D /* JCSubMenuListCell.swift */; };
 		8B4F4F761DB5A7C000A3B989 /* JCOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4F4F751DB5A7C000A3B989 /* JCOrderModel.swift */; };
-		8B4F4F781DB5A7C900A3B989 /* JCMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4F4F771DB5A7C900A3B989 /* JCMenuModel.swift */; };
 		8B5376641DAFCA9100016A96 /* JCDIYButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5376631DAFCA9100016A96 /* JCDIYButton.swift */; };
 		8B5614161E08205B000146CC /* ZXAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5614151E08205B000146CC /* ZXAnimation.swift */; };
 		8B5620A61DF4F5EC0022EFD6 /* JCLeftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5620A51DF4F5EC0022EFD6 /* JCLeftController.swift */; };
 		8B5620A81DF4F7510022EFD6 /* JCMiddleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5620A71DF4F7510022EFD6 /* JCMiddleController.swift */; };
 		8B5620AA1DF4F8AD0022EFD6 /* JCRightController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5620A91DF4F8AD0022EFD6 /* JCRightController.swift */; };
 		8B5758481DB7BC04000BE44C /* JCOrderRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5758471DB7BC04000BE44C /* JCOrderRecordModel.swift */; };
+		8B6331BD1E237CCA0012E200 /* JCUpLoadPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6331BC1E237CCA0012E200 /* JCUpLoadPopupView.swift */; };
+		8B6529631E11097A009C5B43 /* JCSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6529621E11097A009C5B43 /* JCSearchController.swift */; };
+		8B6529651E110CE0009C5B43 /* JCSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6529641E110CE0009C5B43 /* JCSearchView.swift */; };
+		8B6529671E11147C009C5B43 /* JCSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6529661E11147C009C5B43 /* JCSearchModel.swift */; };
+		8B665FC81E1B79B30057CBE0 /* JCSubMenuListAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B665FC71E1B79B30057CBE0 /* JCSubMenuListAddCell.swift */; };
+		8B665FCA1E1BA59C0057CBE0 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B665FC91E1BA59C0057CBE0 /* API.swift */; };
 		8B6C50151DB6129100DFAF9B /* JCOrderRecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6C50141DB6129100DFAF9B /* JCOrderRecordCell.swift */; };
+		8B80FBDB1E149FB400E407D2 /* JCMiddleMenuListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B80FBDA1E149FB400E407D2 /* JCMiddleMenuListView.swift */; };
+		8B80FBDD1E149FC500E407D2 /* JCMiddleOrderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B80FBDC1E149FC500E407D2 /* JCMiddleOrderListView.swift */; };
 		8B89DDE91DF698010099A996 /* JCDishDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B89DDE81DF698010099A996 /* JCDishDetailController.swift */; };
-		8B8CF27F1DDD30B500A72E24 /* JCDeleteDishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8CF27E1DDD30B500A72E24 /* JCDeleteDishView.swift */; };
 		8B93AD121DB753E00062812C /* JCMineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B93AD111DB753E00062812C /* JCMineView.swift */; };
 		8B93AD141DB755200062812C /* JCMineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B93AD131DB755200062812C /* JCMineDetailView.swift */; };
 		8B93AD161DB75FB70062812C /* JCDIYLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B93AD151DB75FB70062812C /* JCDIYLabel.swift */; };
 		8B93AD181DB76E100062812C /* JCCompanyNameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B93AD171DB76E100062812C /* JCCompanyNameButton.swift */; };
+		8B962F121E25DEF400DEE33C /* JCHintLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B962F111E25DEF400DEE33C /* JCHintLabel.swift */; };
 		8B9EDB4E1DF7E84000EFAE8E /* JCAddSubMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9EDB4D1DF7E84000EFAE8E /* JCAddSubMenuController.swift */; };
 		8BA785031E07D5BF00C60DD4 /* JCForbidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA785021E07D5BF00C60DD4 /* JCForbidView.swift */; };
 		8BB8D9A81DDC5AF1008364BA /* JCMenuAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB8D9A71DDC5AF1008364BA /* JCMenuAddCell.swift */; };
@@ -48,9 +58,13 @@
 		8BC89E0C1DB4D15300A348D2 /* JCOrderDetailBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC89E0B1DB4D15300A348D2 /* JCOrderDetailBottom.swift */; };
 		8BD14EA61DB472B200DD2797 /* JCMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD14EA51DB472B200DD2797 /* JCMenuView.swift */; };
 		8BD14EA81DB472C000DD2797 /* JCOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD14EA71DB472C000DD2797 /* JCOrderView.swift */; };
-		8BD14EAA1DB474BF00DD2797 /* JCOrderListData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BD14EA91DB474BF00DD2797 /* JCOrderListData.json */; };
+		8BD14EAA1DB474BF00DD2797 /* orderList.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BD14EA91DB474BF00DD2797 /* orderList.json */; };
 		8BD14EB01DB488C700DD2797 /* JCStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD14EAF1DB488C700DD2797 /* JCStatusView.swift */; };
+		8BD3F5AD1E13663B00DC5CD9 /* BlobManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3F5AC1E13663B00DC5CD9 /* BlobManager.swift */; };
+		8BD3F5B11E13A3B500DC5CD9 /* JCAddSubMenuBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3F5B01E13A3B500DC5CD9 /* JCAddSubMenuBtn.swift */; };
+		8BE0D3461E1E3D9C0015331F /* JCDishModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE0D3451E1E3D9B0015331F /* JCDishModel.swift */; };
 		8BEBF6B61DB86D170085216F /* JCAddSubMenuDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBF6B51DB86D170085216F /* JCAddSubMenuDetailView.swift */; };
+		8BF226431E249AF000A7734C /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8BF226421E249AF000A7734C /* loading.gif */; };
 		8BF97CBD1DB09D0E005D328D /* JCSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF97CB81DB09D0E005D328D /* JCSearchBar.swift */; };
 		8BF97CBE1DB09D0E005D328D /* JCTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF97CB91DB09D0E005D328D /* JCTopView.swift */; };
 		8BF97CC01DB0A9F5005D328D /* JCLeftCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF97CBF1DB0A9F5005D328D /* JCLeftCell.swift */; };
@@ -81,7 +95,6 @@
 		17B0BD7902B126FE7FDB45C0 /* Pods-JingChengDiningHall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JingChengDiningHall.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JingChengDiningHall/Pods-JingChengDiningHall.debug.xcconfig"; sourceTree = "<group>"; };
 		8B0D3FD91DF800BE00E39FB6 /* HttpManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
 		8B286FAD1DB0C3DE00F800B9 /* JCMiddleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMiddleCell.swift; sourceTree = "<group>"; };
-		8B286FB11DB0CB0E00F800B9 /* JCSubMenusData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = JCSubMenusData.json; sourceTree = "<group>"; };
 		8B286FB31DB0D29F00F800B9 /* JCMiddleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMiddleModel.swift; sourceTree = "<group>"; };
 		8B30A5E61DAF3F6100124925 /* JingChengDiningHall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JingChengDiningHall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B30A5E91DAF3F6100124925 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -100,21 +113,32 @@
 		8B30A6351DAF445800124925 /* JCPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCPasswordView.swift; sourceTree = "<group>"; };
 		8B4398611DB1294900A3925B /* JCMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JCMenuCell.swift; path = ../RightView/JCMenuCell.swift; sourceTree = "<group>"; };
 		8B4B8FA21DB07ADE00F0124D /* JCHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCHomeController.swift; sourceTree = "<group>"; };
+		8B4C72BF1E1B3A6100B4D26D /* JCSubMenuListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCSubMenuListController.swift; sourceTree = "<group>"; };
+		8B4C72C11E1B3AE700B4D26D /* JCSubMenuTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCSubMenuTopView.swift; sourceTree = "<group>"; };
+		8B4C72C31E1B405D00B4D26D /* ZXCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXCollectionViewLayout.swift; sourceTree = "<group>"; };
+		8B4C72C51E1B4E1000B4D26D /* JCSubMenuListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCSubMenuListCell.swift; sourceTree = "<group>"; };
 		8B4F4F751DB5A7C000A3B989 /* JCOrderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCOrderModel.swift; sourceTree = "<group>"; };
-		8B4F4F771DB5A7C900A3B989 /* JCMenuModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMenuModel.swift; sourceTree = "<group>"; };
 		8B5376631DAFCA9100016A96 /* JCDIYButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JCDIYButton.swift; path = Register/View/JCDIYButton.swift; sourceTree = "<group>"; };
 		8B5614151E08205B000146CC /* ZXAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZXAnimation.swift; sourceTree = "<group>"; };
 		8B5620A51DF4F5EC0022EFD6 /* JCLeftController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCLeftController.swift; sourceTree = "<group>"; };
 		8B5620A71DF4F7510022EFD6 /* JCMiddleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMiddleController.swift; sourceTree = "<group>"; };
 		8B5620A91DF4F8AD0022EFD6 /* JCRightController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCRightController.swift; sourceTree = "<group>"; };
 		8B5758471DB7BC04000BE44C /* JCOrderRecordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCOrderRecordModel.swift; sourceTree = "<group>"; };
+		8B6331BC1E237CCA0012E200 /* JCUpLoadPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCUpLoadPopupView.swift; sourceTree = "<group>"; };
+		8B6529621E11097A009C5B43 /* JCSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCSearchController.swift; sourceTree = "<group>"; };
+		8B6529641E110CE0009C5B43 /* JCSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCSearchView.swift; sourceTree = "<group>"; };
+		8B6529661E11147C009C5B43 /* JCSearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCSearchModel.swift; sourceTree = "<group>"; };
+		8B665FC71E1B79B30057CBE0 /* JCSubMenuListAddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCSubMenuListAddCell.swift; sourceTree = "<group>"; };
+		8B665FC91E1BA59C0057CBE0 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		8B6C50141DB6129100DFAF9B /* JCOrderRecordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCOrderRecordCell.swift; sourceTree = "<group>"; };
+		8B80FBDA1E149FB400E407D2 /* JCMiddleMenuListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMiddleMenuListView.swift; sourceTree = "<group>"; };
+		8B80FBDC1E149FC500E407D2 /* JCMiddleOrderListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMiddleOrderListView.swift; sourceTree = "<group>"; };
 		8B89DDE81DF698010099A996 /* JCDishDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCDishDetailController.swift; sourceTree = "<group>"; };
-		8B8CF27E1DDD30B500A72E24 /* JCDeleteDishView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCDeleteDishView.swift; sourceTree = "<group>"; };
 		8B93AD111DB753E00062812C /* JCMineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMineView.swift; sourceTree = "<group>"; };
 		8B93AD131DB755200062812C /* JCMineDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMineDetailView.swift; sourceTree = "<group>"; };
 		8B93AD151DB75FB70062812C /* JCDIYLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCDIYLabel.swift; sourceTree = "<group>"; };
 		8B93AD171DB76E100062812C /* JCCompanyNameButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCCompanyNameButton.swift; sourceTree = "<group>"; };
+		8B962F111E25DEF400DEE33C /* JCHintLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCHintLabel.swift; sourceTree = "<group>"; };
 		8B9EDB4D1DF7E84000EFAE8E /* JCAddSubMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCAddSubMenuController.swift; sourceTree = "<group>"; };
 		8BA785021E07D5BF00C60DD4 /* JCForbidView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCForbidView.swift; sourceTree = "<group>"; };
 		8BB8D9A71DDC5AF1008364BA /* JCMenuAddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMenuAddCell.swift; sourceTree = "<group>"; };
@@ -125,9 +149,13 @@
 		8BC89E0B1DB4D15300A348D2 /* JCOrderDetailBottom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCOrderDetailBottom.swift; sourceTree = "<group>"; };
 		8BD14EA51DB472B200DD2797 /* JCMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMenuView.swift; sourceTree = "<group>"; };
 		8BD14EA71DB472C000DD2797 /* JCOrderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCOrderView.swift; sourceTree = "<group>"; };
-		8BD14EA91DB474BF00DD2797 /* JCOrderListData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = JCOrderListData.json; sourceTree = "<group>"; };
+		8BD14EA91DB474BF00DD2797 /* orderList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = orderList.json; sourceTree = "<group>"; };
 		8BD14EAF1DB488C700DD2797 /* JCStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCStatusView.swift; sourceTree = "<group>"; };
+		8BD3F5AC1E13663B00DC5CD9 /* BlobManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlobManager.swift; sourceTree = "<group>"; };
+		8BD3F5B01E13A3B500DC5CD9 /* JCAddSubMenuBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCAddSubMenuBtn.swift; sourceTree = "<group>"; };
+		8BE0D3451E1E3D9B0015331F /* JCDishModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCDishModel.swift; sourceTree = "<group>"; };
 		8BEBF6B51DB86D170085216F /* JCAddSubMenuDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCAddSubMenuDetailView.swift; sourceTree = "<group>"; };
+		8BF226421E249AF000A7734C /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
 		8BF97CB81DB09D0E005D328D /* JCSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCSearchBar.swift; sourceTree = "<group>"; };
 		8BF97CB91DB09D0E005D328D /* JCTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCTopView.swift; sourceTree = "<group>"; };
 		8BF97CBF1DB0A9F5005D328D /* JCLeftCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCLeftCell.swift; sourceTree = "<group>"; };
@@ -210,9 +238,9 @@
 				8B30A5E91DAF3F6100124925 /* AppDelegate.swift */,
 				8B30A6171DAF40EF00124925 /* Classes */,
 				8B30A5F01DAF3F6100124925 /* Assets.xcassets */,
-				8BD14EA91DB474BF00DD2797 /* JCOrderListData.json */,
-				8B286FB11DB0CB0E00F800B9 /* JCSubMenusData.json */,
+				8BD14EA91DB474BF00DD2797 /* orderList.json */,
 				8B30A5F21DAF3F6100124925 /* LaunchScreen.storyboard */,
+				8BF226421E249AF000A7734C /* loading.gif */,
 				8B30A5F51DAF3F6100124925 /* Info.plist */,
 			);
 			path = JingChengDiningHall;
@@ -239,7 +267,10 @@
 		8B30A6171DAF40EF00124925 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8BD3F5AC1E13663B00DC5CD9 /* BlobManager.swift */,
 				8B5614151E08205B000146CC /* ZXAnimation.swift */,
+				8B665FC91E1BA59C0057CBE0 /* API.swift */,
+				8B65295E1E110969009C5B43 /* Search */,
 				8B30A6181DAF40EF00124925 /* Header */,
 				8B30A6191DAF40EF00124925 /* Home */,
 				8B30A6261DAF40EF00124925 /* Login */,
@@ -315,13 +346,47 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		8B65295E1E110969009C5B43 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				8B65295F1E110969009C5B43 /* Controller */,
+				8B6529601E110969009C5B43 /* Model */,
+				8B6529611E110969009C5B43 /* View */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		8B65295F1E110969009C5B43 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8B6529621E11097A009C5B43 /* JCSearchController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8B6529601E110969009C5B43 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8B6529661E11147C009C5B43 /* JCSearchModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8B6529611E110969009C5B43 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8B6529641E110CE0009C5B43 /* JCSearchView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		8BD14EA31DB4728E00DD2797 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
 				8BD14EA51DB472B200DD2797 /* JCMenuView.swift */,
 				8B4398611DB1294900A3925B /* JCMenuCell.swift */,
 				8B89DDE81DF698010099A996 /* JCDishDetailController.swift */,
-				8B8CF27E1DDD30B500A72E24 /* JCDeleteDishView.swift */,
+				8B962F111E25DEF400DEE33C /* JCHintLabel.swift */,
 				8BB8D9A71DDC5AF1008364BA /* JCMenuAddCell.swift */,
 			);
 			path = Menu;
@@ -371,8 +436,8 @@
 				8B286FB31DB0D29F00F800B9 /* JCMiddleModel.swift */,
 				8B4F4F751DB5A7C000A3B989 /* JCOrderModel.swift */,
 				8BFD132A1DB5E67C00D75BE4 /* JCOrderDetailModel.swift */,
-				8B4F4F771DB5A7C900A3B989 /* JCMenuModel.swift */,
 				8B5758471DB7BC04000BE44C /* JCOrderRecordModel.swift */,
+				8BE0D3451E1E3D9B0015331F /* JCDishModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -392,8 +457,17 @@
 			children = (
 				8B5620A71DF4F7510022EFD6 /* JCMiddleController.swift */,
 				8B286FAD1DB0C3DE00F800B9 /* JCMiddleCell.swift */,
+				8BD3F5B01E13A3B500DC5CD9 /* JCAddSubMenuBtn.swift */,
+				8B80FBDA1E149FB400E407D2 /* JCMiddleMenuListView.swift */,
+				8B80FBDC1E149FC500E407D2 /* JCMiddleOrderListView.swift */,
 				8B9EDB4D1DF7E84000EFAE8E /* JCAddSubMenuController.swift */,
 				8BEBF6B51DB86D170085216F /* JCAddSubMenuDetailView.swift */,
+				8B4C72BF1E1B3A6100B4D26D /* JCSubMenuListController.swift */,
+				8B4C72C51E1B4E1000B4D26D /* JCSubMenuListCell.swift */,
+				8B665FC71E1B79B30057CBE0 /* JCSubMenuListAddCell.swift */,
+				8B4C72C31E1B405D00B4D26D /* ZXCollectionViewLayout.swift */,
+				8B4C72C11E1B3AE700B4D26D /* JCSubMenuTopView.swift */,
+				8B6331BC1E237CCA0012E200 /* JCUpLoadPopupView.swift */,
 			);
 			name = Middle;
 			path = MiddleView;
@@ -536,8 +610,8 @@
 			files = (
 				8B30A5F41DAF3F6100124925 /* LaunchScreen.storyboard in Resources */,
 				8B30A5F11DAF3F6100124925 /* Assets.xcassets in Resources */,
-				8B286FB21DB0CB0E00F800B9 /* JCSubMenusData.json in Resources */,
-				8BD14EAA1DB474BF00DD2797 /* JCOrderListData.json in Resources */,
+				8BF226431E249AF000A7734C /* loading.gif in Resources */,
+				8BD14EAA1DB474BF00DD2797 /* orderList.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,26 +684,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B6529671E11147C009C5B43 /* JCSearchModel.swift in Sources */,
+				8B665FCA1E1BA59C0057CBE0 /* API.swift in Sources */,
 				8B93AD161DB75FB70062812C /* JCDIYLabel.swift in Sources */,
+				8B80FBDB1E149FB400E407D2 /* JCMiddleMenuListView.swift in Sources */,
+				8B962F121E25DEF400DEE33C /* JCHintLabel.swift in Sources */,
 				8B30A5EA1DAF3F6100124925 /* AppDelegate.swift in Sources */,
 				8B286FAE1DB0C3DE00F800B9 /* JCMiddleCell.swift in Sources */,
 				8B30A6301DAF41A600124925 /* JCSwiftHeader.swift in Sources */,
 				8BC89E041DB4BB5A00A348D2 /* JCOrderLeftCell.swift in Sources */,
 				8B5620AA1DF4F8AD0022EFD6 /* JCRightController.swift in Sources */,
+				8B4C72C01E1B3A6100B4D26D /* JCSubMenuListController.swift in Sources */,
 				8BFD132B1DB5E67C00D75BE4 /* JCOrderDetailModel.swift in Sources */,
+				8B4C72C41E1B405D00B4D26D /* ZXCollectionViewLayout.swift in Sources */,
 				8B93AD141DB755200062812C /* JCMineDetailView.swift in Sources */,
 				8BFD132F1DB60D1300D75BE4 /* JCOrderRecordView.swift in Sources */,
+				8BD3F5AD1E13663B00DC5CD9 /* BlobManager.swift in Sources */,
+				8B665FC81E1B79B30057CBE0 /* JCSubMenuListAddCell.swift in Sources */,
 				8BC89E0C1DB4D15300A348D2 /* JCOrderDetailBottom.swift in Sources */,
-				8B4F4F781DB5A7C900A3B989 /* JCMenuModel.swift in Sources */,
 				8BC89E081DB4CD4300A348D2 /* JCOrderDetailHeader.swift in Sources */,
-				8B8CF27F1DDD30B500A72E24 /* JCDeleteDishView.swift in Sources */,
 				8B4F4F761DB5A7C000A3B989 /* JCOrderModel.swift in Sources */,
 				8B4B8FA31DB07ADE00F0124D /* JCHomeController.swift in Sources */,
 				8B5376641DAFCA9100016A96 /* JCDIYButton.swift in Sources */,
 				8BB8D9A81DDC5AF1008364BA /* JCMenuAddCell.swift in Sources */,
+				8B6529651E110CE0009C5B43 /* JCSearchView.swift in Sources */,
 				8B30A6321DAF41E800124925 /* JCLoginController.swift in Sources */,
 				8BF97CBD1DB09D0E005D328D /* JCSearchBar.swift in Sources */,
 				8BF97CBE1DB09D0E005D328D /* JCTopView.swift in Sources */,
+				8B6331BD1E237CCA0012E200 /* JCUpLoadPopupView.swift in Sources */,
+				8B4C72C21E1B3AE700B4D26D /* JCSubMenuTopView.swift in Sources */,
 				8B93AD121DB753E00062812C /* JCMineView.swift in Sources */,
 				8BD14EB01DB488C700DD2797 /* JCStatusView.swift in Sources */,
 				8B89DDE91DF698010099A996 /* JCDishDetailController.swift in Sources */,
@@ -637,13 +720,18 @@
 				8BF97CC01DB0A9F5005D328D /* JCLeftCell.swift in Sources */,
 				8BFD132D1DB606E500D75BE4 /* JCOrderLeftView.swift in Sources */,
 				8BC89E0A1DB4CD6200A348D2 /* JCOrderDetailCell.swift in Sources */,
+				8BE0D3461E1E3D9C0015331F /* JCDishModel.swift in Sources */,
+				8B6529631E11097A009C5B43 /* JCSearchController.swift in Sources */,
 				8B5620A61DF4F5EC0022EFD6 /* JCLeftController.swift in Sources */,
+				8BD3F5B11E13A3B500DC5CD9 /* JCAddSubMenuBtn.swift in Sources */,
 				8B9EDB4E1DF7E84000EFAE8E /* JCAddSubMenuController.swift in Sources */,
 				8B30A6361DAF445800124925 /* JCPasswordView.swift in Sources */,
 				8B286FB41DB0D29F00F800B9 /* JCMiddleModel.swift in Sources */,
 				8BD14EA81DB472C000DD2797 /* JCOrderView.swift in Sources */,
 				8B4398621DB1294900A3925B /* JCMenuCell.swift in Sources */,
+				8B4C72C61E1B4E1000B4D26D /* JCSubMenuListCell.swift in Sources */,
 				8B0D3FDA1DF800BE00E39FB6 /* HttpManager.swift in Sources */,
+				8B80FBDD1E149FC500E407D2 /* JCMiddleOrderListView.swift in Sources */,
 				8B5614161E08205B000146CC /* ZXAnimation.swift in Sources */,
 				8B5620A81DF4F7510022EFD6 /* JCMiddleController.swift in Sources */,
 				8B5758481DB7BC04000BE44C /* JCOrderRecordModel.swift in Sources */,
@@ -798,14 +886,20 @@
 			baseConfigurationReference = 17B0BD7902B126FE7FDB45C0 /* Pods-JingChengDiningHall.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3GP38WPBTX;
+				HEADER_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/include/libxml2",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = JingChengDiningHall/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhangxu.JingChengDiningHall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
 			};
 			name = Debug;
 		};
@@ -814,14 +908,20 @@
 			baseConfigurationReference = D2061D8417711E3C8CE1A395 /* Pods-JingChengDiningHall.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3GP38WPBTX;
+				HEADER_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/include/libxml2",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = JingChengDiningHall/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhangxu.JingChengDiningHall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
 			};
 			name = Release;
 		};

@@ -80,10 +80,14 @@ class JCLoginController: UIViewController {
     deinit {
         NotificationCenter.default.removeObserver(self);
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent;
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         // 添加背景
         view.addSubview(background);
         

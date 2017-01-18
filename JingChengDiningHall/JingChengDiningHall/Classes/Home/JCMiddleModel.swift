@@ -4,25 +4,37 @@
 //
 //  Created by zhangxu on 2016/10/14.
 //  Copyright © 2016年 zhangxu. All rights reserved.
-//
 
 import UIKit
 
 class JCMiddleModel: NSObject {
     
-    var name: String?;
-    var img_url_normal: String?;
-    var img_url_selected: String?;
-    var jsonFileName: String?;
+    // 服务器字段
+    var DishUrl: String?;
+    var MenuId: Int?;
+    var MenuName: String?;
+    var PictureUrl: String?;
+    var PictureUrlSelected: String?;
+    
+    // 自定义字段
+    var image_normal_data: Data?;
+    var image_selected_data: Data?;
+    var imageType: ImageType?;
     var isSelected: Bool = false;
+    var index: Int?;
+    
+   
     
     // 字段转模型
     class func modelWidthDict(dict: [String: Any]) -> JCMiddleModel {
         
         let model = JCMiddleModel();
-        model.name = dict["name"] as? String ?? "";
-        model.img_url_normal = dict["img_url_normal"] as? String ?? "";
-        model.img_url_selected = dict["img_url_selected"] as? String ?? "";
+        model.DishUrl = dict["DishUrl"] as? String ?? "";
+        model.MenuId =  dict["MenuId"] as? Int ?? 0;
+        model.MenuName = dict["MenuName"] as? String ?? "";
+        model.PictureUrl = dict["PictureUrl"] as? String ?? "";
+        model.PictureUrlSelected = dict["PictureUrlSelected"] as? String ?? "";
+        
         return model;
     }
 

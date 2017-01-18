@@ -14,7 +14,7 @@ class JCMenuAddCell: UICollectionViewCell {
     // 背景按钮
     private lazy var backgroundBtn: UIButton = {
         let button = UIButton(type: .custom);
-        button.setBackgroundImage(UIImage.imageWithName(name: "menu_addDish_background"), for: .normal);
+        button.setBackgroundImage(UIImage.imageWithName(name: "rightCell_background"), for: .normal);
         button.setImage(UIImage.imageWithName(name: "menu_addDish"), for: .normal);
         button.addTarget(self, action: #selector(backgroundBtnClick), for: .touchUpInside);
         return button;

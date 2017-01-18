@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 enum Orientation {
     case landscape
     case all
@@ -19,11 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var oriation: Orientation = .landscape;
+    
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        debugPrint(kScreenWidth,kScreenHeight);
         
-        UIApplication.shared.setStatusBarStyle(.lightContent, animated: false);
+        debugPrint(kScreenWidth,kScreenHeight);
+        print(timeStamp());
+        print(base64encode(timeStamp()));
         // 创建window
         window = UIWindow.init(frame: UIScreen.main.bounds);
         window?.backgroundColor = UIColor.white;
@@ -67,6 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+  
 
 }
 

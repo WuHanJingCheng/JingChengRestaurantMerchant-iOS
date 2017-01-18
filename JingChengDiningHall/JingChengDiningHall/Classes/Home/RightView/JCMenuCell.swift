@@ -60,19 +60,33 @@ class JCMenuCell: UICollectionViewCell {
     }();
     
     // 编辑闭包
-    var editBtnCallBack: ((_ model: JCMenuModel) -> ())?;
+    var editBtnCallBack: ((_ model: JCDishModel) -> ())?;
     
     // 删除闭包
-    var deleteBtnCallBack: ((_ model: JCMenuModel) -> ())?;
+    var deleteBtnCallBack: ((_ model: JCDishModel) -> ())?;
     
     // 数据模型
-    var menuModel: JCMenuModel? {
+    var model: JCDishModel? {
         didSet {
             // 取出可选类型中的数据
-            guard let menuModel = menuModel else {
+            guard let model = model else {
                 return;
             }
             
+            // 菜名
+            if let DishName = model.DishName {
+                dishNameLabel.text = DishName;
+            }
+            
+            // 菜图片
+            if let Thumbnail = model.Thumbnail {
+                icon.zx_setImageWithURL(Thumbnail);
+            }
+            
+            // 菜价格
+            if let Price = model.Price {
+                dishPriceLabel.text = "￥\(Price)";
+            }
         }
     }
     
@@ -105,16 +119,31 @@ class JCMenuCell: UICollectionViewCell {
     // MARK: - 编辑
     func editBtnClick(button: UIButton) -> Void {
         
-        if let editBtnCallBack = editBtnCallBack, let menuModel = menuModel {
-            editBtnCallBack(menuModel);
+        if let editBtnCallBack = editBtnCallBack, let model = model {
+            let temp = JCDishModel();
+            temp.DishId = model.DishId;
+            temp.DishName = model.DishName;
+            temp.DishUrl = model.DishUrl;
+            temp.Price = model.Price;
+            temp.directory = model.directory;
+            temp.imageData = model.imageData;
+            temp.largeImageData = model.largeImageData;
+            temp.Detail = model.Detail;
+            temp.PictureUrlLarge = model.PictureUrlLarge;
+            temp.Thumbnail = model.Thumbnail;
+            temp.index = model.index;
+            temp.isSelected = model.isSelected;
+            temp.Recommanded = model.Recommanded;
+            editBtnCallBack(temp);
         }
+        
     }
     
     // MARK: - 删除
     func deleteBtnClick(button: UIButton) -> Void {
         
-        if let deleteBtnCallBack = deleteBtnCallBack, let menuModel = menuModel {
-            deleteBtnCallBack(menuModel);
+        if let deleteBtnCallBack = deleteBtnCallBack, let model = model {
+            deleteBtnCallBack(model);
         }
     }
   
@@ -131,7 +160,7 @@ class JCMenuCell: UICollectionViewCell {
         let iconX = realValue(value: 17/2);
         let iconY = realValue(value: 16/2);
         let iconW = realValue(value: 476/2);
-        let iconH = realValue(value: 386/2);
+        let iconH = realValue(value: 476/2);
         icon.frame = CGRect(x: iconX, y: iconY, width: iconW, height: iconH);
         
         // 设置dishNameLabel 的frame

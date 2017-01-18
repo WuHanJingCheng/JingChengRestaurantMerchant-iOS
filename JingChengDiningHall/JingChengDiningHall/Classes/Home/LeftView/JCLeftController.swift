@@ -38,6 +38,11 @@ class JCLeftController: UIViewController, UITableViewDataSource, UITableViewDele
     
     // 闭包
     var sendLeftModelCallBack: ((_ jsonFileName: String) -> ())?;
+    
+    
+    deinit {
+        print("JCLeftController 被释放了");
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,8 +124,8 @@ class JCLeftController: UIViewController, UITableViewDataSource, UITableViewDele
             menuName = "订单";
         }
         
-        if let sendLeftModelCallBack = sendLeftModelCallBack, let jsonFileName = menuName {
-            sendLeftModelCallBack(jsonFileName);
+        if let sendLeftModelCallBack = sendLeftModelCallBack, let menuName = menuName {
+            sendLeftModelCallBack(menuName);
         }
     }
     

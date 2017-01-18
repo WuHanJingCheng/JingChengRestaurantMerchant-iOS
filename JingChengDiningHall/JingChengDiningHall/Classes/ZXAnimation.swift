@@ -29,20 +29,24 @@ class ZXAnimation: NSObject {
     }
     
     // 停止动画
-    class func stopAnimation(targetView: UIView) -> Void {
+    class func stopAnimation(targetView: UIView, completion: (() -> ())?) -> Void {
         
         let subView = targetView.subviews[0].subviews[0];
-        UIView.animate(withDuration: 0.5, animations: { [weak targetView]
+        UIView.animate(withDuration: 0.5, animations: {
             _ in
             
             subView.transform = CGAffineTransform(scaleX: 0, y: 0);
-            targetView?.alpha = 0;
+            targetView.alpha = 0;
             
         }, completion: { [weak targetView]
             _ in
             
             // 移除目标视图
             targetView?.removeFromSuperview();
+            
+            if let completion = completion {
+                completion();
+            }
         })
     }
 

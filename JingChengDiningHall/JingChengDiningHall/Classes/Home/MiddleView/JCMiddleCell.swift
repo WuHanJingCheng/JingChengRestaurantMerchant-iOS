@@ -29,38 +29,38 @@ class JCMiddleCell: UITableViewCell {
             }
             
             if middleModel.isSelected == false {
-                if let img_url_normal = middleModel.img_url_normal {
-                    if img_url_normal.hasPrefix("http") {
-                        icon.zx_setImageWithURL(img_url_normal);
+                if let PictureUrl = middleModel.PictureUrl {
+                    if PictureUrl.hasPrefix("http") {
+                        icon.zx_setImageWithURL(PictureUrl);
                     } else {
-                        icon.image = UIImage.imageWithName(name: img_url_normal);
+                        icon.image = UIImage.imageWithName(name: PictureUrl);
                     }
                     
                 }
                 
             } else {
                 
-                if let img_url_selected = middleModel.img_url_selected {
-                    if img_url_selected.hasPrefix("http") {
-                        icon.zx_setImageWithURL(img_url_selected);
+                if let PictureUrlSelected = middleModel.PictureUrlSelected {
+                    if PictureUrlSelected.hasPrefix("http") {
+                        icon.zx_setImageWithURL(PictureUrlSelected);
                     } else {
-                        icon.image = UIImage.imageWithName(name: img_url_selected);
+                        icon.image = UIImage.imageWithName(name: PictureUrlSelected);
                     }
                 }
             }
         
         
-            if let name = middleModel.name {
+            if let MenuName = middleModel.MenuName {
                 if middleModel.isSelected == false {
                     titleLabel.textColor = RGBWithHexColor(hexColor: 0x1a1a1a);
                 } else {
-                    if name == "添加分类" {
+                    if MenuName == "添加分类" {
                         titleLabel.textColor = RGBWithHexColor(hexColor: 0x1a1a1a);
                     } else {
                         titleLabel.textColor = RGBWithHexColor(hexColor: 0xdc9b3e);
                     }
                 }
-                titleLabel.text = name;
+                titleLabel.text = MenuName;
             }
         }
     }

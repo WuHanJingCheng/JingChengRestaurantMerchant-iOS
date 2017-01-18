@@ -14,7 +14,7 @@ class JCOrderDetailHeader: UIView {
     private lazy var orderDetailLabel: UILabel = {
         let label = UILabel();
         label.text = "订单详情";
-        label.font = Font(size: 48/2);
+        label.font = Font(size: 40/2);
         label.textAlignment = .center;
         label.textColor = RGBWithHexColor(hexColor: 0x1a1a1a);
         return label;

@@ -23,7 +23,7 @@ class JCSearchBar: UIView {
     }();
     
     // 搜索按钮
-    private lazy var searchBtn: UIButton = {
+    lazy var searchBtn: UIButton = {
         let searchBtn = UIButton(type: .custom);
         searchBtn.setBackgroundImage(UIImage.imageWithName(name: "top_searchBtn"), for: .normal);
         return searchBtn;

@@ -23,7 +23,7 @@ class JCOrderLeftCell: UICollectionViewCell {
     private lazy var tableIdLabel: UILabel = {
         let tableIdLabel = UILabel();
         tableIdLabel.textAlignment = .center;
-        tableIdLabel.font = Font(size: 20/2);
+        tableIdLabel.font = Font(size: 32/2);
         tableIdLabel.text = "1号桌";
         tableIdLabel.textColor = RGBWithHexColor(hexColor: 0x4c4c4c);
         return tableIdLabel;

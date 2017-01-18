@@ -8,12 +8,19 @@
 
 import UIKit
 
+
+enum ImageType {
+    case normal
+    case selected
+}
+
+
 class JCAddSubMenuController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // 背景
     private lazy var background: UIImageView = {
         let background = UIImageView();
-        background.image = UIImage.imageWithName(name: "home_addSubMenu_background");
+        background.image = UIImage.imageWithName(name: "addSubMenu_background");
         background.isUserInteractionEnabled = true;
         return background;
     }();
@@ -21,10 +28,19 @@ class JCAddSubMenuController: UIViewController, UIImagePickerControllerDelegate,
     //  详细内容
     lazy var addSubMenuDetailView: JCAddSubMenuDetailView = JCAddSubMenuDetailView();
     
+    private lazy var model: JCMiddleModel = JCMiddleModel();
+    
     // 取消按钮回调
     var cancelBtnCallBack: (() -> ())?;
     // 确定按钮的点击回调
-    var submitBtnCallBack: (() -> ())?;
+    var submitBtnCallBack: ((_ model: JCMiddleModel) -> ())?;
+    
+    deinit {
+        print("JCAddSubMenuController 被释放了");
+        // 移除通知
+        NotificationCenter.default.removeObserver(self);
+    }
+  
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +53,10 @@ class JCAddSubMenuController: UIViewController, UIImagePickerControllerDelegate,
         
         // 打开相册的回调
         addSubMenuDetailView.openAlbumCallBack = { [weak self]
-            _ in
+            (imageType) in
             
+            self?.model.imageType = imageType;
+           
             // 设置方向
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                 return;
@@ -65,9 +83,18 @@ class JCAddSubMenuController: UIViewController, UIImagePickerControllerDelegate,
         // 确定按钮的点击回调
         addSubMenuDetailView.submitBtnCallBack = { [weak self]
             _ in
+            // 判断交互
+            let result = self?.addSubMenuDetailView.controlHintInfo();
             
-            if let submitBtnCallBack = self?.submitBtnCallBack {
-                submitBtnCallBack();
+            if result == true {
+                
+                if let model = self?.model, let MenuName = self?.addSubMenuDetailView.categoryNameTextField.text {
+                    
+                    model.MenuName = MenuName;
+                    if let submitBtnCallBack = self?.submitBtnCallBack {
+                        submitBtnCallBack(model);
+                    }
+                }
             }
         }
         
@@ -77,6 +104,12 @@ class JCAddSubMenuController: UIViewController, UIImagePickerControllerDelegate,
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil);
 
         // Do any additional setup after loading the view.
+    }
+    
+    // 展示子菜单信息
+    func showSubMenuInfo(model: JCMiddleModel) {
+        
+        addSubMenuDetailView.showSubMenuInfo(model: model);
     }
     
     // 取消
@@ -101,12 +134,25 @@ class JCAddSubMenuController: UIViewController, UIImagePickerControllerDelegate,
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
             return;
         };
+ 
+        // 压缩图片
+        let smallImage = compressImage(sourceImage: image, targetSize: CGSize(width: realValue(value: 84/2), height: realValue(value: 64/2)));
+        // 将image转化为data
+        let imageData = UIImageJPEGRepresentation(smallImage, 0.5);
+        
         // 保存图片
-        addSubMenuDetailView.icon.image = image;
+        if model.imageType == .normal {
+            model.image_normal_data = imageData;
+        } else {
+            model.image_selected_data = imageData;
+        }
+        addSubMenuDetailView.model = model;
+        
         // 让控制器消失
         dismiss(animated: true, completion: nil);
     }
     
+  
     // MARK: - 点击屏幕其他地方，回收键盘
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true);
@@ -129,7 +175,6 @@ class JCAddSubMenuController: UIViewController, UIImagePickerControllerDelegate,
             let keyboardF = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue;
             let keyboardH = keyboardF.size.height;
             self.addSubMenuDetailView.transform = CGAffineTransform(translationX: 0, y: -keyboardH/2);
-            
         }
     }
     
@@ -161,8 +206,8 @@ class JCAddSubMenuController: UIViewController, UIImagePickerControllerDelegate,
         
         // 设置addSubMenuDetailView 的frame
         addSubMenuDetailView.center = CGPoint(x: width/2, y: height/2);
-        let addSubMenuDetailViewW = realValue(value: 890/2);
-        let addSubMenuDetailViewH = realValue(value: 684/2);
+        let addSubMenuDetailViewW = realValue(value: 800/2);
+        let addSubMenuDetailViewH = realValue(value: 628/2);
         addSubMenuDetailView.bounds = CGRect(x: 0, y: 0, width: addSubMenuDetailViewW, height: addSubMenuDetailViewH);
     }
 

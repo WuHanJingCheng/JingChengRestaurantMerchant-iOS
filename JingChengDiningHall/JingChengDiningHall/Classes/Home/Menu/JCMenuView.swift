@@ -24,7 +24,7 @@ class JCMenuView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, 
     // 九宫格视图
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout();
-        layout.itemSize = CGSize(width: realValue(value: 510/2), height: realValue(value: 576/2));
+        layout.itemSize = CGSize(width: realValue(value: 510/2), height: realValue(value: 674/2));
         layout.minimumLineSpacing = realValue(value: 37/2);
         layout.minimumInteritemSpacing = realValue(value: 37/2);
         let collectionView = UICollectionView.init(frame: .zero, collectionViewLayout: layout);
@@ -36,12 +36,21 @@ class JCMenuView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, 
     }();
     
     // 数组
-    lazy var menuModelArray: [JCMenuModel] = [JCMenuModel]();
+    lazy var dishlist: [JCDishModel] = [JCDishModel]();
+    // 分类
+    var middleModel: JCMiddleModel?;
     
     // 添加按钮的回调
-    var addDishCallBack: (() -> ())?;
+    var addDishCallBack: ((_ model: JCMiddleModel) -> ())?;
     // 编辑的回调
-    var editBtnCallBack: (() -> ())?;
+    var editBtnCallBack: ((_ model: JCDishModel) -> ())?;
+    // 删除回调
+    var deleteBtnCallBack: ((_ model: JCDishModel) -> ())?;
+    
+    deinit {
+        print("JCMenuView 被释放了");
+        
+    }
     
     // MARK: - 初始化
     override init(frame: CGRect) {
@@ -57,24 +66,107 @@ class JCMenuView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, 
         collectionView.register(JCMenuCell.self, forCellWithReuseIdentifier: rightCellIdentifier);
         // 注册加号cell
         collectionView.register(JCMenuAddCell.self, forCellWithReuseIdentifier: rightAddCellIdentifier);
-        
-        // 加载数据
-        setData();
-        
+
     }
     
-    // MARK: - 加载数据
-    func setData() -> Void {
+    // 从服务器获取数据
+    func fetchDishListFromServer(url: String) -> Void {
+       
+        // 发送网络请求
+        let mgr = HttpManager.shared;
+        mgr.requestSerializer.timeoutInterval = 10;
+        mgr.request(.GET, urlString: url, parameters: nil, finished: {
+            (result, task, error) in
+            
+            guard let response = task?.response as? HTTPURLResponse else {
+                return;
+            }
+            
+            if response.statusCode == 200 || response.statusCode == 201 || response.statusCode == 304 {
+                // 清空数组
+                self.dishlist.removeAll();
+                if let result = result as? [[String: Any]] {
+                    let _ = result.enumerated().map({
+                        (dict) in
+                        
+                        let model = JCDishModel.modelWithDic(dict: dict.element);
+                        model.DishUrl = url;
+                        model.directory = self.middleModel?.MenuName;
+                        model.index = dict.offset + 1;
+                        self.dishlist.append(model);
+                    });
+                    
+                    // 刷新数据
+                    self.collectionView.reloadData();
+                }
+            } else {
+                
+                // 清空数据
+                self.dishlist.removeAll();
+                // 刷新列表
+                self.collectionView.reloadData();
+                
+                if let error = error {
+                    print("请求子菜单对应的菜品列表数据失败", error.localizedDescription);
+                }
+            }
+        });
+    }
+    
+    // 增加菜品
+    func addDish(model: JCDishModel) -> Void {
         
-        for index in 0..<10 {
-            let model = JCMenuModel();
-            model.index = index + 1;
-            menuModelArray.append(model);
-        }
+        // 拼接数据
+        dishlist.append(model);
         
-        // 刷新数据
+        // 重置索引
+        let _ = dishlist.enumerated().map({
+            (model) in
+            model.element.index = model.offset + 1;
+        });
+        
+        // 更新UI
         collectionView.reloadData();
     }
+    
+    // 修改菜品
+    func modifityDish(model: JCDishModel) -> Void {
+        
+        let _ = dishlist.map({
+            (temp) in
+            
+            if temp.DishId == model.DishId {
+                temp.DishName = model.DishName;
+                temp.Price = model.Price;
+                temp.Thumbnail = model.Thumbnail;
+                temp.PictureUrlLarge = model.PictureUrlLarge;
+                temp.Detail = model.Detail;
+                temp.Recommanded = model.Recommanded;
+            }
+        });
+        
+        // 更新UI
+        collectionView.reloadData();
+    }
+    
+    // 删除菜品
+    func deleteDish(model: JCDishModel) -> Void {
+        
+        if let index = model.index {
+            
+            // 将要删除的数据从数组中删除
+            dishlist.remove(at: index - 1);
+            // 重置索引
+            let _ = dishlist.enumerated().map({
+                (model) in
+                model.element.index = model.offset + 1;
+            });
+            // 删除cell
+            let indexPath = IndexPath(item: index, section: 0);
+            collectionView.deleteItems(at: [indexPath]);
+        }
+    }
+   
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -82,7 +174,7 @@ class JCMenuView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, 
     
     // MARK: - 返回行数
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return menuModelArray.count + 1;
+        return dishlist.count + 1;
     }
     
     // MARK: - 返回cell
@@ -93,64 +185,38 @@ class JCMenuView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, 
             // 添加按钮的回调
             cell?.backgroundBtnCallBack = { [weak self]
                 _ in
-                if let addDishCallBack = self?.addDishCallBack {
-                    addDishCallBack();
+                if let addDishCallBack = self?.addDishCallBack, let middleModel = self?.middleModel {
+                    addDishCallBack(middleModel);
                 }
             }
             return cell!;
         } else {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: rightCellIdentifier, for: indexPath) as?JCMenuCell;
-            let menuModel = menuModelArray[indexPath.row - 1];
-            cell?.menuModel = menuModel;
-            
+            let dishModel = dishlist[indexPath.row - 1];
+            cell?.model = dishModel;
             // 点击编辑，弹窗
             cell?.editBtnCallBack = { [weak self]
                 (model) in
                 
                 if let editBtnCallBack = self?.editBtnCallBack {
-                    editBtnCallBack();
+                    editBtnCallBack(model);
                 }
             }
+            
             // 点击删除弹窗
             cell?.deleteBtnCallBack = { [weak self]
                 (model) in
-                
-                let window = UIApplication.shared.keyWindow;
-                let deleteDishView = JCDeleteDishView();
-                deleteDishView.frame = (window?.bounds)!;
-                window?.addSubview(deleteDishView);
-                // 监听取消回调
-                deleteDishView.cancelCallBack = { [weak deleteDishView]
-                    _ in
-                    // 移除弹窗
-                    deleteDishView?.removeFromSuperview();
-                }
-                
-                // 监听确定回调
-                deleteDishView.submitCallBack = { [weak self]
-                    _ in
-                    guard let weakSelf = self else {
-                        return;
-                    }
-                    // 将数据从数组中移除
-                    print(model.index!);
-                    print(weakSelf.menuModelArray.count);
-                    weakSelf.menuModelArray.remove(at: model.index! - 1);
-                    // 重新更新索引
-                    for (index, tempModel) in weakSelf.menuModelArray.enumerated() {
-                        tempModel.index = index + 1;
-                    }
-                    // 将弹窗移除
-                    deleteDishView.removeFromSuperview();
-                    // 刷新表格
-                    let indexPath = IndexPath(item: model.index ?? 0, section: 0);
-                    weakSelf.collectionView.deleteItems(at: [indexPath]);
+                print("=============删除\(model.DishUrl)");
+                // 删除回调
+                if let deleteBtnCallBack = self?.deleteBtnCallBack {
+                    deleteBtnCallBack(model);
                 }
             }
             return cell!;
         }
     }
+    
     
     // cell消失的时候刷新表格
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -170,7 +236,7 @@ class JCMenuView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, 
     // MARK: - 选中cell 显示编辑状态
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-    
+        
     }
     
     

@@ -14,6 +14,7 @@ class JCTopView: UIView {
     private lazy var logo: UIImageView = {
         let logo = UIImageView();
         logo.image = UIImage.imageWithName(name: "top_logo");
+        logo.isUserInteractionEnabled = true;
         return logo;
     }();
     
@@ -22,7 +23,7 @@ class JCTopView: UIView {
         let titleLabel = UILabel();
         titleLabel.text = "菜名";
         titleLabel.textAlignment = .center;
-        titleLabel.font = Font(size: 48/2);
+        titleLabel.font = Font(size: 40/2);
         titleLabel.textColor = RGBWithHexColor(hexColor: 0x1a1a1a);
         return titleLabel;
     }();
@@ -37,10 +38,13 @@ class JCTopView: UIView {
         return bottomLine;
     }();
     
+    // 搜索
+    var searchCallBack: ((_ keyword: String) -> ())?;
+    
     // MARK: - 初始化
     override init(frame: CGRect) {
         super.init(frame: frame);
-        
+   
         // 添加logo
         addSubview(logo);
         
@@ -49,11 +53,20 @@ class JCTopView: UIView {
         
         // 添加搜索框
         addSubview(searchBar);
+        searchBar.searchBtn.addTarget(self, action: #selector(searchBtnClick(button:)), for: .touchUpInside);
         
         // 添加底部线条
         addSubview(bottomLine);
-        
+ 
     }
+    
+    func searchBtnClick(button: UIButton) -> Void {
+        
+        if let searchCallBack = searchCallBack {
+            searchCallBack("");
+        }
+    }
+    
     
     // MARK: - 设置子控件的frame
     override func layoutSubviews() {
