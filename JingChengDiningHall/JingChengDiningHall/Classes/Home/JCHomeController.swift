@@ -125,14 +125,8 @@ class JCHomeController: UIViewController, UIAlertViewDelegate {
         middleVc.subMenuCallBack = { [weak self]
             (model) in
             
-            // 传递dishuUrl
-            if let MenuId = model.MenuId {
-                let url = dishlistUrl(MenuId: MenuId);
-                // 请求数据
-                self?.rightVc.menuView.fetchDishListFromServer(url: url);
-                // 传递数据
-                self?.rightVc.menuView.middleModel = model;
-            }
+            // 请求数据
+            self?.rightVc.updateDishList(model: model);
         }
         
         // 订单分类回调
@@ -192,6 +186,7 @@ class JCHomeController: UIViewController, UIAlertViewDelegate {
         rightVc.addDishCallBack = { [weak self]
             (middleModel) in
             let dishDetail = JCDishDetailController();
+            dishDetail.titleView.text = "添加菜品";
             dishDetail.view.frame = (self?.view.bounds)!;
             dishDetail.middleModel = middleModel
             self?.view.addSubview(dishDetail.view);
@@ -344,66 +339,26 @@ class JCHomeController: UIViewController, UIAlertViewDelegate {
                     
                     HttpManager.shared.uploadSubMenuList(url: url, parameters: parameters, succussCallBack: { (data, response) in
                         
-                        if let data = data {
-                            print(data);
-                        }
-                        
-                        if let response = response {
+                        // 上传成功
+                        uploadpoppuView.uploadSuccess();
+                        // 移除窗口
+                        delayCallBack(1, callBack: { () -> () in
                             
-                            guard var headers = response.allHeaderFields as? [String: Any] else {
-                                // 上传失败
-                                uploadpoppuView.uploadFailure();
-                                // 移除窗口
-                                delayCallBack(1, callBack: { () -> () in
-                                    
-                                    ZXAnimation.stopAnimation(targetView: uploadpoppuView, completion: nil);
-                                    
-                                })
-                                return;
-                            }
+                            ZXAnimation.stopAnimation(targetView: uploadpoppuView, completion: nil);
                             
-                            guard let location = headers["Location"] as? String else {
-                                // 上传失败
-                                uploadpoppuView.uploadFailure();
-                                // 移除窗口
-                                delayCallBack(1, callBack: { () -> () in
-                                    
-                                    ZXAnimation.stopAnimation(targetView: uploadpoppuView, completion: nil);
-                                    
-                                })
-                                return;
-                            }
-                            
-                            guard let range = location.range(of: "https://jingchengrestaurant.azurewebsites.net/api/dish/") else {
-                                // 上传失败
-                                uploadpoppuView.uploadFailure();
-                                // 移除窗口
-                                delayCallBack(1, callBack: { () -> () in
-                                    
-                                    ZXAnimation.stopAnimation(targetView: uploadpoppuView, completion: nil);
-                                    
-                                })
-                                return;
-                            }
-                            
-                            let DishId = location.substring(from: range.upperBound);
-                            
-                            // 上传成功
-                            uploadpoppuView.uploadSuccess();
-                            // 移除窗口
-                            delayCallBack(1, callBack: { () -> () in
+                            // 获取上传的数据
+                            if let data = data {
+                                guard let dict = try! JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else {
+                                    return;
+                                }
                                 
-                                ZXAnimation.stopAnimation(targetView: uploadpoppuView, completion: nil);
-                                
-                                model.DishId = (DishId as NSString).integerValue;
-                                
-                                // 更新UI
-                                self?.rightVc.addDish(model: model);
-                                
+                                let dishModel = JCDishModel.modelWithDic(dict: dict);
+                                self?.rightVc.addDish(model: dishModel);
                                 print("上传菜品JSON数据成功");
-                                
-                            })
-                        }
+                            }
+                            
+                        })
+                        
                         
                     }, failureCallBack: { (error) in
                         
@@ -431,6 +386,7 @@ class JCHomeController: UIViewController, UIAlertViewDelegate {
             (model) in
             
             let dishDetail = JCDishDetailController();
+            dishDetail.titleView.text = "修改菜品信息";
             dishDetail.middleModel = self?.rightVc.menuView.middleModel;
             dishDetail.model = model;
             dishDetail.view.frame = (self?.view.bounds)!;
@@ -592,28 +548,27 @@ class JCHomeController: UIViewController, UIAlertViewDelegate {
                         
                         HttpManager.shared.modifityServerData(url: modifityDishUrl(DishId: DishId), parameters: parameters, succussCallBack: { (data, response) in
                             
-                            uploadpoppuView.uploadSuccess();
+                            uploadpoppuView.modifitySuccess();
                             // 移除窗口
                             delayCallBack(1, callBack: { () -> () in
                                 ZXAnimation.stopAnimation(targetView: uploadpoppuView, completion: nil);
                                 // 更新菜品信息
-                                self?.rightVc.modifityDish(model: dishDetailModel);
-                                // 修改菜品JSON数据成功
-                                print("修改菜品JSON数据成功");
+                                if let data = data {
+                                    guard let dict = try! JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else {
+                                        return;
+                                    }
+                                    
+                                    let dishModel = JCDishModel.modelWithDic(dict: dict);
+                                    self?.rightVc.modifityDish(model: dishModel);
+                                    // 修改菜品JSON数据成功
+                                    print("修改菜品JSON数据成功");
+                                }
                                 
                             })
                             
-                            if let data = data {
-                                print(data);
-                            }
-                            
-                            if let response = response {
-                                debugPrint(response);
-                            }
-                            
                         }, failureCallBack: { (error) in
                             
-                            uploadpoppuView.uploadFailure();
+                            uploadpoppuView.modifityFailure();
                             // 移除窗口
                             delayCallBack(1, callBack: { () -> () in
                                 ZXAnimation.stopAnimation(targetView: uploadpoppuView, completion: nil);
@@ -627,7 +582,7 @@ class JCHomeController: UIViewController, UIAlertViewDelegate {
                         })
                     } else {
                         
-                        uploadpoppuView.uploadFailure();
+                        uploadpoppuView.modifityFailure();
                         // 移除窗口
                         delayCallBack(1, callBack: { () -> () in
                             ZXAnimation.stopAnimation(targetView: uploadpoppuView, completion: nil);

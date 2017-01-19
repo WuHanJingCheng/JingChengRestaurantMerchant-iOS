@@ -35,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let loginVc = JCLoginController();
         window?.rootViewController = loginVc;
         window?.makeKeyAndVisible();
+     
         // Override point for customization after application launch.
         return true
     }

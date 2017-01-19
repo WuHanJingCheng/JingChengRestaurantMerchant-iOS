@@ -549,31 +549,29 @@ class JCSubMenuListController: UIViewController, UICollectionViewDataSource, UIC
                             
                             ZXAnimation.stopAnimation(targetView: uploadpoppuView, completion: nil);
                             
-                            // 拼接数据
-                            self.submenus?.append(model);
-                            // 更新索引
-                            let _ = self.submenus?.enumerated().map({
-                                (submenu) in
-                                submenu.element.index = submenu.offset;
-                            });
-                            // 刷新表格
-                            self.collectionView.reloadData();
-                            
-                            // 发送通知，刷新分类列表
-                            if let submenus = self.submenus {
+                            if let data = data {
+                                guard let dict = try! JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else {
+                                    return;
+                                }
                                 
-                                NotificationCenter.default.post(name: ReloadMenuListNotification, object: nil, userInfo: ["ReloadMenuListNotification": submenus]);
+                                let middleModel = JCMiddleModel.modelWidthDict(dict: dict);
+                                // 拼接数据
+                                self.submenus?.append(middleModel);
+                                // 更新索引
+                                let _ = self.submenus?.enumerated().map({
+                                    (submenu) in
+                                    submenu.element.index = submenu.offset;
+                                });
+                                // 刷新表格
+                                self.collectionView.reloadData();
+                                
+                                // 发送通知，刷新分类列表
+                                if let submenus = self.submenus {
+                                    
+                                    NotificationCenter.default.post(name: ReloadMenuListNotification, object: nil, userInfo: ["ReloadMenuListNotification": submenus]);
+                                }
                             }
-                            
                         })
-                        
-                        if let data = data {
-                            print(data);
-                        }
-                        
-                        if let response = response {
-                            debugPrint(response);
-                        }
                         
                     }, failureCallBack: { (error) in
                         

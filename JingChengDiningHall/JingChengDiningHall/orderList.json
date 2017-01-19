@@ -2,30 +2,30 @@
     "results": [
     
         {
-            "pictureUrl": "orderlist_all_normal",
-            "pictureUrlSelected": "orderlist_all_selected",
-            "menuName": "全部",
+            "PictureUrl": "orderlist_all_normal",
+            "PictureUrlSelected": "orderlist_all_selected",
+            "MenuName": "全部",
             "queryparam": "all"
         },
                 
         {
-            "pictureUrl": "orderlist_dinner_normal",
-            "pictureUrlSelected": "orderlist_dinner_selected",
-            "menuName": "就餐",
+            "PictureUrl": "orderlist_dinner_normal",
+            "PictureUrlSelected": "orderlist_dinner_selected",
+            "MenuName": "就餐",
             "queryparam": "dinner"
         },
                 
         {
-            "pictureUrl": "orderlist_free_normal",
-            "pictureUrlSelected": "orderlist_free_selected",
-            "menuName": "空闲",
+            "PictureUrl": "orderlist_free_normal",
+            "PictureUrlSelected": "orderlist_free_selected",
+            "MenuName": "空闲",
             "queryparam": "free"
         },
                 
         {
-            "pictureUrl": "orderlist_record_normal",
-            "pictureUrlSelected": "orderlist_record_selected",
-            "menuName": "记录",
+            "PictureUrl": "orderlist_record_normal",
+            "PictureUrlSelected": "orderlist_record_selected",
+            "MenuName": "记录",
             "queryparam": "record"
         }
     ]

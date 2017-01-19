@@ -18,7 +18,7 @@ class JCAddSubMenuBtn: UIButton {
         titleLabel?.font = Font(size: 24/2);
         titleLabel?.textAlignment = .center;
         setTitleColor(RGBWithHexColor(hexColor: 0x1a1a1a), for: .normal);
-        setTitle("添加分类", for: .normal);
+        setTitle("类别管理", for: .normal);
         
     }
     
@@ -30,8 +30,8 @@ class JCAddSubMenuBtn: UIButton {
         
         let width = self.bounds.size.width;
         
-        let imageW = image.size.width;
-        let imageH = image.size.height;
+        let imageW = image.size.width/2;
+        let imageH = image.size.height/2;
         let imageX = (width - imageW)/2;
         let imageY = realValue(value: 30/2);
         let imageRect = CGRect(x: imageX, y: imageY, width: imageW, height: imageH);
@@ -45,7 +45,7 @@ class JCAddSubMenuBtn: UIButton {
             return .zero;
         }
       
-        let imageH = image.size.height;
+        let imageH = image.size.height/2;
         
         let width = self.bounds.size.width;
         

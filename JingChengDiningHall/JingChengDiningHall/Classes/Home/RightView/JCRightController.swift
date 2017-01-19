@@ -66,7 +66,13 @@ class JCRightController: UIViewController {
                 deleteBtnCallBack(model);
             }
         }
-        // Do any additional setup after loading the view.
+        
+    }
+    
+    // 刷新菜品列表
+    func updateDishList(model: JCMiddleModel) -> Void {
+        
+        menuView.updateDishList(model: model);
     }
     
     // 删除菜品，刷新
@@ -104,16 +110,6 @@ class JCRightController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+   
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

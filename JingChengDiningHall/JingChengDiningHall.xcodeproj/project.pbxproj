@@ -49,6 +49,9 @@
 		8B93AD181DB76E100062812C /* JCCompanyNameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B93AD171DB76E100062812C /* JCCompanyNameButton.swift */; };
 		8B962F121E25DEF400DEE33C /* JCHintLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B962F111E25DEF400DEE33C /* JCHintLabel.swift */; };
 		8B9EDB4E1DF7E84000EFAE8E /* JCAddSubMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9EDB4D1DF7E84000EFAE8E /* JCAddSubMenuController.swift */; };
+		8BA5B65A1E3078DB0009A97E /* JCLoadDishListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA5B6591E3078DB0009A97E /* JCLoadDishListView.swift */; };
+		8BA5B6601E3087580009A97E /* JCLoadDishListFairuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA5B65F1E3087580009A97E /* JCLoadDishListFairuleView.swift */; };
+		8BA5B6641E3096550009A97E /* loaddishlist.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8BA5B6631E3096550009A97E /* loaddishlist.gif */; };
 		8BA785031E07D5BF00C60DD4 /* JCForbidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA785021E07D5BF00C60DD4 /* JCForbidView.swift */; };
 		8BB8D9A81DDC5AF1008364BA /* JCMenuAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB8D9A71DDC5AF1008364BA /* JCMenuAddCell.swift */; };
 		8BC89E021DB4B49500A348D2 /* JCOrderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC89E011DB4B49500A348D2 /* JCOrderDetailView.swift */; };
@@ -140,6 +143,9 @@
 		8B93AD171DB76E100062812C /* JCCompanyNameButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCCompanyNameButton.swift; sourceTree = "<group>"; };
 		8B962F111E25DEF400DEE33C /* JCHintLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCHintLabel.swift; sourceTree = "<group>"; };
 		8B9EDB4D1DF7E84000EFAE8E /* JCAddSubMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCAddSubMenuController.swift; sourceTree = "<group>"; };
+		8BA5B6591E3078DB0009A97E /* JCLoadDishListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCLoadDishListView.swift; sourceTree = "<group>"; };
+		8BA5B65F1E3087580009A97E /* JCLoadDishListFairuleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCLoadDishListFairuleView.swift; sourceTree = "<group>"; };
+		8BA5B6631E3096550009A97E /* loaddishlist.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loaddishlist.gif; sourceTree = "<group>"; };
 		8BA785021E07D5BF00C60DD4 /* JCForbidView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCForbidView.swift; sourceTree = "<group>"; };
 		8BB8D9A71DDC5AF1008364BA /* JCMenuAddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMenuAddCell.swift; sourceTree = "<group>"; };
 		8BC89E011DB4B49500A348D2 /* JCOrderDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCOrderDetailView.swift; sourceTree = "<group>"; };
@@ -240,6 +246,7 @@
 				8B30A5F01DAF3F6100124925 /* Assets.xcassets */,
 				8BD14EA91DB474BF00DD2797 /* orderList.json */,
 				8B30A5F21DAF3F6100124925 /* LaunchScreen.storyboard */,
+				8BA5B6631E3096550009A97E /* loaddishlist.gif */,
 				8BF226421E249AF000A7734C /* loading.gif */,
 				8B30A5F51DAF3F6100124925 /* Info.plist */,
 			);
@@ -388,6 +395,8 @@
 				8B89DDE81DF698010099A996 /* JCDishDetailController.swift */,
 				8B962F111E25DEF400DEE33C /* JCHintLabel.swift */,
 				8BB8D9A71DDC5AF1008364BA /* JCMenuAddCell.swift */,
+				8BA5B6591E3078DB0009A97E /* JCLoadDishListView.swift */,
+				8BA5B65F1E3087580009A97E /* JCLoadDishListFairuleView.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -609,6 +618,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B30A5F41DAF3F6100124925 /* LaunchScreen.storyboard in Resources */,
+				8BA5B6641E3096550009A97E /* loaddishlist.gif in Resources */,
 				8B30A5F11DAF3F6100124925 /* Assets.xcassets in Resources */,
 				8BF226431E249AF000A7734C /* loading.gif in Resources */,
 				8BD14EAA1DB474BF00DD2797 /* orderList.json in Resources */,
@@ -707,6 +717,7 @@
 				8B4B8FA31DB07ADE00F0124D /* JCHomeController.swift in Sources */,
 				8B5376641DAFCA9100016A96 /* JCDIYButton.swift in Sources */,
 				8BB8D9A81DDC5AF1008364BA /* JCMenuAddCell.swift in Sources */,
+				8BA5B65A1E3078DB0009A97E /* JCLoadDishListView.swift in Sources */,
 				8B6529651E110CE0009C5B43 /* JCSearchView.swift in Sources */,
 				8B30A6321DAF41E800124925 /* JCLoginController.swift in Sources */,
 				8BF97CBD1DB09D0E005D328D /* JCSearchBar.swift in Sources */,
@@ -717,6 +728,7 @@
 				8BD14EB01DB488C700DD2797 /* JCStatusView.swift in Sources */,
 				8B89DDE91DF698010099A996 /* JCDishDetailController.swift in Sources */,
 				8B6C50151DB6129100DFAF9B /* JCOrderRecordCell.swift in Sources */,
+				8BA5B6601E3087580009A97E /* JCLoadDishListFairuleView.swift in Sources */,
 				8BF97CC01DB0A9F5005D328D /* JCLeftCell.swift in Sources */,
 				8BFD132D1DB606E500D75BE4 /* JCOrderLeftView.swift in Sources */,
 				8BC89E0A1DB4CD6200A348D2 /* JCOrderDetailCell.swift in Sources */,

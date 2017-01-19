@@ -28,7 +28,7 @@ class JCDishDetailController: UIViewController, UIImagePickerControllerDelegate,
     }();
     
     // 标题
-    private lazy var titleView: UILabel = {
+    lazy var titleView: UILabel = {
         let label = UILabel();
         label.text = "修改菜品信息";
         label.font = Font(size: 48/2);
@@ -482,15 +482,6 @@ class JCDishDetailController: UIViewController, UIImagePickerControllerDelegate,
             model.Price = (priceText as NSString).doubleValue;
             print("---------价格\(model.Price)");
             
-            if model.Price! == 0 {
-                
-                hintPrice.isHidden = false;
-                delayCallBack(1, callBack: {
-                    
-                    self.hintPrice.isHidden = true;
-                })
-                return;
-            }
         } else {
             
             hintPrice.isHidden = false;

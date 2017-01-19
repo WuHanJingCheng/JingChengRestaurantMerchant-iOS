@@ -156,8 +156,17 @@ class JCMiddleMenuListView: UIView, UITableViewDataSource, UITableViewDelegate {
             }
         });
         
+        let _ = menuList.enumerated().map({
+            (element) in
+            
+            element.element.isSelected = (element.offset == 0) ? true : false;
+        });
         // 更新UI
         tableView.reloadData();
+        
+        if let subMenuCallBack = subMenuCallBack, menuList.count > 0 {
+            subMenuCallBack(menuList[0]);
+        }
     }
     
     // 监听添加分类按钮的点击

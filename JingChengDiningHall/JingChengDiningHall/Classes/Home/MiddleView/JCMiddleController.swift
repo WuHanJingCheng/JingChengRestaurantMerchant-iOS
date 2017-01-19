@@ -105,10 +105,9 @@ class JCMiddleController: UIViewController {
                 orderCallBack(model);
             }
         }
-     
     }
     
-    //  菜品   删除子菜单
+    //  菜品  删除子菜单
     func deleteSubMenu(model: JCMiddleModel) -> Void {
         
         menuListView.deleteSubMenu(model: model);

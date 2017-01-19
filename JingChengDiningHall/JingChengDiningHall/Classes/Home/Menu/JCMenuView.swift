@@ -47,6 +47,8 @@ class JCMenuView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, 
     // 删除回调
     var deleteBtnCallBack: ((_ model: JCDishModel) -> ())?;
     
+    var task: URLSessionDataTask?;
+    
     deinit {
         print("JCMenuView 被释放了");
         
@@ -66,25 +68,26 @@ class JCMenuView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, 
         collectionView.register(JCMenuCell.self, forCellWithReuseIdentifier: rightCellIdentifier);
         // 注册加号cell
         collectionView.register(JCMenuAddCell.self, forCellWithReuseIdentifier: rightAddCellIdentifier);
-
+        
     }
     
     // 从服务器获取数据
-    func fetchDishListFromServer(url: String) -> Void {
+    func fetchDishListFromServer(url: String, successCallBack: @escaping(_ result: [JCDishModel]) -> (), failureCallBack: @escaping(_ error: Error?) -> ()) -> Void {
        
         // 发送网络请求
         let mgr = HttpManager.shared;
         mgr.requestSerializer.timeoutInterval = 10;
-        mgr.request(.GET, urlString: url, parameters: nil, finished: {
-            (result, task, error) in
+        task = mgr.get(url, parameters: nil, progress: nil, success: {
+            (dataTask, result) in
             
-            guard let response = task?.response as? HTTPURLResponse else {
+            guard let response = dataTask.response as? HTTPURLResponse else {
                 return;
             }
             
             if response.statusCode == 200 || response.statusCode == 201 || response.statusCode == 304 {
-                // 清空数组
-                self.dishlist.removeAll();
+                
+                
+                var list = [JCDishModel]();
                 if let result = result as? [[String: Any]] {
                     let _ = result.enumerated().map({
                         (dict) in
@@ -93,24 +96,125 @@ class JCMenuView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, 
                         model.DishUrl = url;
                         model.directory = self.middleModel?.MenuName;
                         model.index = dict.offset + 1;
-                        self.dishlist.append(model);
+                        list.append(model);
                     });
                     
-                    // 刷新数据
-                    self.collectionView.reloadData();
+                    successCallBack(list);
+                    return;
                 }
-            } else {
+            }
+            
+        }, failure: {
+            (dataTask, error) in
+            
+            failureCallBack(error);
+        })
+    }
+    
+    
+    // 更新菜品列表
+    func updateDishList(model: JCMiddleModel) -> Void {
+        
+        // 取消之前的请求
+        task?.cancel();
+        
+        // 保存模型数据
+        self.middleModel = model;
+        // 清空数组
+        self.dishlist.removeAll();
                 
-                // 清空数据
+        // 添加加载视图
+        let loadView = JCLoadDishListView();
+        loadView.frame = bounds;
+        addSubview(loadView);
+        
+        // 获取网络数据
+        if let MenuId = model.MenuId {
+            
+            let url = dishlistUrl(MenuId: MenuId);
+            fetchDishListFromServer(url: url, successCallBack: { (result) in
+                // 清空数组
+                self.dishlist.removeAll();
+                // 移除加载视图
+                loadView.removeFromSuperview();
+                // 拼接数据
+                self.dishlist += result;
+                // 刷新列表
+                self.collectionView.reloadData();
+                
+            }, failureCallBack: { (error) in
+                
+                // 移除加载视图
+                loadView.removeFromSuperview();
+                
+                if let error = error {
+                    print("加载菜品列表数据失败", error.localizedDescription);
+                    if error.localizedDescription == "cancelled" {
+                        return;
+                    }
+                }
+                
+                // 清空数组
                 self.dishlist.removeAll();
                 // 刷新列表
                 self.collectionView.reloadData();
                 
-                if let error = error {
-                    print("请求子菜单对应的菜品列表数据失败", error.localizedDescription);
+                // 添加加载失败的视图
+                let loadFailure = JCLoadDishListFairuleView();
+                loadFailure.frame = self.bounds;
+                self.addSubview(loadFailure);
+                
+                loadFailure.reloadCallBack = { [weak self, weak loadFailure]
+                    _ in
+                    
+                    // 添加加载视图
+                    let loadView = JCLoadDishListView();
+                    loadView.frame = (self?.bounds)!;
+                    self?.addSubview(loadView);
+                    
+                    self?.fetchDishListFromServer(url: url, successCallBack: { (result) in
+                        
+                        // 清空数组
+                        self?.dishlist.removeAll();
+                        // 移除加载视图
+                        loadView.removeFromSuperview();
+                        // 移除加载失败视图
+                        loadFailure?.removeFromSuperview();
+                        // 拼接数据
+                        self?.dishlist += result;
+                        // 刷新列表
+                        self?.collectionView.reloadData();
+                        
+                        
+                    }, failureCallBack: { (error) in
+                        
+                        // 移除加载视图
+                        loadView.removeFromSuperview();
+                        
+                        if let error = error {
+                            print("加载菜品列表数据失败", error.localizedDescription);
+                        }
+                        
+                        // 添加加载视图
+                        let loadView = JCLoadDishListView();
+                        loadView.frame = (self?.bounds)!;
+                        self?.addSubview(loadView);
+                        
+                        delayCallBack(2, callBack: {
+                            _ in
+                            
+                            loadView.removeFromSuperview();
+                        });
+                        
+                    })
                 }
-            }
-        });
+            })
+            
+        } else {
+            
+            // 移除加载视图
+            loadView.removeFromSuperview();
+        }
     }
     
     // 增加菜品
