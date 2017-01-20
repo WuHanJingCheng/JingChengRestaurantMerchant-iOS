@@ -19,16 +19,16 @@ func submenulistUrl(restaurantId: Int) -> String {
 
 
 // 修改单个子菜单
-func submenuURL(restaurantId: Int) -> String {
+func submenuURL(MenuId: Int) -> String {
     
-    let url = "https://jingchengrestaurant.azurewebsites.net/api/Restaurant/\(restaurantId)/menu";
+    let url = "https://jingchengrestaurant.azurewebsites.net/api/Menu/\(MenuId)";
     return url;
 }
 
 // 删除子菜单接口
-func deleteSubMenuURL(menuId: Int) -> String {
+func deleteSubMenuURL(MenuId: Int) -> String {
     
-    let url = "https://jingchengrestaurant.azurewebsites.net/api/Menu/\(menuId)";
+    let url = "https://jingchengrestaurant.azurewebsites.net/api/Menu/\(MenuId)";
     return url;
 }
 /******************************子菜单增删改********************************/

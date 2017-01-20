@@ -119,7 +119,7 @@ class JCSubMenuListController: UIViewController, UICollectionViewDataSource, UIC
                 // 发送请求，删除远程数据
                 if let MenuId = currentModel.MenuId {
                    
-                    HttpManager.shared.deleteServerData(url: deleteSubMenuURL(menuId: MenuId), succussCallBack: { (data) in
+                    HttpManager.shared.deleteServerData(url: deleteSubMenuURL(MenuId: MenuId), succussCallBack: { (data) in
                         
                         // 删除成功
                         print("删除成功");
@@ -339,8 +339,7 @@ class JCSubMenuListController: UIViewController, UICollectionViewDataSource, UIC
                     if let MenuId = model.MenuId {
                         
                         parameters["MenuId"] = MenuId;
-                        print(parameters);
-                        HttpManager.shared.modifityServerData(url: submenuURL(restaurantId: restaurantId), parameters: parameters, succussCallBack: { (data, response) in
+                        HttpManager.shared.modifityServerData(url: submenuURL(MenuId: MenuId), parameters: parameters, succussCallBack: { (data, response) in
                             
                             print("修改子菜单成功");
                             // 修改成功
@@ -351,30 +350,35 @@ class JCSubMenuListController: UIViewController, UICollectionViewDataSource, UIC
                                 ZXAnimation.stopAnimation(targetView: uploadpoppuView, completion: nil);
                                 
                                 // 更新数据源
-                                // 删除旧模型数据
-                                self.submenus?.remove(at: indexPath.row);
-                                // 插入新的模型数据
-                                self.submenus?.insert(model, at: indexPath.row);
-                                
-                                // 更新索引
-                                let _ = self.submenus?.enumerated().map({
-                                    (submenu) in
-                                    submenu.element.index = submenu.offset;
-                                });
-                                
-                                // 更新UI
-                                self.collectionView.reloadData();
-                                
+                                if let data = data {
+                                    guard let dict = try! JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else {
+                                        return;
+                                    }
+                                    
+                                    let subMenu = JCMiddleModel.modelWidthDict(dict: dict);
+                                    
+                                    // 删除旧模型数据
+                                    self.submenus?.remove(at: indexPath.row);
+                                    // 插入新的模型数据
+                                    self.submenus?.insert(subMenu, at: indexPath.row);
+                                    
+                                    // 更新索引
+                                    let _ = self.submenus?.enumerated().map({
+                                        (submenu) in
+                                        submenu.element.index = submenu.offset;
+                                    });
+                                    
+                                    // 更新UI
+                                    self.collectionView.reloadData();
+                                    
+                                    // 发送通知，刷新分类列表
+                                    if let submenus = self.submenus {
+                                        
+                                        NotificationCenter.default.post(name: ReloadMenuListNotification, object: nil, userInfo: ["ReloadMenuListNotification": submenus]);
+                                    }
+                                    
+                                }
                             })
-                            
-                            
-                            if let data = data {
-                                print(data);
-                            }
-                            
-                            if let response = response {
-                                debugPrint(response);
-                            }
                             
                         }, failureCallBack: { (error) in
                             

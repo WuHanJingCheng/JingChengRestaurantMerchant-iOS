@@ -54,15 +54,6 @@ class JCLoginController: UIViewController {
         return loginBtn;
     }();
     
-    // 忘记密码按钮
-    private lazy var forgetpasswordBtn: UIButton = {
-        let forgetpasswordBtn = UIButton(type: .custom);
-        forgetpasswordBtn.setTitle("忘记密码？", for: .normal);
-        forgetpasswordBtn.setTitleColor(RGBWithHexColor(hexColor: 0x999999), for: .normal);
-        forgetpasswordBtn.titleLabel?.font = Font(size: 36/2);
-        forgetpasswordBtn.addTarget(self, action: #selector(forgetpasswordBtnClick(button:)), for: .touchUpInside);
-        return forgetpasswordBtn;
-    }();
     
     // 密码错误提示
     private lazy var accountPromptLabel: UILabel = {
@@ -110,9 +101,7 @@ class JCLoginController: UIViewController {
         
         // 登录按钮
         whiteBackground.addSubview(loginBtn);
-        
-        // 添加忘记密码按钮
-        whiteBackground.addSubview(forgetpasswordBtn);
+       
         
         // 添加通知，监听键盘的弹出
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: Notification.Name.UIKeyboardWillShow, object: nil);
@@ -127,11 +116,7 @@ class JCLoginController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true);
     }
-    
-    // MARK: - 点击忘记密码按钮，进入忘记密码界面
-    func forgetpasswordBtnClick(button: UIButton) -> Void {
-        
-    }
+   
     
     // MARK: - 键盘弹出
     func keyboardWillShow(notification: Notification) -> Void {
@@ -197,15 +182,15 @@ class JCLoginController: UIViewController {
         let whiteBackgroundCenterX = width/2;
         let whiteBackgroundCenterY = height/2;
         let whiteBackgroundW = realValue(value: 814/2);
-        let whiteBackgroundH = realValue(value: 760/2);
+        let whiteBackgroundH = realValue(value: 712/2);
         whiteBackground.center = CGPoint(x: whiteBackgroundCenterX, y: whiteBackgroundCenterY);
         whiteBackground.bounds = CGRect(x: 0, y: 0, width: whiteBackgroundW, height: whiteBackgroundH);
         
         // 设置logo 的frame
-        let logoW = realValue(value: 389/2);
-        let logoH = realValue(value: 95/2);
+        let logoW = realValue(value: 376/2);
+        let logoH = realValue(value: 76/2);
         let logoCenterX = whiteBackgroundW/2;
-        let logoCenterY = realValue(value: 24/2) + logoH/2;
+        let logoCenterY = realValue(value: 45/2) + logoH/2;
         logo.center = CGPoint(x: logoCenterX, y: logoCenterY);
         logo.bounds = CGRect(x: 0, y: 0, width: logoW, height: logoH);
         
@@ -213,7 +198,7 @@ class JCLoginController: UIViewController {
         let merchantIdViewW = realValue(value: 720/2);
         let merchantIdViewH = realValue(value: 100/2);
         let merchantIdViewCenterX = whiteBackgroundW/2;
-        let merchantIdViewCenterY = logo.frame.maxY + realValue(value: 30/2) + merchantIdViewH/2;
+        let merchantIdViewCenterY = logo.frame.maxY + realValue(value: 45/2) + merchantIdViewH/2;
         merchantIdView.center = CGPoint(x: merchantIdViewCenterX, y: merchantIdViewCenterY);
         merchantIdView.bounds = CGRect(x: 0, y: 0, width: merchantIdViewW, height: merchantIdViewH);
     
@@ -244,12 +229,6 @@ class JCLoginController: UIViewController {
         loginBtn.center = CGPoint.init(x: loginBtnCenterX, y: loginBtnCenterY);
         loginBtn.bounds = CGRect.init(x: 0, y: 0, width: loginBtnW, height: loginBtnH);
         
-        // 设置忘记密码的frame
-        let forgetpasswordBtnY = loginBtn.frame.maxY + realValue(value: 30/2);
-        let forgetpasswordBtnW = calculateWidth(title: "忘记密码？", fontSize: 36/2);
-        let forgetpasswordBtnX = accountView.frame.maxX - realValue(value: 30/2) - forgetpasswordBtnW;
-        let forgetpasswordBtnH = realValue(value: 36/2);
-        forgetpasswordBtn.frame = CGRect.init(x: forgetpasswordBtnX, y: forgetpasswordBtnY, width: forgetpasswordBtnW, height: forgetpasswordBtnH);
         
     }
 
