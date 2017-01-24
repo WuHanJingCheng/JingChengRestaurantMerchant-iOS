@@ -12,6 +12,7 @@ import SDWebImage
 
 let kScreenWidth = UIScreen.main.bounds.size.width;
 let kScreenHeight = UIScreen.main.bounds.size.height;
+let scale = UIScreen.main.scale;
 
 let restaurantId: Int = 65;
 
@@ -153,6 +154,16 @@ func RGBWithHexColor(hexColor: Int) -> UIColor {
     let green = ((hexColor & 0xFF00) >> 8);
     let blue = (hexColor & 0xFF);
     let color = RGB(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue));
+    return color;
+}
+
+// 16进制色码
+func RGBWithHexColor(hexColor: Int, alpha: CGFloat) -> UIColor {
+    
+    let red = ((hexColor & 0xFF0000) >> 16);
+    let green = ((hexColor & 0xFF00) >> 8);
+    let blue = (hexColor & 0xFF);
+    let color = UIColor.init(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: alpha);
     return color;
 }
 

@@ -9,7 +9,7 @@
 import UIKit
 
 
-class JCDishDetailController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class JCDishDetailController: UIViewController {
     
     // 背景
     private lazy var background: UIImageView = {
@@ -372,59 +372,34 @@ class JCDishDetailController: UIViewController, UIImagePickerControllerDelegate,
     // 点击图片打开相册
     @objc private func dishImageBtnClick() -> Void {
         
-        // 设置方向
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return;
+        
+        let albumVc = AlbumController();
+        albumVc.shotScreenType = "1390x1043";
+        let nav = UINavigationController.init(rootViewController: albumVc);
+        present(nav, animated: true, completion: nil)
+        
+        albumVc.screenshotCallBack = { [weak self]
+            (image, vc) in
+            
+            // 缩略图
+            // 压缩图片
+            let smallImage = compressImage(sourceImage: image, targetSize: CGSize(width: realValue(value: 476/2), height: realValue(value: 476/2)));
+            self?.dishImageBtn.setImage(smallImage, for: .normal);
+            
+            // 保存压缩后的图片
+            let imageData = UIImageJPEGRepresentation(smallImage, 0.4);
+            self?.model.imageData = imageData;
+            
+            // 大图
+            let largeImage = compressImage(sourceImage: image, targetSize: CGSize(width: realValue(value: 1390/2), height: realValue(value: 1043/2)));
+            // 压缩
+            let largeImageData = UIImageJPEGRepresentation(largeImage, 0.4);
+            self?.model.largeImageData = largeImageData;
+
+           
+            // 返回
+            vc.dismiss(animated: true, completion: nil);
         }
-        // 设置为横屏
-        appDelegate.oriation = .all;
-        // 创建照片选择器
-        let imagePicker = UIImagePickerController();
-        imagePicker.delegate = self;
-        imagePicker.sourceType = .photoLibrary;
-        imagePicker.allowsEditing = true;
-        present(imagePicker, animated: true, completion: nil);
-    }
-    
-    
-    // 取消
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return;
-        }
-        appDelegate.oriation = .landscape;
-        picker.dismiss(animated: false, completion: nil);
-    }
-    
-    // 选中照片
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return;
-        }
-        appDelegate.oriation = .landscape;
-        
-        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
-            return;
-        }
-        
-        // 缩略图
-        // 压缩图片
-        let smallImage = compressImage(sourceImage: image, targetSize: CGSize(width: realValue(value: 476/2), height: realValue(value: 476/2)));
-        dishImageBtn.setImage(smallImage, for: .normal);
-        
-        // 保存压缩后的图片
-        let imageData = UIImageJPEGRepresentation(smallImage, 0.4);
-        model.imageData = imageData;
-        
-        // 大图
-        let largeImage = compressImage(sourceImage: image, targetSize: CGSize(width: realValue(value: 1390/2), height: realValue(value: 1043/2)));
-        // 压缩
-        let largeImageData = UIImageJPEGRepresentation(largeImage, 0.4);
-        model.largeImageData = largeImageData;
-        
-        dismiss(animated: true, completion: nil);
     }
     
     
@@ -674,13 +649,3 @@ class JCDishDetailController: UIViewController, UIImagePickerControllerDelegate,
     
 }
 
-extension UIImagePickerController {
-    
-    open override var shouldAutorotate: Bool {
-        return true;
-    }
-    
-    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .all;
-    }
-}

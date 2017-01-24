@@ -15,7 +15,7 @@ enum ImageType {
 }
 
 
-class JCAddSubMenuController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class JCAddSubMenuController: UIViewController {
     
     // 背景
     private lazy var background: UIImageView = {
@@ -57,18 +57,30 @@ class JCAddSubMenuController: UIViewController, UIImagePickerControllerDelegate,
             
             self?.model.imageType = imageType;
            
-            // 设置方向
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                return;
+            let albumVc = AlbumController();
+            albumVc.shotScreenType = "84x64";
+            let nav = UINavigationController.init(rootViewController: albumVc);
+            self?.present(nav, animated: true, completion: nil)
+            
+            albumVc.screenshotCallBack = { [weak self]
+                (image, vc) in
+                
+                // 压缩图片
+                let smallImage = compressImage(sourceImage: image, targetSize: CGSize(width: realValue(value: 84/2), height: realValue(value: 64/2)));
+                // 将image转化为data
+                let imageData = UIImageJPEGRepresentation(smallImage, 1);
+                
+                // 保存图片
+                if self?.model.imageType == .normal {
+                    self?.model.image_normal_data = imageData;
+                } else {
+                    self?.model.image_selected_data = imageData;
+                }
+                self?.addSubMenuDetailView.model = self?.model;
+                
+                // 返回
+                vc.dismiss(animated: true, completion: nil);
             }
-            // 设置为横屏
-            appDelegate.oriation = .all;
-            // 创建照片选择器
-            let imagePicker = UIImagePickerController();
-            imagePicker.delegate = self;
-            imagePicker.sourceType = .photoLibrary;
-            imagePicker.allowsEditing = true;
-            self?.present(imagePicker, animated: true, completion: nil);
         }
         
         // 取消按钮回调
@@ -110,46 +122,6 @@ class JCAddSubMenuController: UIViewController, UIImagePickerControllerDelegate,
     func showSubMenuInfo(model: JCMiddleModel) {
         
         addSubMenuDetailView.showSubMenuInfo(model: model);
-    }
-    
-    // 取消
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return;
-        }
-        appDelegate.oriation = .landscape;
-        picker.dismiss(animated: false, completion: nil);
-    }
-    
-    // 选中照片
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        // 获取代理对象
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return;
-        }
-        // 设置横屏
-        appDelegate.oriation = .landscape;
-        // 获取image中的数据
-        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
-            return;
-        };
- 
-        // 压缩图片
-        let smallImage = compressImage(sourceImage: image, targetSize: CGSize(width: realValue(value: 84/2), height: realValue(value: 64/2)));
-        // 将image转化为data
-        let imageData = UIImageJPEGRepresentation(smallImage, 0.5);
-        
-        // 保存图片
-        if model.imageType == .normal {
-            model.image_normal_data = imageData;
-        } else {
-            model.image_selected_data = imageData;
-        }
-        addSubMenuDetailView.model = model;
-        
-        // 让控制器消失
-        dismiss(animated: true, completion: nil);
     }
     
   

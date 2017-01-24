@@ -18,7 +18,7 @@ class JCLoadDishListFairuleView: UIView {
     }();
     
     // 重新加载按钮
-    private lazy var reloadBtn: UIButton = {
+    lazy var reloadBtn: UIButton = {
         let button = UIButton(type: .custom);
         button.setTitle("重新加载", for: .normal);
         button.titleLabel?.font = Font(size: 36/2);
@@ -28,7 +28,7 @@ class JCLoadDishListFairuleView: UIView {
     }();
     
     // 提示label
-    private lazy var textLabel: UILabel = {
+    lazy var textLabel: UILabel = {
         let label = UILabel();
         label.text = "糟糕，似乎出现了点问题";
         label.font = Font(size: 32/2);

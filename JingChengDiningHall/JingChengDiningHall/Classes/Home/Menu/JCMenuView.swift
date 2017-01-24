@@ -151,6 +151,12 @@ class JCMenuView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, 
                     print("加载菜品列表数据失败", error.localizedDescription);
                     if error.localizedDescription == "cancelled" {
                         return;
+                    } else if error.localizedDescription == "Request failed: not found (404)" {
+                        // 清空数组
+                        self.dishlist.removeAll();
+                        // 刷新UI
+                        self.collectionView.reloadData();
+                        return;
                     }
                 }
                 

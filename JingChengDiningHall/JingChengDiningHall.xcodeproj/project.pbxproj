@@ -32,6 +32,14 @@
 		8B5620A61DF4F5EC0022EFD6 /* JCLeftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5620A51DF4F5EC0022EFD6 /* JCLeftController.swift */; };
 		8B5620A81DF4F7510022EFD6 /* JCMiddleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5620A71DF4F7510022EFD6 /* JCMiddleController.swift */; };
 		8B5620AA1DF4F8AD0022EFD6 /* JCRightController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5620A91DF4F8AD0022EFD6 /* JCRightController.swift */; };
+		8B5731741E3387CB00EA3620 /* AlbumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57316B1E3387CB00EA3620 /* AlbumController.swift */; };
+		8B5731751E3387CB00EA3620 /* PhotoDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57316C1E3387CB00EA3620 /* PhotoDetailController.swift */; };
+		8B5731761E3387CB00EA3620 /* PhotoListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57316D1E3387CB00EA3620 /* PhotoListController.swift */; };
+		8B5731771E3387CB00EA3620 /* AlbumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57316F1E3387CB00EA3620 /* AlbumModel.swift */; };
+		8B5731781E3387CB00EA3620 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5731701E3387CB00EA3620 /* PhotoModel.swift */; };
+		8B5731791E3387CB00EA3620 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5731721E3387CB00EA3620 /* AlbumCell.swift */; };
+		8B57317A1E3387CB00EA3620 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5731731E3387CB00EA3620 /* PhotoCell.swift */; };
+		8B57317C1E338AFF00EA3620 /* PhotoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57317B1E338AFF00EA3620 /* PhotoHandler.swift */; };
 		8B5758481DB7BC04000BE44C /* JCOrderRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5758471DB7BC04000BE44C /* JCOrderRecordModel.swift */; };
 		8B6331BD1E237CCA0012E200 /* JCUpLoadPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6331BC1E237CCA0012E200 /* JCUpLoadPopupView.swift */; };
 		8B6529631E11097A009C5B43 /* JCSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6529621E11097A009C5B43 /* JCSearchController.swift */; };
@@ -126,6 +134,14 @@
 		8B5620A51DF4F5EC0022EFD6 /* JCLeftController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCLeftController.swift; sourceTree = "<group>"; };
 		8B5620A71DF4F7510022EFD6 /* JCMiddleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCMiddleController.swift; sourceTree = "<group>"; };
 		8B5620A91DF4F8AD0022EFD6 /* JCRightController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCRightController.swift; sourceTree = "<group>"; };
+		8B57316B1E3387CB00EA3620 /* AlbumController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumController.swift; sourceTree = "<group>"; };
+		8B57316C1E3387CB00EA3620 /* PhotoDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailController.swift; sourceTree = "<group>"; };
+		8B57316D1E3387CB00EA3620 /* PhotoListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoListController.swift; sourceTree = "<group>"; };
+		8B57316F1E3387CB00EA3620 /* AlbumModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumModel.swift; sourceTree = "<group>"; };
+		8B5731701E3387CB00EA3620 /* PhotoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
+		8B5731721E3387CB00EA3620 /* AlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
+		8B5731731E3387CB00EA3620 /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		8B57317B1E338AFF00EA3620 /* PhotoHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoHandler.swift; sourceTree = "<group>"; };
 		8B5758471DB7BC04000BE44C /* JCOrderRecordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCOrderRecordModel.swift; sourceTree = "<group>"; };
 		8B6331BC1E237CCA0012E200 /* JCUpLoadPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCUpLoadPopupView.swift; sourceTree = "<group>"; };
 		8B6529621E11097A009C5B43 /* JCSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCSearchController.swift; sourceTree = "<group>"; };
@@ -277,8 +293,9 @@
 				8BD3F5AC1E13663B00DC5CD9 /* BlobManager.swift */,
 				8B5614151E08205B000146CC /* ZXAnimation.swift */,
 				8B665FC91E1BA59C0057CBE0 /* API.swift */,
-				8B65295E1E110969009C5B43 /* Search */,
 				8B30A6181DAF40EF00124925 /* Header */,
+				8B5731691E3387CB00EA3620 /* Album */,
+				8B65295E1E110969009C5B43 /* Search */,
 				8B30A6191DAF40EF00124925 /* Home */,
 				8B30A6261DAF40EF00124925 /* Login */,
 				8B30A62A1DAF40EF00124925 /* Network */,
@@ -351,6 +368,45 @@
 				8B0D3FD91DF800BE00E39FB6 /* HttpManager.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		8B5731691E3387CB00EA3620 /* Album */ = {
+			isa = PBXGroup;
+			children = (
+				8B57316A1E3387CB00EA3620 /* Controller */,
+				8B57316E1E3387CB00EA3620 /* Model */,
+				8B5731711E3387CB00EA3620 /* View */,
+			);
+			path = Album;
+			sourceTree = "<group>";
+		};
+		8B57316A1E3387CB00EA3620 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8B57316B1E3387CB00EA3620 /* AlbumController.swift */,
+				8B57316C1E3387CB00EA3620 /* PhotoDetailController.swift */,
+				8B57316D1E3387CB00EA3620 /* PhotoListController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8B57316E1E3387CB00EA3620 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8B57316F1E3387CB00EA3620 /* AlbumModel.swift */,
+				8B5731701E3387CB00EA3620 /* PhotoModel.swift */,
+				8B57317B1E338AFF00EA3620 /* PhotoHandler.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8B5731711E3387CB00EA3620 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8B5731721E3387CB00EA3620 /* AlbumCell.swift */,
+				8B5731731E3387CB00EA3620 /* PhotoCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		8B65295E1E110969009C5B43 /* Search */ = {
@@ -707,20 +763,24 @@
 				8B4C72C01E1B3A6100B4D26D /* JCSubMenuListController.swift in Sources */,
 				8BFD132B1DB5E67C00D75BE4 /* JCOrderDetailModel.swift in Sources */,
 				8B4C72C41E1B405D00B4D26D /* ZXCollectionViewLayout.swift in Sources */,
+				8B5731771E3387CB00EA3620 /* AlbumModel.swift in Sources */,
 				8B93AD141DB755200062812C /* JCMineDetailView.swift in Sources */,
 				8BFD132F1DB60D1300D75BE4 /* JCOrderRecordView.swift in Sources */,
 				8BD3F5AD1E13663B00DC5CD9 /* BlobManager.swift in Sources */,
 				8B665FC81E1B79B30057CBE0 /* JCSubMenuListAddCell.swift in Sources */,
+				8B5731751E3387CB00EA3620 /* PhotoDetailController.swift in Sources */,
 				8BC89E0C1DB4D15300A348D2 /* JCOrderDetailBottom.swift in Sources */,
 				8BC89E081DB4CD4300A348D2 /* JCOrderDetailHeader.swift in Sources */,
 				8B4F4F761DB5A7C000A3B989 /* JCOrderModel.swift in Sources */,
 				8B4B8FA31DB07ADE00F0124D /* JCHomeController.swift in Sources */,
 				8B5376641DAFCA9100016A96 /* JCDIYButton.swift in Sources */,
 				8BB8D9A81DDC5AF1008364BA /* JCMenuAddCell.swift in Sources */,
+				8B57317C1E338AFF00EA3620 /* PhotoHandler.swift in Sources */,
 				8BA5B65A1E3078DB0009A97E /* JCLoadDishListView.swift in Sources */,
 				8B6529651E110CE0009C5B43 /* JCSearchView.swift in Sources */,
 				8B30A6321DAF41E800124925 /* JCLoginController.swift in Sources */,
 				8BF97CBD1DB09D0E005D328D /* JCSearchBar.swift in Sources */,
+				8B5731741E3387CB00EA3620 /* AlbumController.swift in Sources */,
 				8BF97CBE1DB09D0E005D328D /* JCTopView.swift in Sources */,
 				8B6331BD1E237CCA0012E200 /* JCUpLoadPopupView.swift in Sources */,
 				8B4C72C21E1B3AE700B4D26D /* JCSubMenuTopView.swift in Sources */,
@@ -735,14 +795,17 @@
 				8BE0D3461E1E3D9C0015331F /* JCDishModel.swift in Sources */,
 				8B6529631E11097A009C5B43 /* JCSearchController.swift in Sources */,
 				8B5620A61DF4F5EC0022EFD6 /* JCLeftController.swift in Sources */,
+				8B5731761E3387CB00EA3620 /* PhotoListController.swift in Sources */,
 				8BD3F5B11E13A3B500DC5CD9 /* JCAddSubMenuBtn.swift in Sources */,
 				8B9EDB4E1DF7E84000EFAE8E /* JCAddSubMenuController.swift in Sources */,
 				8B30A6361DAF445800124925 /* JCPasswordView.swift in Sources */,
 				8B286FB41DB0D29F00F800B9 /* JCMiddleModel.swift in Sources */,
 				8BD14EA81DB472C000DD2797 /* JCOrderView.swift in Sources */,
+				8B57317A1E3387CB00EA3620 /* PhotoCell.swift in Sources */,
 				8B4398621DB1294900A3925B /* JCMenuCell.swift in Sources */,
 				8B4C72C61E1B4E1000B4D26D /* JCSubMenuListCell.swift in Sources */,
 				8B0D3FDA1DF800BE00E39FB6 /* HttpManager.swift in Sources */,
+				8B5731791E3387CB00EA3620 /* AlbumCell.swift in Sources */,
 				8B80FBDD1E149FC500E407D2 /* JCMiddleOrderListView.swift in Sources */,
 				8B5614161E08205B000146CC /* ZXAnimation.swift in Sources */,
 				8B5620A81DF4F7510022EFD6 /* JCMiddleController.swift in Sources */,
@@ -753,6 +816,7 @@
 				8B93AD181DB76E100062812C /* JCCompanyNameButton.swift in Sources */,
 				8BC89E021DB4B49500A348D2 /* JCOrderDetailView.swift in Sources */,
 				8B30A6341DAF43B400124925 /* JCAccountView.swift in Sources */,
+				8B5731781E3387CB00EA3620 /* PhotoModel.swift in Sources */,
 				8BA785031E07D5BF00C60DD4 /* JCForbidView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
